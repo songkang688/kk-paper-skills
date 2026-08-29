@@ -19,6 +19,8 @@ Codex 用户把目标换成 `~/.codex/skills/` 即可。
 | 干什么 | 技能 |
 |---|---|
 | 总路由，判定意图并转发 | `kk-paper-router` |
+| 找研究缺口（多维趋势分析） | `research-gap` |
+| 模糊想法收敛成可研究选题 | `topic-framing` |
 | 读论文、中英对照翻译 | `nature-reader` |
 | 找文献 | `lit-search`，顶会论文用 `conf-search` |
 | 框架、模板、防造假占位 | `paper-skill` |
@@ -36,6 +38,10 @@ Codex 用户把目标换成 `~/.codex/skills/` 即可。
 | 论文多方案/多版本对比与主线抉择 | `paper-version-compare` |
 | 回复审稿意见 | `nature-response` |
 | 选期刊 | `journal-match`（会议由 `paper-skill` venue 流程兜底） |
+
+## 找创新点模式
+
+对路由说找创新点或选题，它会走五步：先用 `conf-search` 和 `lit-search` 学近两年顶会顶刊论文（默认 100 篇，逐篇短卡落盘），再用 `research-gap` 出缺口报告并列做烂清单，然后不设边界发散候选思路，按创新性、可行性、故事性、审稿风险收敛选出 3 个并用 `topic-framing` 定成可研究的题目。要代码时每个方案交付一份完整可直接训练的 py 文件，核心组件与用户提供的参考实现逐行一致，写完独立检查 3 遍（逐行 diff、语法导入、训练闭环走查）。
 
 ## 审稿模式
 

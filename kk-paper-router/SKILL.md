@@ -2,15 +2,18 @@
 name: kk-paper-router
 description: >-
   KK 论文任务总路由。所有论文相关请求先经过本 skill 判定意图，再转发到唯一对应的
-  本地 skill：读文献、找文献、搭框架、写初稿、润色翻译、画图、LaTeX、查引用、审稿、
-  发表前终检、全局一致性检查、段落多版本对比、论文多方案对比、rebuttal、选会选刊。
+  本地 skill：找创新点、读文献、找文献、搭框架、写初稿、润色翻译、画图、LaTeX、
+  查引用、审稿、发表前终检、全局一致性检查、段落多版本对比、论文多方案对比、
+  rebuttal、选会选刊。找创新点时先学近两年顶会顶刊 100 篇再发散，缺口分析用
+  research-gap，收敛用 topic-framing，100 个候选选 3 个，可交付完整可训练代码。
   润色时强制逐段拆句、逐句执行润色，
   输出改前/改后/改了什么/为什么四列完整对照表，超过两段落盘为 md 文件。审稿时并行
   派发 5 个独立审稿子 agent（reviewforge-openreview、aaai-review-simulator、
   academic-paper-reviewer、scholar-evaluation、peer-review），各自保存独立报告，
   父进程汇总输出最终评审意见。Use when the user mentions 论文, paper, manuscript,
   审稿, 评审, 润色, 翻译论文, 写初稿, 终检, 最终审查, 一致性检查, 查引用, rebuttal,
-  投稿, 选期刊, or any academic paper task without naming a specific skill.
+  投稿, 选期刊, 找创新点, 选题, 研究缺口, or any academic paper task without
+  naming a specific skill.
   用户明确点名某个 skill 时直接用该 skill，不经过本路由。
 ---
 
@@ -25,6 +28,7 @@ description: >-
 
 | 用户在说什么 | 怎么办 |
 |---|---|
+| 找创新点 / 选题 / 找研究缺口 / 想 idea | 读 [references/ideation-mode.md](references/ideation-mode.md)，先学近两年顶会顶刊 100 篇，`research-gap` 找缺口，发散出候选后 `topic-framing` 收敛选 3，要代码时交付完整可训练 py 并对齐用户参考实现 |
 | 读这篇论文 / 翻译论文 / 中英对照精读 | `nature-reader` |
 | 找文献 / 检索相关工作 | `lit-search`，顶会论文优先 `conf-search` |
 | 开新稿 / 搭框架 / 模板 / 真假与 XX 占位 / 投稿打包 | `paper-skill` |
