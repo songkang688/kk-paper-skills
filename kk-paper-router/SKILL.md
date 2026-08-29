@@ -31,7 +31,7 @@ description: >-
 | 写初稿 / 写或改章节 | 【写初稿模式】见下 |
 | 润色 / 中译英 / 去 AI 味 / 缩写扩写 | 读 [references/polish-mode.md](references/polish-mode.md)，逐句润色，输出改前/改后/改了什么/为什么四列完整对照表 |
 | 审稿 / 评审 / 看能不能中 / 模拟审稿人 | 读 [references/review-mode.md](references/review-mode.md)，并行派 5 个审稿子 agent，五份报告落盘后父进程综合 |
-| 发表前最终审查 / 终检 / 投稿前过一遍 | 读 [references/final-check-mode.md](references/final-check-mode.md)，五步：一致性、格式合规（对齐官网实测）、投稿材料、语言 lint、P0/P1/P2 报告 |
+| 发表前最终审查 / 终检 / 投稿前过一遍 | 读 [references/final-check-mode.md](references/final-check-mode.md)，十步全面体检：一致性、逐句语法、标点微排版、公式符号、图表细节、引用文献、数值清零、格式合规（对齐官网实测）、投稿材料元数据、体检总表加 P0/P1/P2 报告 |
 | 前后不对应 / 术语数值矛盾 / 一致性检查 | 读 [references/consistency-check.md](references/consistency-check.md) |
 | 同一段落多个英文版本对比、选哪个表达 | `paragraph-compare-polish` |
 | 论文多方案/多版本对比、选主线、版本合并 | `paper-version-compare` |
