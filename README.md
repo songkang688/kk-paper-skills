@@ -32,13 +32,20 @@ Codex 用户把目标换成 `~/.codex/skills/` 即可。
 | 审稿：期刊向 + 魔鬼代言人 | `academic-paper-reviewer` |
 | 审稿：逐维打分 | `scholar-evaluation` |
 | 审稿：8 维雷达图 | `peer-review` |
-| 投稿前逐句终检 | `论文kk终极检查` |
 | 回复审稿意见 | `nature-response` |
 | 选期刊 | `journal-match` |
 
 ## 审稿模式
 
-对路由说审稿，它会并行派发 5 个子 agent（reviewforge、aaai、期刊团、scholar-eval、peer-review），各自独立出报告，落盘到 `paper_reviews/<时间>/01-05` 五个文件，父进程汇总共识、分歧和 P0/P1/P2 清单写入 `00-final-verdict.md`。`论文kk终极检查` 不进审稿派发，只在明确要终检时单独用。
+对路由说审稿，它会并行派发 5 个子 agent（reviewforge、aaai、期刊团、scholar-eval、peer-review），各自独立出报告，落盘到 `paper_reviews/<时间>/01-05` 五个文件，父进程汇总共识、分歧和 P0/P1/P2 清单写入 `00-final-verdict.md`。
+
+## 润色模式
+
+对路由说润色，它会先按段落再按句子拆分，每句独立跑一遍 `scipilot-writing-skill`，最后汇总成四列完整对照表：改前、改后、改了什么、为什么。不超过两段直接在对话里给表，超过两段落盘为 `polish_reports/<时间>-润色对照.md`。
+
+## 终检模式
+
+对路由说发表前最终审查，它会依次跑全局一致性检查（术语、符号、数值、主张对证据、图表引用、结构承诺）、`paper-skill` 投稿检查单、`scipilot` 语言 lint，输出按 P0/P1/P2 分级的终检报告。
 
 ## 写作固定顺序
 
