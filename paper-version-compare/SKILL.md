@@ -31,3 +31,7 @@ description: >-
 与其他 skill 的边界：同一段落的多个英文表达版本对比走
 `paragraph-compare-polish`；单版本论文的审稿走审稿模式（5 子 agent）。
 本 skill 处理的是整篇方案或稿件级的多版本比较与主线抉择。
+
+与其他 skill 互通：各版本已有 `paper_context/` 吃透档案时先读档案再评。
+排名和合并策略定下后，用户要落地改稿的，转 kk-paper-router 润色模式
+（四列对照表加 11 条风格规则）执行；主线需要补新章节的走写初稿模式。

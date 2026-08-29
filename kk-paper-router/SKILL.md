@@ -43,7 +43,7 @@ description: >-
 | 画实验结果图 / 消融图 | `scientific-visualization` |
 | LaTeX 编译报错 / 公式排版 | `latex-writer` |
 | 查参考文献真假 | `cite-verify` |
-| 回复审稿意见 / rebuttal / 修回信 | `nature-response` |
+| 回复审稿意见 / rebuttal / 修回信 | `nature-response`。启动时带上吃透档案，本地 `paper_reviews/` 里有模拟审稿报告的一并读入，把模拟审出的问题提前挡在回复里 |
 | 选会选刊 | 期刊用 `journal-match`（按范围与影响力匹配并出报告）。会议没有专职 skill，走 `paper-skill` 的 venue 匹配流程，必要时联网查官方 CFP 与截稿 |
 
 ## 写初稿模式

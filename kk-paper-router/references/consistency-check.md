@@ -1,7 +1,10 @@
 # 全局一致性检查（内置工作流）
 
 专查前后不对应。执行者：`paper-skill`（证据映射）加 `research-paper-writing`
-（reverse outline 与 claim-support alignment）。逐项过：
+（reverse outline 与 claim-support alignment）。稿件已有
+`paper_context/<稿件名>/` 吃透档案时，直接用档案里的数值表、术语表、
+贡献声明清单作核对底本，逐条对回稿件现文，档案与现文不符处本身就是问题项。
+逐项过：
 
 - 术语与缩写：同一概念全篇同名，缩写首次出现处定义，模块名、方法名前后一致。
 - 符号与公式：符号含义唯一，方法章参数与实验章设置一致。
