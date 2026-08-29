@@ -31,3 +31,9 @@ Version、中文翻译和最终检查清单，二十三节全部照做，不许�
 
 与其他 skill 的边界：单一版本的常规润色走 `scipilot-writing-skill`；整篇论文
 多方案对比走 `paper-version-compare`。本 skill 只处理同一段内容的多版本比较。
+
+与润色系统互通：产出 Final Polished Version 时，句子改写调用
+`scipilot-writing-skill` 执行，并遵守 kk-paper-router polish-mode 的
+11 条 KK 语句风格要求（学术风格、不用长难句、正文少用冒号、用词直白、
+不堆并列、包装不超证据等）。稿件已有 `paper_context/<稿件名>/` 吃透档案时，
+先读档案再对比，术语和技术判断以档案与基准稿为准。

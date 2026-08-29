@@ -28,6 +28,7 @@ description: >-
 
 | 用户在说什么 | 怎么办 |
 |---|---|
+| 第一次给论文全文 / 稿件文件 / 代码包 | 读 [references/intake-mode.md](references/intake-mode.md)，先吃透：锚定基准路径、全文精读落盘 `paper_context/<稿件名>/`、向用户汇报理解。之后才进其他模式 |
 | 找创新点 / 选题 / 找研究缺口 / 想 idea | 读 [references/ideation-mode.md](references/ideation-mode.md)，先学近两年顶会顶刊 100 篇，`research-gap` 找缺口，发散出候选后 `topic-framing` 收敛选 3，要代码时交付完整可训练 py 并对齐用户参考实现 |
 | 读这篇论文 / 翻译论文 / 中英对照精读 | `nature-reader` |
 | 找文献 / 检索相关工作 | `lit-search`，顶会论文优先 `conf-search` |
@@ -58,6 +59,15 @@ description: >-
 - 稿内 `XX` 与 `AUTHOR_INPUT_NEEDED` 按证据缺失处理，任何环节不得编造
   数据、引用或官方政策。
 - 审稿与写作不混在同一轮。
+- **接稿先吃透**：用户第一次给论文或代码，必须先走
+  [references/intake-mode.md](references/intake-mode.md) 建档落盘。之后所有
+  模式启动都带上基准稿路径和 `paper_context` 档案路径，一切改动以该稿为核心，
+  派子 agent 时路径写进 prompt。
+- **技能互通**：各 skill 不是孤岛，执行中需要其他能力时直接调对应 skill。
+  例如 `paragraph-compare-polish` 产出最终润色版时，润色执行必须遵守
+  polish-mode 的四列契约与 11 条风格规则；`paper-version-compare` 选完主线
+  要改稿时接润色模式；ideation 出的方案要写成章节时走写初稿模式。
+  互通时各 skill 的铁律同时生效，冲突时以更严格的一方为准。
 
 ## 明确不转发
 
