@@ -3,7 +3,8 @@ name: kk-paper-router
 description: >-
   KK 论文任务总路由。所有论文相关请求先经过本 skill 判定意图，再转发到唯一对应的
   本地 skill：读文献、找文献、搭框架、写初稿、润色翻译、画图、LaTeX、查引用、审稿、
-  发表前终检、全局一致性检查、rebuttal、选刊。润色时强制逐段拆句、逐句执行润色，
+  发表前终检、全局一致性检查、段落多版本对比、论文多方案对比、rebuttal、选会选刊。
+  润色时强制逐段拆句、逐句执行润色，
   输出改前/改后/改了什么/为什么四列完整对照表，超过两段落盘为 md 文件。审稿时并行
   派发 5 个独立审稿子 agent（reviewforge-openreview、aaai-review-simulator、
   academic-paper-reviewer、scholar-evaluation、peer-review），各自保存独立报告，
@@ -30,11 +31,13 @@ description: >-
 | 审稿 / 评审 / 看能不能中 / 模拟审稿人 | 【审稿模式】见下 |
 | 发表前最终审查 / 终检 / 投稿前过一遍 | 【终检模式】见下 |
 | 前后不对应 / 术语数值矛盾 / 一致性检查 | 【全局一致性检查】见下 |
+| 同一段落多个英文版本对比、选哪个表达 | `paragraph-compare-polish` |
+| 论文多方案/多版本对比、选主线、版本合并 | `paper-version-compare` |
 | 画实验结果图 / 消融图 | `scientific-visualization` |
 | LaTeX 编译报错 / 公式排版 | `latex-writer` |
 | 查参考文献真假 | `cite-verify` |
 | 回复审稿意见 / rebuttal / 修回信 | `nature-response` |
-| 不知道投哪个期刊 | `journal-match` |
+| 选会选刊 | 期刊用 `journal-match`（按范围与影响力匹配并出报告）。会议没有专职 skill，走 `paper-skill` 的 venue 匹配流程，必要时联网查官方 CFP 与截稿 |
 
 ## 润色模式（输出契约，必须逐条遵守）
 

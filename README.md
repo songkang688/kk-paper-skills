@@ -32,8 +32,10 @@ Codex 用户把目标换成 `~/.codex/skills/` 即可。
 | 审稿：期刊向 + 魔鬼代言人 | `academic-paper-reviewer` |
 | 审稿：逐维打分 | `scholar-evaluation` |
 | 审稿：8 维雷达图 | `peer-review` |
+| 同段落多英文版本对比与润色推荐 | `paragraph-compare-polish` |
+| 论文多方案/多版本对比与主线抉择 | `paper-version-compare` |
 | 回复审稿意见 | `nature-response` |
-| 选期刊 | `journal-match` |
+| 选期刊 | `journal-match`（会议由 `paper-skill` venue 流程兜底） |
 
 ## 审稿模式
 
