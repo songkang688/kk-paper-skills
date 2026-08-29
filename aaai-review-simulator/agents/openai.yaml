@@ -1,0 +1,4 @@
+interface:
+  display_name: "AAAI Review Simulator"
+  short_description: "Run strict AAAI-style paper self-reviews"
+  default_prompt: "Use $aaai-review-simulator to conduct a strict, evidence-bound AAAI-style review of my paper and produce a prioritized revision plan."

@@ -1,0 +1,3 @@
+display_name: 论文kk终极检查
+short_description: 本地保密逐句审查论文并生成全面版、干净表格版和PDF
+default_prompt: Use $论文kk终极检查 to perform a local-only, one-round-at-a-time, sentence-by-sentence pre-submission paper review. I will provide a paper path and optionally a target journal; if no target is given, default to TIP-level standards. Generate paper_revision_suggestions_v2.md, an additional clean table-focused paper_revision_suggestions_v2_clean.md, and paper_revision_suggestions_v2.pdf without modifying the source document or using the network.
