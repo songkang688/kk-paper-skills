@@ -16,8 +16,9 @@ description: >-
   审稿, 评审, 润色, 翻译论文, 写初稿, 终检, 最终审查, 一致性检查, 查引用, rebuttal,
   投稿, 选期刊, 找创新点, 选题, 研究缺口, 袁老师风格, kkstoryline, 一键改论文,
   故事线, 跑实验, 训练, GPU, 论文转PPT, 组会汇报, 研究进展, or any academic
-  paper task without naming a specific skill.
-  用户明确点名某个 skill 时直接用该 skill，不经过本路由。
+  paper task, including when the user explicitly names a specific skill.
+  用户即使点名某个具体 skill，也先经过本路由套上附加约束与联动再转发执行，
+  不要跳过路由。点名只省去判定意图这一步，不豁免路由层写的约束。
 ---
 
 # KK 论文任务总路由
@@ -67,6 +68,12 @@ description: >-
 
 ## 全局铁律
 
+- **点名也先过路由**：用户即使说"用 XX skill 帮我……"，也先经过本路由再转发。
+  原因是附加约束与跨 skill 联动全写在路由层，绕过就丢：kkstoryline 第 5 步
+  注入 polish-mode 的 11 条语句风格、rebuttal 走 nature-response 时要读
+  `paper_reviews/` 里的模拟审稿报告、所有模式启动都带 `paper_context` 吃透档案。
+  路由先确认被点名 skill 的附加约束和联动，套上后再执行；点名只是缩短判定意图
+  这一步，不等于豁免约束。
 - 稿内 `XX` 与 `AUTHOR_INPUT_NEEDED` 按证据缺失处理，任何环节不得编造
   数据、引用或官方政策。
 - 审稿与写作不混在同一轮。

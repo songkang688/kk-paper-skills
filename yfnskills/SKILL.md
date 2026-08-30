@@ -5,6 +5,11 @@ description: 按袁非牛（Feiniu Yuan）的英文论文写作风格写计算�
 
 # yfnskills — 论文写作风格 Skill
 
+> **属于 kk-paper-skills 系统**：被直接点名进入时，先回看 `kk-paper-router`
+> 对本 skill 的约束。路由规定 yfnskills 自成体系，不注入外部语句规则（避免与
+> 它自己的硬规则打架），但已有 `paper_context/` 吃透档案时要先带上，事实红线一致。
+> 单独部署、没装路由时按本文件自治执行即可。此段属本地增补，升级上游包后要加回。
+
 目标作者：Feiniu Yuan（袁非牛）。语料：22 篇英文论文（Tier A 20 + Tier B 2），2011–2026，IEEE 9 篇 / Elsevier 11 篇 / KSII 2 篇，覆盖烟雾检测与分割、图像去雾、医学图像分割、少样本分割、图像超分辨率。
 
 ---
