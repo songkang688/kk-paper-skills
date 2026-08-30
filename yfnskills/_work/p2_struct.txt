@@ -1,0 +1,214 @@
+﻿=========================== 01
+ABS_OPEN : Smoke density estimation from a single image is a totally new but highly ill-posed problem.
+ABS_WORDS: 168
+CONTRIB  : bullet=0 numbered=3 ordinal=0
+CONTRIB_LEAD: The main contributions of this paper are as follows: 1) We propose an end-to-end smoke density estimation method using full convolutional networks (FCN).
+ROADMAP  : This paper is organized as follows.
+NOVELTY_N: 1
+NOVELTY  : To our knowledge, it's the first time to propose an end-to-end deep network for smoke density estimation.
+RW_SUBS  : (no subsections)
+CITE_BRACKETS_TOTAL: 33
+=========================== 02
+ABS_OPEN : It is very challenging to accurately segment smoke images because smoke has some adverse properties, such as semi-transparency and blurry boundary.
+ABS_WORDS: 209
+CONTRIB  : bullet=0 numbered=3 ordinal=0
+CONTRIB_LEAD: The main contributions of this paper are summarized as follows: (1) We design a cubic-cross convolution to propose Cubic-cross Convolutional Attention (CCA) in an efficient and effective way.
+ROADMAP  : The remainder of this paper is organized as follows.
+NOVELTY_N: 0
+RW_SUBS  : 2. Related work | 2.1. Context information embedding | 2.2. Attention mechanism | 2.3. Smoke segmentation
+CITE_BRACKETS_TOTAL: 0
+=========================== 03
+ABS_OPEN : To obtain real-time performance on computation limited devices, we propose a lightweight network for smoke segmentation.
+ABS_WORDS: 269
+CONTRIB  : bullet=3 numbered=0 ordinal=0
+CONTRIB_LEAD: The main contributions of our method are summarized as follows: - We propose an Attention Encoding Module (AEM) to enhance the representation ability of the encoding module.
+ROADMAP  : NONE
+NOVELTY_N: 0
+RW_SUBS  : 2. Related work | 2.1. Semantic segmentation | 2.2. Smoke semantic segmentation | 2.3. Factorized convolution | 2.4. Attention models
+CITE_BRACKETS_TOTAL: 66
+=========================== 04
+ABS_OPEN : Compared with other objects, smoke semantic segmentation (SSS) is more difficult and challenging due to some special characteristics of smoke, such as non-rigid, translucency, variable mode and so on.
+ABS_WORDS: 257
+CONTRIB  : bullet=0 numbered=4 ordinal=0
+CONTRIB_LEAD: Overall, the key contributions of this paper are as follows: (1) We propose a model SAGINN, which promotes model to learn semantically-rich and spatially-precise representations by integrating multi-scale DCNN with transformer.
+ROADMAP  : NONE
+NOVELTY_N: 1
+NOVELTY  : To our knowledge, we are the first to explore classification features to directly promote segmentation representations.
+RW_SUBS  : II. Related Work | A. Attention Mechanism in Vision Architectures | B. Hybrid Framework of DCNN and Self-Attention | C. Smoke Semantic Segmentation
+CITE_BRACKETS_TOTAL: 81
+=========================== 05
+ABS_OPEN : Smoke has large variances of visual appearances that are very adverse to visual segmentation.
+ABS_WORDS: 194
+CONTRIB  : bullet=0 numbered=2 ordinal=0
+CONTRIB_LEAD: The main contributions of this paper can be summarized as follows: 1) Our NIM adopts Newton Interpolation to extract structured information from sequential feature values in the same position but from several feature maps with different scales.
+ROADMAP  : This paper is organized as follows.
+NOVELTY_N: 0
+RW_SUBS  : 2.1. Semantic segmentation | 2.2. Smoke semantic segmentation
+CITE_BRACKETS_TOTAL: 39
+=========================== 06
+ABS_OPEN : Smoke has visually elusive appearances, especially in low-light conditions, so it is quite difficult to quickly and accurately detect smoke from images.
+ABS_WORDS: 184
+CONTRIB  : bullet=0 numbered=3 ordinal=0
+CONTRIB_LEAD: The main contributions of this method are summarized as follows: 1) We propose a Local Feature Enhancement Propagation (LFEP) to replace the multi-head self-attention for re-constructing the Transformer encoder.
+ROADMAP  : The remainder of this paper is organized as follows.
+NOVELTY_N: 0
+RW_SUBS  : Semantic segmentation methods | Smoke segmentation methods | Transformer and CNN combined methods
+CITE_BRACKETS_TOTAL: 36
+=========================== 07
+ABS_OPEN : Abstract—Smoke has semi-transparency property leading to highly complicated mixture of background and smoke.
+ABS_WORDS: 227
+CONTRIB  : bullet=3 numbered=0 ordinal=0
+CONTRIB_LEAD: 1 (b) and (e), we follow the way of methods [7]–[10] to fuse features from middle layers, but these methods ignore the fact that different features make different contributions to the task.
+CONTRIB_LEAD: In summary, the main contributions of our method are listed as follows: ? We propose a smoke segmentation strategy with the dual assistance of image classification.
+ROADMAP  : The remainder of this paper is organized as follows.
+NOVELTY_N: 2
+NOVELTY  : As far as we know, this is the first time to apply the attention convolutional GRU to image semantic segmentation.
+NOVELTY  : This is the first time the attention convolutional GRU has been used for image semantic segmentation.
+RW_SUBS  : A. Object Semantic Segmentation | B. Smoke Semantic Segmentation | C. Recurrent Networks for Computer Vision
+CITE_BRACKETS_TOTAL: 62
+=========================== 08
+ABS_OPEN : Inspired by the recent success of fully convolutional networks (FCN) in semantic segmentation, we propose a deep smoke segmentation network to infer high quality segmentation masks from blurry smoke images.
+ABS_WORDS: 232
+CONTRIB  : bullet=0 numbered=0 ordinal=3
+CONTRIB_LEAD: The main contributions of this paper are summarized as follows.
+ROADMAP  : The remainder of the paper is organized as follows.
+NOVELTY_N: 3
+NOVELTY  : To the best of our knowledge, this is the first time to design an end-to-end two-path encoder-decoder FCN for visual smoke segmentation.
+NOVELTY  : To the best of our knowledge, there is currently no literature that uses deep learning for smoke segmentation.
+RW_SUBS  : A. Fully convolutional network for segmentation | B. Smoke segmentation
+CITE_BRACKETS_TOTAL: 74
+=========================== 09
+ABS_OPEN : Lightweight smoke image segmentation is essential for fire warning systems, particularly on mobile devices.
+ABS_WORDS: 228
+CONTRIB  : bullet=0 numbered=5 ordinal=0
+CONTRIB_LEAD: We summarize the key contributions of this paper as follows: 1) We propose a Cross-domain Interaction Attention Module (CIAM) to construct the smoke encoder.
+ROADMAP  : The remainder of this paper is organized as follows.
+NOVELTY_N: 0
+RW_SUBS  : II. Related Work | A. Smoke Detection | B. Smoke Segmentation | C. Lightweight Framework
+CITE_BRACKETS_TOTAL: 37
+=========================== 10
+ABS_OPEN : Many methods tend to adopt more complex modules to improve smoke segmentation accuracy, but complex methods cannot achieve required processing speeds in computation-limited devices.
+ABS_WORDS: 204
+CONTRIB  : bullet=0 numbered=3 ordinal=0
+CONTRIB_LEAD: The key contributions of this paper can be summarized as follows: 1) We propose an innovative Frequency-Space Interaction with Hierarchical Aggregation Network (FSIHAN) for smoke segmentation.
+ROADMAP  : NONE
+NOVELTY_N: 0
+RW_SUBS  : II. Related Work | A. Smoke Segmentation Method | B. Frequency-Based Model | C. Lightweight Framework
+CITE_BRACKETS_TOTAL: 54
+=========================== 11
+ABS_OPEN : By sorting channel-minimized values in an ascending order, we individually put the values of several existing image dehazing priors on the curve of sorted values to propose a framework for unifying and understanding these priors.
+ABS_WORDS: 201
+CONTRIB  : bullet=0 numbered=2 ordinal=0
+CONTRIB_LEAD: The main contributions of our method are summarized as follows: 1) We propose a framework to unify several well-known priors.
+ROADMAP  : The structure of this paper is organized as follows.
+NOVELTY_N: 0
+RW_SUBS  : (no subsections)
+CITE_BRACKETS_TOTAL: 50
+=========================== 12
+ABS_OPEN : The Transformer network was originally proposed for natural language processing.
+ABS_WORDS: 253
+CONTRIB  : bullet=0 numbered=3 ordinal=0
+CONTRIB_LEAD: The main contributions of this paper are summarized as follows: 1) We design dual encoding paths that are CNN and Transformer encoders for producing complementary features.
+ROADMAP  : The remainder of this paper is organized as follows.
+NOVELTY_N: 1
+NOVELTY  : It is the first time for researchers to report that Transformers are used in vision tasks and also achieve the state-of-the-art performance for vision problems.
+RW_SUBS  : 2.1. CNN based methods | 2.2. Transformer based methods | 2.3. CNN and Transformer combined methods
+CITE_BRACKETS_TOTAL: 44
+=========================== 13
+ABS_OPEN : It is quite challenging to visually identify skin lesions with irregular shapes, blurred boundaries and large scale variances.
+ABS_WORDS: 285
+CONTRIB  : bullet=0 numbered=3 ordinal=0
+CONTRIB_LEAD: The main contributions of our method are as follows: 1) We propose a dual-encoding structure with a bi-directional feature fusion strategy, which includes a CNN encoder and a Transformer one to extract complementary features.
+ROADMAP  : The remainder of this paper is organized as follows.
+NOVELTY_N: 0
+RW_SUBS  : II. Related Works | A. Skin Lesion Segmentation | B. CNN and Transformer Hybrid Networks
+CITE_BRACKETS_TOTAL: 48
+=========================== 16
+ABS_OPEN : To overcome shortages of conventional hand-crafted features, we propose a learning based feature extraction method for visual smoke recognition.
+ABS_WORDS: 280
+CONTRIB  : bullet=0 numbered=0 ordinal=0
+CONTRIB_LEAD: To make the two encoding ways have the same contributions, we weight the histograms of cross-sign maps and LBP maps with different coefficients.
+CONTRIB_LEAD: To balance the contributions of LBP histograms with different orders, different weights are used to concatenate these histograms for classification.
+CONTRIB_LEAD: The main contributions of this paper are summarized as follows: (1) To capture cross-scale variations of pixel values, we compute 3D local differences across scales instead of 2D local differences in a single scale.
+ROADMAP  : The remainder of the paper is organized as follows.
+NOVELTY_N: 2
+NOVELTY  : To our knowledge, there are few traditional smoke recognition methods in the literature, which can perfectly involve the aforementioned information, and especially information across both scales and orders for smoke recognition.
+NOVELTY  : To our knowledge, feature learning methods have not been used for smoke recognition, and we also do not find that the combination of learning and encoding methods is used in smoke recognition, so the proposed method is quite novel and original in the literature.
+RW_SUBS  : (no subsections)
+CITE_BRACKETS_TOTAL: 43
+=========================== 17
+ABS_OPEN : Traditional methods for video smoke detection can easily achieve very low training errors but their generalization performances are not good due to arbitrary shapes of smoke, intra-class variations, occlusions and clutters.
+ABS_WORDS: 216
+CONTRIB  : bullet=0 numbered=0 ordinal=0
+CONTRIB_LEAD: This paper at least has two main contributions to video smoke detection.
+CONTRIB_LEAD: The first contribution is to propose the concept of multi-scale partitions of detection windows.
+CONTRIB_LEAD: The second contribution is to propose a double mapping framework for feature extraction with AdaBoost.
+ROADMAP  : So the structure of this paper is organized as follows.
+NOVELTY_N: 0
+RW_SUBS  : (no RelatedWork section)
+CITE_BRACKETS_TOTAL: 9
+=========================== 18
+ABS_OPEN : Few-shot semantic segmentation is a challenging task that aims to segment novel classes in the query images given only a few annotated support samples.
+ABS_WORDS: 209
+CONTRIB  : bullet=3 numbered=0 ordinal=0
+CONTRIB_LEAD: In summary, the main contributions of this paper are listed as follows: - We propose the Dual-Guided Frequency Prototype Network (DGFPNet) for few-shot semantic segmentation.
+ROADMAP  : NONE
+NOVELTY_N: 0
+RW_SUBS  : Semantic Segmentation | Few-shot Semantic Segmentation | Frequency Domain Learning
+CITE_BRACKETS_TOTAL: 58
+=========================== 19
+ABS_OPEN : It is a challenging task to recognize smoke from visual scenes due to large variations in the color, texture, shapes of smoke.
+ABS_WORDS: 245
+CONTRIB  : bullet=0 numbered=0 ordinal=0
+CONTRIB_LEAD: Our contributions can be summarized as follows.
+ROADMAP  : This paper is organized as follows.
+NOVELTY_N: 0
+RW_SUBS  : 2. Related work
+CITE_BRACKETS_TOTAL: 35
+=========================== 20
+ABS_OPEN : To improve smoke detection accuracy, we combine local binary pattern (LBP) like features, kernel principal component analysis (KPCA), and Gaussian process regression (GPR) to propose a novel data processing pipeline for smoke detection.
+ABS_WORDS: 181
+CONTRIB  : bullet=0 numbered=0 ordinal=0
+CONTRIB_LEAD: This paper has at least two main contributions.
+ROADMAP  : NONE
+NOVELTY_N: 2
+NOVELTY  : To our knowledge, KPCA and GPR methods have not been reported in smoke detection.
+NOVELTY  : To our knowledge, combination of KPCA and GPR has not been proposed in smoke detection.
+RW_SUBS  : (no subsections)
+CITE_BRACKETS_TOTAL: 32
+=========================== 21
+ABS_OPEN : Video surveillance systems are widely applied in a variety of fields.
+ABS_WORDS: 213
+CONTRIB  : bullet=0 numbered=0 ordinal=0
+ROADMAP  : NONE
+NOVELTY_N: 0
+RW_SUBS  : (no RelatedWork section)
+CITE_BRACKETS_TOTAL: 22
+=========================== 30
+ABS_OPEN : Visual smoke recognition is a challenging task due to large variations in shape, texture and color of smoke.
+ABS_WORDS: 183
+CONTRIB  : bullet=0 numbered=3 ordinal=1
+CONTRIB_LEAD: The main contributions of this paper are listed as follows: 1) We use Curvelet transform to extract discriminative features from original images, and then encode these images consisting of discriminative Curvelet coefficients to generate LBP codes based on Curvelet domains.
+ROADMAP  : NONE
+NOVELTY_N: 0
+RW_SUBS  : (no subsections)
+CITE_BRACKETS_TOTAL: 24
+=========================== 31
+ABS_OPEN : Local Binary Pattern (LBP) and its variants have powerful discriminative capabilities but most of them just consider each LBP code independently.
+ABS_WORDS: 202
+CONTRIB  : bullet=0 numbered=0 ordinal=0
+CONTRIB_LEAD: The main contribution of this paper is to propose sub oriented histograms of LBP codes according to two discrete orientations of LBP codes.
+CONTRIB_LEAD: The second contribution is to use Hamming distance of LBP codes with two coordinates systems for computation of orientations.
+ROADMAP  : The paper is organized as follows: We first review Local Binary Patterns in Section 2.
+NOVELTY_N: 0
+RW_SUBS  : (no RelatedWork section)
+CITE_BRACKETS_TOTAL: 22
+=========================== 36
+ABS_OPEN : Deep learning based models have achieved remarkable reconstruction performance in single image Super-Resolution.
+ABS_WORDS: 144
+CONTRIB  : bullet=0 numbered=3 ordinal=0
+CONTRIB_LEAD: The main contributions of our work are summarized as follows: (1) We design a Hybrid Pixel Attention block (HPA) to refine spatial features and improve the model's ability to capture contextual dependencies.
+ROADMAP  : NONE
+NOVELTY_N: 0
+RW_SUBS  : A. CNN-Based SR Methods | B. Attention Mechanisms for SR | C. Efficient SR Models
+CITE_BRACKETS_TOTAL: 45

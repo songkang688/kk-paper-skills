@@ -1,0 +1,13 @@
+Fig. 1. Circular neighborhood for LBP codes with 2nd order derivatives.
+Fig. 2. Local ternary patterns by encoding 1st and 2nd order directional derivatives. (a) Image pixel values; (b) LTP 3-value codes of 1st and 2nd order directional derivatives; (c) Upper LBP codes; (d) Lower LBP codes.
+Fig. 3. HLTP patterns and joint histograms for smoke and non-smoke images.
+Fig. 4 gives the processing flow chart for HLTP, joint histograms and LPP projection. To include more information, original images may be divided into overlapped or non-overlapped blocks, and then HLTP features are extracted from these blocks. Fig. 4a shows an original image and a pooling scheme specified by a set of blocks. Fig. 4b illustrates upper LBP codes and lower LBP codes of the k-th order LTP for a block in a red rectangle. The 2D joint histograms of the two codes are calculated and shown in Fig. 4c. Then, we stack the 2D joint histogram into a 1D vector, and concatenate all of the vectors from different blocks and orders of derivatives to form a high dimensional feature vector (Fig. 4d). Finally, we apply LPP to project the high dimensional feature vector to obtain a low dimensional feature vector (Fig. 4e).
+Fig. 4. HLTP, joint histograms and dimensionality reduction. (a) An original image and pooling blocks; (b) Upper LBP codes and lower LBP codes; (c) 2D joint histograms of upper and lower LBP codes; (d) Stack joint histograms into a 1D vector; (e) The 1D feature vector transformed by LPP.
+Fig. 5. The processing flow chart of HLTPMC.
+Table 1. Summary of the 23 LBP methods.
+Table 2. Image data sets for training and testing.
+Fig. 6. Images from the four data sets. (a) Smoke images and (b) non-smoke images from Set 1. (c) Smoke images and (d) non-smoke images from Set 2. (e) Smoke images and (f) non-smoke images from Set 3. (g) Smoke images and (h) non-smoke images from Set 4.
+Table 3. Experimental results for smoke detection.
+Table 3 lists the experimental results of Patterns of Oriented Edge Magnitudes (POEM). DRs of POEM RI are 74.3%, 70.6% and 70.4% on the testing sets. DRs of POEM RIU2 are 76.0%, 70.6% and 69.2% on the testing sets. In addition, false alarm rates and error rates are very high, ranging from 28.7% to 36.0%. The dimensions of POEM with U2, RI and RIU2 are 33 × 3 = 99, 14 × 3 = 42, and 8 × 3 = 24, respectively. The numbers of support vectors with the three mapping modes are 1259, 1041, and 1008, respectively. Apparently, POEM is not suitable for smoke detection.
+Fig. 7. Sample images from Brodatz album data set.
+Table 4. Comparisons on Brodatz texture data set.

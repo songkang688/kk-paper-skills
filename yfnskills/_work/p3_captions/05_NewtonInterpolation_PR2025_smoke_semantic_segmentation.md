@@ -1,0 +1,26 @@
+Fig. 3 shows the overall framework of our Newton Interpolation Network (NINet). It is composed of a backbone network for encoding features and a decoding network with a Newton interpolation module for extracting structured information from encoded features. Our NINet not only extracts intrinsic structures embedded in feature maps, but also restores spatial details of original data in high resolutions.
+Fig. 4 shows the network structure of our NIM. It has an input feature map from a previous decoding layer (denoted as Input in Fig. 4), one common feature map from the first encoding stage for implementing traditional short connection (denoted as f(s1) in Fig. 4), and at least two feature maps from the encoding stages for interpolation (denoted as f(sk), …, f(s5) in Fig. 4, where 1<k<5). The sequential features of f(sk), …, f(s5) are used to estimate structured features using the Newton interpolation method. For k=4, 3, and 2, we obtain the first-order, secondorder and third-order interpolation polynomials, which are denoted as P1(s), P2(s) and P3(s), respectively.
+Table 1 lists quantitative comparison results on the three synthetic datasets. Our method achieves the highest mIoU and mPA on DS01, DS02 and DS03 among all comparison methods. Fig. 6 shows results of some synthetic smoke images segmented by these comparison methods, respectively. To better illustrate the functionality of our method, we selected some representative examples for visualization analysis.
+Fig. 1. Two main kinds of semantic segmentation paradigms. (a) An encoderdecoder framework with short connections; (b) An Atrous convolution frame work without reducing resolutions to small sizes.
+Fig. 2. Some challenging smoke images.
+Fig. 3. The structure of our Newton Interpolation Network (NINet). Up×k represents k times of upsampling operations. s1~s9 represent the indices of processing stages that also are the coordinate points for Newton interpolation.
+Fig. 4. The network structure of Newton Interpolation Module (NIM). f(sk), …, f(s5) denote the feature function values extracted in the encoding stages. P5-k(s) is an algebraic polynomial with the power of 5-k modelled by the Newton interpolation method.
+Fig. 5. Structured feature values extracted by Newton interpolation from sequential features of different encoding stages.
+Fig. 6. Results on the synthetic smoke test datasets. (a) Synthetic smoke images. (b) Corresponding ground truths. Segmented results by (c) FCN, (d) SegNet, (e) UNet, (f) UNet++, (g) PSPNet, (h) Deeplab v3+, (i) RefineNet, (j) DSS, (k) W-Net, (l) ViT, (m) Swin Transfromer, (n) BVM, (o) SegFormer and (p) NINet.
+Fig. 7. Results on real smoke images from the internet. (a) Real smoke images. Experimental results segmented by (b) FCN, (c) SegNet, (d) U-Net, (e) UNet++, (f) PSPNet, (g) Deeplab v3+, (h) RefineNet, (i) DSS, (j) W-Net, (k) ViT, (l) Swin-Transfromer, (m) BVM, (n) SegFormer and (o) NINet.
+Fig. 8. Experimental results of some samples from the real smoke dataset. (a) Real smoke images, (b) Corresponding ground truths and (c) Segmented results by our NINet.
+Fig. 9. Results on a real smoke video.
+Fig. 10. Visualized feature maps of middle layers in Model 2, Model 4 and Model 6.
+Fig. 11. Variants of our fusion module. (a) Newton Interpolation Fusion (NIF) by removing f(s1); (b) Direct Addition Fusion (DAF) by replacing Newton Interpolation with point-wise addition; (c) Normalized weighting Addition Fusion (NAF) by replacing Newton Interpolation with normalized weighting addition, which is formulated as [caption formula truncated in extraction; fragment: "1 ... i=1 f(xi)"].
+Fig. 12. Variants of our method for validating the importance of weights and orders. (a) The common part of all the variants, and the different parts for Model 1 to Model 7 are from (b) to (h), respectively.
+Fig. 13. Different types of short connections. (a) SC1 denotes the first type of a short connection with one feature map f(s1); (b) SC2 is the second type of short connection with f(s2); (c) SC3 denotes the third type of short connections with two feature maps of f(s1) and f(s2).
+Fig. 14. Combinations of Newton interpolation and short connections. (a) NIF (Newton Interpolation Fusion without short connections); (b) NIM (Newton Inter polation Model with short connections).
+Fig. 15. Variants of segmentation frameworks for Newton interpolation and short connections. (a) A Framework with Short Connections (FSC); (b) A Framework with Newton Interpolation and Short Connections (FNISC).
+Table 1 Segmentation results of different methods on the three synthetic test datasets.
+Table 2 Experimental results on VOC2012.
+Table 3 Detailed description of our variants for validating the importance of weights and orders.
+Table 4 Comparison results of the variants with different weights and orders.
+Table 5 Comparison results of model variants for short connections and weighting manners.
+Table 6 Comparison results of different feature fusion methods for skip connections.
+Table 7 Comparison of Newton weights and learnable weights.
+Table 8 The results of the MobileNet using NIM and attention modules.

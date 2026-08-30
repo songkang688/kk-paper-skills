@@ -1,0 +1,5 @@
+## 4. Conclusion
+
+Smoke often emerges earlier than flame, so smoke detection can provide very early fire detection. LBP and its variants are the most prominent in texture extraction, but most of them just consider each LBP code independently. To capture spatial distribution of features, we propose a novel and computationally simple approach for smoke detection and texture classification. Original LBP codes are first extracted and then the orientation of gradient over LBP codes is calculated. Since an LBP code is just a value without any numerical meaning, we replace direct differences of LBP codes with Hamming distances of LBP codes for computation of the gradient. We compute sub oriented histograms of LBP codes according to specific pairs of two discrete orientations. All the sub oriented histograms are concatenated to form a robust feature vector that is then input into SVM for training and classifying.
+
+Experimental results also show that our approach has better performance than existing methods and it can decrease false alarm rates without dropping of detection rates at the same time. The method also can be useful for texture classification.

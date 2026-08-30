@@ -1,0 +1,21 @@
+Fig. 2 shows the overall framework of our Classificationassisted Gated Recurrent Network (CGRNet), which mainly contains four important modules, including an Xception network [66] for basic feature extraction, a semantic segmentation module with four branches, a classification module for assisting segmentation, and a fusion module.
+Table I lists a detailed description of the inputs for each AttConvGRU in our model. The input Ht to each Att-ConvGRU in Stage 4 is null, so the computation is slightly different from Att-ConvGRUs in other stages. In other words, the computation of Att-ConvGRUs in Stages 1 to 3 is described by Eq. 1 to Eq. 6, while each Att-ConvGRU in Stage 4 is formulated as follows:
+Table II lists quantitative comparison results on the three synthetic datasets. Our method achieved the highest mIoU and the lowest mMse on all the test datasets. In other words, our method obtained the best performance in terms of both mIoU and mMse among the comparison methods. By observing the experimental results, our method is better than other methods, such as RefineNet and PSPNet. The main reason is that our method upsamples feature maps to the size of original images before final prediction. Due to the ambiguous edges of smoke, downsampling the final prediction causes significantly jagged edges, resulting in accuracy reduction. This phenomenon is also observed in the results by LRN that is a multi-prediction model. The test accuracy of LRN is not high mainly because it down-samples ground truths to the sizes of feature maps, directly resulting in blurry edges of smoke objects. In addition, our CGRNet also outperforms our previous work, including DSS [71] and W-Net [53]. Different from previous methods, our CGRNet uses multi-stage stacking of Att-ConvGRUs to fuse multi-scale features in different levels, and at the same time increases spatial attention and long-range dependency. These techniques greatly improve the representation ability of our network. In addition, we propose MCCL to effectively alleviate the erroneous segmentation of inconspicuous objects. Combination of DPPM and classification branches greatly reduces the possibility of misclassifying smoke-like objects as smoke. We will also validate this conclusion in the subsequent ablation experiments.
+Fig. 7 and Fig. 8 show segmented results of some synthetic and real images by the comparison methods, respectively. To better illustrate the functionality of each module proposed in our method, we selected some representative examples from the synthetic test datasets for analysis.
+Fig. 1. Some challenging images. (a), (b), and (e) are smoke; (c) and (d) are haze.
+Fig. 2. The framework of our network.
+Fig. 3. Detailed diagram of the proposed Att-ConvGRU.
+Fig. 4. The attention module in the proposed Att-ConvGRU.
+Fig. 5. Multi-scale context contrasted local module.
+Fig. 6. Dense Pyramid Pooling Module (DPPM).
+Fig. 7. Results on synthetic smoke images. (a) Synthetic smoke images. (b) Ground truth. Segmented results by (c) SMD, (d) TBFCN, (e) LRN, (f) Deeplab v1, (g) HG-Net2, (h) HG-Net8, (i) LKM, (j) RefineNet, (k) PSPNet, and (l) our CGRNet.
+Fig. 8. Results on real smoke images. (a) Real smoke images. Segmented results by (b) SMD, (c) TBFCN, (d) LRN, (e) Deeplab v1, (f) HG-Net2, (g) HG-Net8, (h) LKM, (i) RefineNet, (j) PSPNet, and (k) our CGRNet.
+Fig. 9. Results on real smoke videos. (a) Frames from videos. Segmented results by (b) SMD, (c) TBFCN, (d) LRN, (e) Deeplab v1, (f) HG-Net2, (g) HG-Net8, (h) LKM, (i) RefineNet, (j) PSPNet, and (k) our CGRNet.
+Fig. 10. Results of our CGRNet on some real smoke images from [78].
+Fig. 11. Training error curves of different loss function.
+Fig. 12. Images with large between-class similarity. (a) Original images. Segmented images by (b) PSPNet, and (c) CGRNet.
+TABLE I DETAILED DESCRIPTION OF THE INPUTS FOR EACH ATT-CONVGRU
+TABLE II SEGMENTATION RESULTS OF DIFFERENT METHODS ON THE THREE SYNTHETIC TEST DATASETS
+TABLE III DETAILED DESCRIPTION OF OUR VARIANTS
+TABLE IV COMPARISON RESULTS OF OUR VARIANTS
+TABLE V RESULTS WITH DIFFERENT α

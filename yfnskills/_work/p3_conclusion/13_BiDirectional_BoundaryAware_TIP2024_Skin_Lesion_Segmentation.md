@@ -1,0 +1,9 @@
+## Conclusion
+
+### V. Conclusion
+
+To improve the segmentation accuracy of small or blurry skin lesions, we propose a Bi-directionally Fused Boundary Aware Network (BiFBA-Net) consisting of a dual-encoder, a fusion module with Bi-AGs and three decoders with deep supervisions. The dual-encoder with CNNs and Transformers is designed to extract complementary features. The two encoders contain local features with more spatial details and global one with more contextual long-range dependency, respectively. To fully exchange information, we propose a Bi-directional Attention Gate (Bi-AG) to fuse features in an attention way. To refine spatial details and contextual semantics, we propose three progressive decoders with six supervised losses, including a CNN decoder, a Partial Decoder (PD) and a Boundary Aware Decoder (BAD). These decoders jointly obtain segmentation maps with accurate and clear boundaries. Quantitative and qualitative analyses demonstrate that our network achieves better accuracy in skin lesion segmentation than existing state-of-the-art methods.
+
+Our method also remains some limitations in handling some extremely challenging cases. It fails to segment skin lesions with complex edge structures, as shown in the top three rows of Fig. 9. It cannot completely overcome the difficulty in processing extremely low contrast images, as shown in the bottom three rows of Fig. 9. In the future, we will make further investigations for improving accuracy, and generalizing our method to other medical image segmentation tasks. In addition, we might also focus on few-shot learning for avoiding the problem of inadequate training data.
+
+> Fig. 9. Visualization of some failure cases. (a) Input images. (b) Ground truth. (c) Comparisons between our results and ground truths. Red curves denote ground truth contours, and green ones are the contours of segmented results.

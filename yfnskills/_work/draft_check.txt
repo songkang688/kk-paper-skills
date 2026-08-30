@@ -1,0 +1,73 @@
+﻿=========== SECTION SIZE ===========
+Abstract         170 words    6 sents  mean  31.3 w  over40w  33.3 pct
+Introduction     533 words   15 sents  mean  38.7 w  over40w  46.7 pct
+Method          1033 words   31 sents  mean  35.5 w  over40w    29 pct
+Experiments     1448 words   38 sents  mean  40.1 w  over40w  39.5 pct
+Conclusion       124 words    4 sents  mean  33.2 w  over40w    25 pct
+
+=========== CROSS-SECTION BACKBONE ===========
+FAIL  [X1] Method has purpose-first clauses
+       Method purpose-clause count: 0
+FAIL  [X1] Conclusion has purpose-first clause
+       Conclusion purpose-clause count: 0
+PASS  [X2] info-loss diagnosis verb present
+PASS  [X3] no we-propose inside Experiments
+FAIL  [X3] our-as-subject in Experiments
+       Experiments our+noun count: 1
+PASS  [X3] Conclusion re-announces with we present/propose
+PASS  [X4] no past-tense experiment verbs in Introduction
+PASS  [X5] no table/figure refs in Abstract
+PASS  [X5] no table/figure refs in Conclusion
+
+=========== ABSTRACT ===========
+PASS  [A1] opens with object property causing difficulty
+PASS  [A3] module tour uses ordinal connectives
+FAIL  [A4] closes with Experiments show that pattern
+PASS  [A4] no concrete percentage in abstract
+FAIL  [A6] length within 180-260 words
+       Abstract words: 170
+
+=========== INTRODUCTION ===========
+PASS  [I1] first paragraph grounded in real-world cost
+PASS  [I3] explicit classification or step decomposition
+FAIL  [I4] difficulty enumerated with N folds or main reasons
+PASS  [I7] contribution list present with integration item
+PASS  [I7] contribution count within 2-5
+       contribution items: 3
+PASS  [BAN] no banned opener attracted increasing attention
+PASS  [BAN] no vague criticism performs poorly
+
+=========== METHOD ===========
+PASS  [M1] first subsection is overview/problem formulation
+PASS  [M4] where-clauses define symbols after equations
+       where count: 8
+PASS  [M5] training objective sits at the end of Method
+PASS  [M6] premise-then-consequence comma-so clauses
+       comma-so count: 4
+
+=========== EXPERIMENTS ===========
+FAIL  [RS1] ablation placed BEFORE comparison (target style)
+       order in draft: comparison at 26086, ablation at 30159
+PASS  [RS2] observations anchored to table refs
+PASS  [RS7] no future work inside Experiments
+PASS  [RS8] cost dimension reported
+PASS  [RED] no fabricated numbers (XX placeholders used)
+       XX placeholders in rendered text: 112
+
+=========== CONCLUSION ===========
+PASS  [C1] opens by restating the method
+PASS  [C5] limitation paragraph present
+PASS  [C5] future work names a concrete direction
+PASS  [C6] candid qualifier present
+
+=========== VERBATIM OVERLAP WITH CORPUS (12-gram) ===========
+PASS  no 12-word verbatim overlap with the 22-paper corpus
+
+=========== CORPUS PAPERS CITED BY THIS DRAFT ===========
+  CITED  yuan2020wnet
+  CITED  yuan2022ccenet
+  CITED  li2025mifnet
+  CITED  zhang2024saginn
+  CITED  ma2025sfmatting
+  CITED  yao2024fosp
+  CITED  yan2022transmission

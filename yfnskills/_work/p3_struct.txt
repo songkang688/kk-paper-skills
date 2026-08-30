@@ -1,0 +1,430 @@
+﻿################ METHODS ################
+=========== 01
+H_TREE  : 1:A. Illumination Model of Smoke Particles || 1:B. Smoke Simulation by Computational Fluid Dynamics || 1:C. Generation of Smoke Density Data Sets || 1:A. Basic Convolutional Blocks || 1:B. Wave-Shaped Structures || 1:C. The Proposed Network || 1:D. Loss Function
+H_COUNT : 7
+EQ_REFS=18  WHERE=7
+PURPOSE_LEAD_N: 10
+  P> For the sake of simplicity, the translucency degree α(x) of smoke is approximately equivalent to the density of smoke.
+  P> To obtain smoke images with large variance, we generate a variety of smoke with different shapes, densities and colors.
+  P> To facilitate the generation of smoke images with alpha channels, we use a third-party free 3D modeling software, Blender [43], to simulate and visualize smoke.
+  P> To save time, we produce a large number of low-quality smoke images and a small number of high-quality smoke images.
+CAUSAL_TAIL_N: 6
+  C> i(x) = b(x) exp(-∫_0^d τ(v, x) dv) + ∫_0^d g(u, x) exp(-∫_u^d τ(v, x) dv) du (3) To simplify the integrals of the above equation, we define a translucency degree α(x) of smoke as: α(x) = 1 ? exp(-∫_0^d τ(v, x) dv) (4) It is quite complicated to directly compute the color intensity of smoke particles, so we replace the scattered color s(d, x) of smoke particles with the product of s(x) and α(x), where s(x) is defined as the color of smoke and α(x) is the translucency coefficient or the alpha channel of smoke.
+  C> Therefore, we have three equations with seven unknowns, including RGB channels b(x) of background, RGB channels s(x) of smoke, and an alpha channel α(x) of density, so the inverse problem is highly ill-posed.
+=========== 02
+H_TREE  : 1:3. Cubic-cross and count prior attentions || 2:3.1. Cubic-cross convolutional attention || 3:3.1.1. Multi-scale information extraction || 3:3.1.2. Convolutions along different axes || 3:3.1.3. Cubic-cross convolutional attention || 2:3.2. Count prior embedding || 3:3.2.1. Ideal count map || 3:3.2.2. Count prior map || 3:3.2.3. Count loss || 3:3.2.4. Count prior attention || 2:3.3. Network architecture
+H_COUNT : 11
+EQ_REFS=7  WHERE=5
+PURPOSE_LEAD_N: 11
+  P> To reduce computational complexity, we propose a Cubic-cross Convolutional Attention module (CCA) to efficiently model long-range dependencies of smoke pixels, as shown in Fig. 1. > Fig. 1.
+  P> To keep the channel number unchanged, the number of feature maps by pyramid pooling is reduced to one fourth of the input channel number by convolutions.
+  P> To capture long-range dependencies of pixels, we propose a novel attention based on the fused convolutional results along three axes, including two spatial axes and one channel axis.
+  P> To capture pixel dependencies along the width axis, we first transpose the input feature tensor with the size of h×w×C to produce a new feature tensor with the size of h×C×w, then convolve the transposed tensor, and finally transpose the convolved tensor back to keep the same size as the input feature tensor.
+CAUSAL_TAIL_N: 4
+  C> To speedup computation, we can implement convolutions along any axis using the CUDA programming specification in future work, thus we can avoid unnecessary data copying.
+  C> The height H and width W of the input image may be different from the height h and width w of the input feature map, so the pixel counts encoded in the absolute count map are not equal to the ones in an input image.
+=========== 03
+H_TREE  : 1:3. The lightweight smoke segmentation network || 2:3.1. Encoding stages || 3:3.1.1. The overall structure of encoder || 3:3.1.2. Channel split and shuffle attention module || 3:3.1.3. Attention encoding module || 2:3.2. Decoding stages || 3:3.2.1. Spatial enhancement module || 3:3.2.2. Channel attention module || 3:3.2.3. Feature fusion module || 2:3.3. Segmentation head || 2:3.4. Loss function
+H_COUNT : 11
+EQ_REFS=3  WHERE=3
+PURPOSE_LEAD_N: 5
+  P> To efficiently extract attention features, we propose a Channel Split and Shuffle Attention Module (CSSAM), and repeatedly apply CSSAM in different encoding stages, as shown in Fig. 3.
+  P> To solve this problem, we propose to use Spatial Enhancement Module (SEM) at the lower-level decoding layer (Stage 2) to obtain rich spatial detail features, and then acquire rich semantic information and contextual features by Channel Attention Module (CAM) at the high-level decoding layer (Stage 3).
+  P> To obtain complementary information about local details and global contexts, we design two parallel paths of max-pooling and average-pooling operations.
+  P> To further improve computational efficiency, we use 1D convolutions to reduce the channel number of a feature map to one-kth of the original channel number.
+CAUSAL_TAIL_N: 5
+  C> After the two small feature maps are processed by two sets of convolution, batch normalization (BN) and activation (ReLU) operations, we directly concatenate the results generated from two small feature maps, so the concatenated feature map has the same channel number as the input feature map.
+  C> Average-pooling tends to preserve more overall or low-frequency information about objects, so the result by global average pooling is a good prior knowledge of global context.
+=========== 04
+H_TREE  : 1:III. The Proposed Method || 2:A. Architecture Overview || 2:B. Global-Interactive Non-Local || 2:C. Pyramid High-Level Semantic Aggregation || 2:D. Smoke-Aware Loss || 2:E. Prediction Heads
+H_COUNT : 6
+EQ_REFS=16  WHERE=7
+PURPOSE_LEAD_N: 9
+  P> To generate more powerful representation, we stack several GINLs to construct segmentation branch.
+  P> To balance performance and efficiency, the 8 × 8 features passing through non-local are fed into three parallel GINLs simultaneously to iteratively aggregate the key information (K-V pairs) from multiple feature pairs with different scales.
+  P> To further establish the bond between two tasks, PHSA is added to explicitly improve segmentation representations, which can dynamically aggregate the high-level semantics learned from the classification branch into the features derived from the fusion of GINLs.
+  P> To give full play to the advantages of these cross-scale features, we delve into global interaction learning of the multi-scale representation in non-local to integrate key information across multiple level, to unleash the potential of transformer to learn both long-range global relationships and local spatial information.
+CAUSAL_TAIL_N: 1
+  C> All the elements of SAGINN are tightly coupled, so the model allows end-to-end multi-task joint optimization with a simple loss function.
+=========== 05
+H_TREE  : 1:3.1. Encoding stages || 1:3.2. Decoding stages || 2:3.2.1. Pyramid pooling module || 2:3.2.2. Newton interpolation theory || 2:3.2.3. Newton interpolation module || 1:3.3. Simplification of Newton interpolation module
+H_COUNT : 6
+EQ_REFS=26  WHERE=5
+PURPOSE_LEAD_N: 5
+  P> To avoid loss of spatial information, we replace down-sampling operations by atrous convolutions in the fourth and fifth stages.
+  P> To facilitate description of our method, we use symbols of mathematical forms for presentation.
+  P> To improve feature representation, an effective way is to combine local and global information captured from receptive fields with different sizes.
+  P> To mine more structures in sequential feature maps, we use the above-mentioned newton interpolation method to estimate a new feature map from these sequential feature maps, instead of feature concatenation or summation.
+CAUSAL_TAIL_N: 5
+  C> In the case of n=0, there is only one interpolation point s0, so it is factually degenerated into the zero-order interpolation polynomial of P0(s)=f(s0).
+  C> The Newton interpolation method models the values of a given function to obtain its continuous value representation, so it can predict the function value at any position and estimate the continuous curve of function values.
+=========== 06
+H_TREE  : 1:Dual-path encoder || 2:LFE-Former encoder || 2:CNN encoder || 1:Multi-level attention coupled module || 1:Prior-guided multi-scale fusion decoder || 1:Multiple objective function
+H_COUNT : 6
+EQ_REFS=6  WHERE=4
+PURPOSE_LEAD_N: 8
+  P> To address this problem, we design a dual-encoder with Transformer and CNN, as shown in Fig. 1.
+  P> To overcome this limitation, we propose a Local Feature Enhancement Transformer (LFE-Former) for encoding.
+  P> To address these issues, we propose a Local Feature Enhancement Propagation (LFEP) module to replace MSA.
+  P> To circumvent this issue, our CNN encoder is only used to extract local information.
+CAUSAL_TAIL_N: 1
+  C> Specifically, we upsample and element-wisely add the multi-scale features (F4, F3, F2, F1) from different levels of MACM in a bottom to up manner, thus we can integrate global semantic information with local spatial details.
+=========== 07
+H_TREE  : 1:A. Basic Feature Extraction Module || 1:B. Semantic Segmentation Module || 1:C. Classification and Fusion Module || 1:D. Loss and Final Result
+H_COUNT : 4
+EQ_REFS=11  WHERE=4
+PURPOSE_LEAD_N: 11
+  P> Aiming at solving this problem, we propose to add high-level features of Stage 4 to decoding layers of low-level stages, i.e.
+  P> To preserve the spatial correlation of 2D features, we propose the Att-ConvGRU by first replacing all fully connected layers of the 1D GRU [3] with convolutional ones and then connecting the input signal Xt with the hidden state Ht?1.
+  P> To fuse features from different levels, we conduct similar operations for Att-ConvGRUs in adjacent stages, i.e.
+  P> To solve this problem, Ding et al. [18] proposed a Context Contrasted Local (CCL) model to compute a contrast between the separated context and local information.
+CAUSAL_TAIL_N: 6
+  C> The internal structure of Att-ConvGRU is complicated, so too many cycles will seriously reduce computational efficiency.
+  C> The input Ht to each Att-ConvGRU in Stage 4 is null, so the computation is slightly different from Att-ConvGRUs in other stages.
+=========== 08
+H_TREE  : 1:A. A deep network for global context information || 1:B. A shallow network for local fine information || 1:C. A fusion network of two paths
+H_COUNT : 3
+EQ_REFS=5  WHERE=3
+PURPOSE_LEAD_N: 5
+  P> To make the training samples diverse, we use the Places365Standard dataset [41] as background images.
+  P> To further perform data augment of smoke images, we change the alpha values of pure smoke images to control the concentrations of smoke images, which is expressed as: I_R = (1 ? βα)B_R + βαS_R (2) I_G = (1 ? βα)B_G + βαS_G (3) I_B = (1 ? βα)B_B + βαS_B (4) where β is a linear coefficient with range (0,1) used to control the concentration of smoke, IR, IG and IB are the red, green and blue channels of a pixel in an observed smoke RGB image I, respectively, SR, SG and SB are respectively the red, green and blue channels of the pixel in a pure smoke RGBA image (S and α), and BR, BG and BB are respectively the red, green and blue channels of the same pixel in a background RGB image B.
+  P> To speed up training, there are many segmentation algorithms [14][31][37][38][39] that adopt the convolutional blocks of the VGG16 network [26] to achieve remarkable results.
+  P> To further reduce the number of network parameters and improve the training speed, we use an asymmetric structure in the decoding phase.
+CAUSAL_TAIL_N: 0
+=========== 09
+H_TREE  : 1:III. The Proposed Method || 2:A. Overall Framework of the Network || 2:B. Cross-Domain Interaction Attention Module || 2:C. Group Convolutional Block Attention Module || 2:D. Multi-Stage Group Interaction Module || 2:E. Group Fusion Module || 2:F. Edge Enhancement Module || 2:G. Joint Loss Function
+H_COUNT : 8
+EQ_REFS=26  WHERE=6
+PURPOSE_LEAD_N: 7
+  P> To effectively capture the spatial feature distribution of smoke, we replace standard pooling and convolution operations with Global Average Pooling (GAP) and asymmetric convolutions, and apply them to the smoke feature maps in horizontal or vertical direction.
+  P> To further emphasize the key frequency components of the smoke features, we introduce a learnable factor ω that modifies the relationship between the 1D FFT and iFFT.
+  P> To ensure a smooth transition between the encoder and decoder, we design a Group Convolutional Block Attention Module (GCBAM) as a mediator.
+  P> To overcome this challenge, we propose a new Multi-stage Group Interaction Module (MGIM).
+CAUSAL_TAIL_N: 2
+  C> The encoder and decoder are connected via a Group Convolution Block Attention Module (GCBAM), thus we facilitate multi-scale feature refinement.
+  C> Transformers can model global contexts but incur high computational complexity, so they are less suitable for real-time deployment.
+=========== 10
+H_TREE  : 1:III. Proposed Method || 2:A. The Whole FSIHAN Framework || 2:B. Frequency-Space Interaction Block || 2:C. Group Multi-Dilated Fusion || 2:D. Hierarchical Feature Aggregation Module || 2:E. Loss Function
+H_COUNT : 6
+EQ_REFS=28  WHERE=9
+PURPOSE_LEAD_N: 9
+  P> To enable early fire detection and timely alarm, we propose an innovative Frequency-Space Interaction with Hierarchical Aggregation Network (FSIHAN) for lightweight smoke segmentation.
+  P> To enhance segmentation performance while ensuring the lightweight nature of the encoder, we apply different numbers of FSIBs at multiple downsampling stages to extract smoke features.
+  P> To enhance the receptive field of features and facilitate the information flow between the encoder and decoder, we introduce a GMDF module.
+  P> To address this challenge, we design a Frequency-Space Interaction Module (FSIM) by combining 2D Fourier Transform and asymmetric convolutions.
+CAUSAL_TAIL_N: 0
+=========== 11
+H_TREE  : 1:The overall flowchart of our method || 1:A unified framework of existing priors || 2:The dark channel prior under the framework || 2:The filtering prior under the framework || 2:The color ellipsoid prior under the framework || 1:The proposed confidence prior || 1:Adaptive estimation of confidence ratios || 1:Atmospheric light estimation || 1:Haze removal
+H_COUNT : 9
+EQ_REFS=65  WHERE=13
+PURPOSE_LEAD_N: 11
+  P> To obtain only one transmission from RGB images, a channel-wise minimization operation on a hazy image I(x) is usually used to produce a channel-minimized image I^m1(x): I^m1(x) = min_{c∈{r,g,b}}(I^c(x)) (7), where I^c is a channel c of I(x).
+  P> For the sake of simplicity, we use a linear regression for learning in our implementation.
+  P> To obtain more reliable estimation of transmission maps, we fit the histogram of I^m1 by a normal distribution to easily remove outliers or noises.
+  P> To remove outliers or noises, we propose a novel prior based on the confidence of Gaussian distributions for improving robustness.
+CAUSAL_TAIL_N: 3
+  C> To simplify notations, we use an augmented feature vector v_i = [v_i1 v_i2 … v_ij … v_iD 1]? and an augmented weight vector w = [w_1 w_2 … w_j … w_D b]?, so the linear regression can be rewritten as: λi = f(v?i) = f(v_i) = v_i?w (21).
+  C> It is very difficult to acquire these images, so we randomly selected 20 clean images and corresponding depth maps from the NYU Depth dataset [49] to generate synthesized training samples.
+=========== 12
+H_TREE  : 1:3.1. Architecture overview || 1:3.2. The Transformer encoder || 1:3.3. The CNN encoder || 1:3.4. Feature complementary module || 1:3.5. The Transformer decoder
+H_COUNT : 5
+EQ_REFS=10  WHERE=4
+PURPOSE_LEAD_N: 10
+  P> Inspired by the powerful representation abilities of CNNs and Transformers, we propose a CNN and Transformer Complementary Network (CTC-Net).
+  P> To solve this problem, the Swin Transformer [11] performs self-attention only in each local window, thus the computational complexity is linearly proportional to the image size.
+  P> To obtain the same ability, Swin Transformer [11] merges adjacent 2 × 2 patches into a large patch by concatenating these 4 small patches along the channel direction.
+  P> To obtain contextual features and maintain certain spatial details by convolutional neural networks, we use the four encoding blocks of ResNet34 [17] to build a CNN encoder, as shown in Fig. 2a.
+CAUSAL_TAIL_N: 3
+  C> On the one hand, there are relatively small or thin organs in medical images, so deeper CNN architectures may result in severe loss of small or thin objects.
+  C> To solve this problem, the Swin Transformer [11] performs self-attention only in each local window, thus the computational complexity is linearly proportional to the image size.
+=========== 13
+H_TREE  : 1:III. The Proposed Method || 2:A. The Overall Structure || 2:B. Dual-Encoding Structure With Bi-Directional Fusion || 3:1) Transformer Encoder || 3:2) CNN Encoder || 3:3) Bi-Directional Attention Gate || 2:C. Progressive Decoding Structure With Boundary Aware || 3:1) CNN Decoder || 3:2) Partial Decoder || 3:3) Boundary Aware Decoder || 2:D. Deep Supervisions
+H_COUNT : 11
+EQ_REFS=18  WHERE=6
+PURPOSE_LEAD_N: 10
+  P> Inspired by the success of combining local and global features, we design a CNN encoder and a Transformer one to create a dual encoding structure.
+  P> To reduce semantic gaps between them, we propose a Bi-directional Attention Gate module (Bi-AG) to fully exchange information from the two encoding paths.
+  P> To solve this problem, we propose a Bi-directional Attention Gate (Bi-AG) module to effectively interchange relevant features between the CNN and Transformer encoders in an interactive and crossly-fusing way.
+  P> To align CNN features with Transformer ones, we first adopt a 1 × 1 convolution to adjust the channel dimension of CNN features to E in each stage.
+CAUSAL_TAIL_N: 8
+  C> In our implementation, d_Xl = 576 and h = 9, so we use d_k = d_Xl/h = 64 for each head. [NOTE: Eq.
+  C> The CNN and Transformer encoders respectively produce 2D feature maps and 1D patch embedding features, so they are not aligned.
+=========== 16
+H_TREE  : 1:3.1. 3D difference calculation || 1:3.2. Discriminative projection matrix learning || 1:3.3. Within-map and between-map encodings || 1:3.4. The overall framework of our method || 1:3.5. Extension and visualization
+H_COUNT : 5
+EQ_REFS=46  WHERE=13
+PURPOSE_LEAD_N: 11
+  P> In order to get multi-scale and hierarchical features, we construct a scale space by Gaussian filters without down sampling [21] and calculate 3D local differences in the scale space.
+  P> To facilitate cross-scale encoding, we do not use down sampling to change the size of feature maps.
+  P> Inspired by LBP coding, we extract variations of pixel values across scales in a similar way.
+  P> To fully extract 3D local information, we slide the 3D sampling window R in scale space to densely compute difference vectors in horizontal and vertical steps of s pixels.
+CAUSAL_TAIL_N: 10
+  C> Each L_k in the scale space is in different sharpness but shares the same resolution, so that 3D samplings can be easily computed.
+  C> R_1, R_2, ..., R_K share the same size, so we can build a 3D local region R = [R_1, ..., R_K], which is intrinsically a 3D tensor, and R ∈ R^(K×(2r+1)×(2r+1)).
+=========== 17
+H_TREE  : 1:Gradient based histograms || 1:LBP based histogram || 1:Color based features || 1:Combination of features
+H_COUNT : 4
+EQ_REFS=18  WHERE=7
+PURPOSE_LEAD_N: 4
+  P> To obtain the robust gradient of an image f(x,y), the Sobel operator is applied to generate the image gradient [fx, fy]T, which contains a horizontal component fx and a vertical component fy.
+  P> To reduce the number of bins, magnitude values above Mmax are set to Mmax and magnitude values below Mmax remain unchanged.
+  P> To improve the discriminative capability of LBP, several variants of LBP are proposed.
+  P> To compute statistical features on partitions in Section 3, a bitwise feature image is generated for each bin of the LBP histogram within a block.
+CAUSAL_TAIL_N: 2
+  C> Smoke has important visual characteristics, such as low image contrast, low color saturation and small gradient magnitude, so edge, LBP and color features are combined together to propose a robust feature vector.
+  C> Each component of the feature vector Fn can generate an independent feature image Fn, so D feature images (F1, …, FD?1) are produced from the original RGB image.
+=========== 18
+H_TREE  : 1:Task Description || 1:Overview || 1:Frequency Prototype Generation Module || 1:Dual-Guided Selection Module || 1:Feature Generalization Module || 1:Multi-Dimension Feature Enrichment Decoder Module || 1:Extension to k-Shot Setting || 1:Training Loss
+H_COUNT : 8
+EQ_REFS=29  WHERE=21
+PURPOSE_LEAD_N: 4
+  P> To mine more comprehensive support information and diminish the domain gap, we propose the Dual-Guided Frequency Prototype Network (DGFPNet), as shown in Fig. 3.
+  P> Motivated by this, our query-guided mask M^G_q is generated by the base learner result M^B, the high-level attention mask M^H_q, and the DCT 0 mask m0, where M^B is defined in BAM [18] that introduces an additional branch to explicitly predict the regions of base classes in the query images.
+  P> To tackle the hard pixels, the segmentation part is introduced to refine the segmentation result, as shown in Fig. 7(b).
+  P> To extend 1-shot segmentation to k-shot, we propose the appropriate way for the above modules.
+CAUSAL_TAIL_N: 1
+  C> In the k-shot setting, different support images contain different support guiding information, so using average fusion to address the mid-level masks can weaken the information from different images.
+=========== 19
+H_TREE  : 1:3. Approach || 2:3.1. Local binary patterns || 2:3.2. Local ternary patterns with high order derivatives || 2:3.3. Joint histograms of upper and lower codes || 2:3.4. Dimensionality reduction of joint histograms || 2:3.5. HLTP based on magnitudes of derivatives and center pixel values || 2:3.6. Feature and classifier for smoke detection
+H_COUNT : 7
+EQ_REFS=39  WHERE=7
+PURPOSE_LEAD_N: 10
+  P> To reduce the number of LTP patterns, an LTP 3-value pattern is usually decomposed into an upper LBP code and a lower LBP code [39] by the following two indicator functions: s_U(g_i, g_c, t) = 1 if g_i ? g_c ≥ t; 0 otherwise (6) s_L(g_i, g_c, t) = 1 if g_i ? g_c ≤ ?t; 0 otherwise (7) Combining Eqs.
+  P> To improve computational efficiency, we instead use rectangular neighborhoods in our implementation.
+  P> To overcome the above-mentioned drawback, joint histograms are used to capture the co-occurrence of the two codes.
+  P> To clearly illustrate the numeric values of upper and lower LBP codes, we resized the original images in Fig. 3a and h to the size of 20 × 20 before extracting HLTP.
+CAUSAL_TAIL_N: 2
+  C> In HLTPMC, we quantize the signs of high order derivatives into 3-value codes, and use a noise resistant method to encode the magnitudes of noise removed derivatives, so our HLTPMC is also obviously different from CLBP [9]. > Fig. 1.
+  C> We generate a large concatenated histogram of joint histograms of HLTP from blocks as follows: H_s = {h_{k,i} | k = 1, …, K, i = 1, …, N} (14) The dimension of the concatenated histogram H_s is K?N times as long as each joint histogram h_{k,i}, so it may be very high.
+=========== 20
+H_TREE  : 1:A. LBP features || 1:B. Kernel principal component analysis (KPCA) || 1:C. Gaussian process regression (GPR) || 1:D. The data flow of the pipeline
+H_COUNT : 4
+EQ_REFS=13  WHERE=2
+PURPOSE_LEAD_N: 1
+  P> For the sake of simplicity, we just use histograms of LBP codes extracted by existing methods as the original features for Kernel Principal Component Analysis (KPCA).
+CAUSAL_TAIL_N: 4
+  C> The most frequently used parameters are P = 8 and R = 1, thus the dimensions of LBP^{U2}_{P,R}, LBP^{RI}_{P,R} and LBP^{RIU2}_{P,R} are 59, 36, and 10.
+  C> The i-th row and j-th column element of the centered kernel matrix K^C is calculated as follows: K^C_{ij} = ?φ^C(x_i), φ^C(x_j)? = K_{ij} ? (1/N)Σ_l K_{il} ? (1/N)Σ_k K_{kj} + (1/N^2)Σ_{k,l} K_{kl} (10) K^C = K ? 1_N K ? K 1_N + 1_N K 1_N (11) The a-th eigenvector w_a of the covariance matrix C can be expressed by a linear combination of φ^C(x_i), so the coefficients α_{1a}, . . . , α_{Na} are required [35].
+=========== 21
+H_TREE  : 1:2. Local binary pattern || 2:2.1. LBP || 2:2.2. LBPV || 1:3. Histogram sequence || 2:3.1. Image decomposition || 2:3.2. Histogram sequence of LBP and LBPV pyramids || 1:4. Classification with the neural network
+H_COUNT : 7
+EQ_REFS=12  WHERE=3
+PURPOSE_LEAD_N: 4
+  P> In order to further improve the computational performance, the Euclidean distance is replaced with the block distance, as shown in Fig. 2.
+  P> To avoid quantization of continuous variance values, LBPV was proposed by Guo et al. [18].
+  P> To include more global information of the image textures, a 3-level image pyramid is constructed.
+  P> To solve this problem, we add the surrounding regions of the searching windows to them.
+CAUSAL_TAIL_N: 2
+  C> As the radius increases, an LBP contains more global information of texture patterns and also needs more neighbors, thus increasing the computational cost.
+  C> The LBPV has the same properties as an LBP, so we do not discuss it again in detail. > Fig. 5.
+=========== 30
+H_TREE  : 1:3.1 Curvelet transform || 1:3.2 Dual-encoded Local Binary Patterns || 1:3.3 Completed Local Binary Patterns || 1:3.4 Final features || 1:3.5 Classification using SVM with GKO
+H_COUNT : 5
+EQ_REFS=22  WHERE=15
+PURPOSE_LEAD_N: 6
+  P> Motivated by the need of image analysis, the second generation Curvelet transform [25] was introduced in 2005.
+  P> To implement Curvelet transforms, we first perform a 2D FFT on the interpolated 128×128 image.
+  P> To extract features from these coefficient maps, we propose Dual-encoded Local Binary Patterns (Dual-LBP) to get information on each coefficient map.
+  P> To solve this problem, we use LBPs to extract frequency structures of images from Curvelet coefficient maps with different scales, orientations and locations.
+CAUSAL_TAIL_N: 1
+  C> Smoke image edges are always curved, so Curvelet is almost the optimal representation of a singular smooth curve.
+=========== 31
+H_TREE  : 1:2.1 Local Binary Patterns || 1:2.2 Distance measure for LBP codes || 1:2.3 Gradients of LBP codes with two coordinate systems || 1:2.4 Sub oriented histograms of LBP codes
+H_COUNT : 4
+EQ_REFS=20  WHERE=11
+PURPOSE_LEAD_N: 4
+  P> To improve performance, we propose to extract sub oriented LBP code maps from LBP code maps and compute oriented histograms of LBPs from the oriented maps.
+  P> In order to illustrate special characteristics of smoke images, we compare the image "lena" (Fig. 4a) with the image "smoke" (Fig. 4e).
+  P> To solve this issue, we introduce a reference code c, and the difference between two LBP codes can be re-defined as the difference between the differences of the two LBP codes and the reference code c as follows: d = ||x - c|| - ||y - c||, (9) where x and y are the two LBP codes, and ||·|| denotes a distance measure that can be L1 or L2 norms [24].
+  P> To include more information of LBP codes for estimation of gradients, we propose to use two coordinates systems to estimate two gradients.
+CAUSAL_TAIL_N: 6
+  C> As illustrated in Fig. 2(b), the LBP code in the center is "1" and the code in the direction "7" is "0", so both the Euclidean and Hamming distances between the two codes are 1, and the two distances are coincident.
+  C> Consider Hamming distance between strings "smoke" and "smile", because the third and fourth characters in the word "smoke" are different from the third and fourth characters in the word "smile" respectively, so there are two corresponding positions that have different symbols, thus the Hamming distance is 2.
+=========== 36
+H_TREE  : 1:A. Overall Pipeline of Our Network || 1:B. Hybrid Pixel-Attention || 1:C. Multi-Scale Channel Attention || 1:D. Adaptive Feature Fusion
+H_COUNT : 4
+EQ_REFS=20  WHERE=11
+PURPOSE_LEAD_N: 6
+  P> To further enhance deep features and refine texture details, we individually fuse the outputs from the subsequent n stacked ODFMs with the shallow feature map X_s ∈ R^{C×H×W}: X_s = φ(W_p(X_LR)) (4), X_i = H_f(H_i(X_{i?1}), X_s), i = k, . . . , k+n (5), where W_p(·) is a 1×1 point-wise convolution, φ(·) is GELU [39], and H_f(·) is the adaptive feature fusion module.
+  P> Motivated by the success of window-shifting strategy in Swin Transformers, we propose a Hybrid Pixel Attention (HPA) block.
+  P> To address potential gradient instability caused by repeated element-wise modulation in deeper layers, we introduce layer normalization [42] and residual connection to stabilize training.
+  P> To mitigate this issue during the progressive expansion of receptive fields, it is necessary to recalibrate channel-wise information.
+CAUSAL_TAIL_N: 0
+################ RESULTS ################
+=========== 01
+H_TREE  : A. Synthetic Smoke Datasets || B. Ablation Analysis of Network Structures || C. Smoke Density Estimation on Synthetic Images || D. Hard Smoke Segmentation on Synthetic Images || E. Hard Smoke Segmentation on Real Images || F. Smoke Density Estimation on Real Videos || G. Visual Detection of Auto Exhausts by Our Method
+SENT_N: 99
+ANCHOR=10 REASON=0 HEDGE=1 CONCESSION=2
+  A> Fig. 7 shows some background images from the three image data sets.
+  A> To validate the importance of wave-shaped structures and short-cut connections, we selectively remove some of short-cut connections and wave-shaped structures to produce several variants of our method, as shown in Fig. 8.
+  H> The main reason may be that the white smoke video has very poor image quality.
+=========== 02
+H_TREE  : 4. Experimental results || 4.1. Experimental datasets || 4.2. Implementation details || 4.3. Ablation studies || 4.4. Comparison on synthetic datasets || 4.5. Experiments on real smoke scenes || 4.6. Experiments on sequential images of smoke videos
+SENT_N: 89
+ANCHOR=5 REASON=0 HEDGE=3 CONCESSION=0
+  A> As shown in Table 2, we find that a network capturing both spatial and channel information achieves better performance than one extracting single information.
+  A> As shown in Table 3, our method achieves the highest accuracy of 83.2% among compared methods while maintaining a relatively small number of parameters (46M). > Table 4.
+  H> The main reason may be that CCA has cubic-cross convolutional kernels to produce large receptive fields.
+  H> The main reason may be that the CPA module is designed to assist pixel classification in the image level and the three test datasets do not contain smoke-like objects, such as cloud.
+=========== 03
+H_TREE  : 4. Experimental results || 4.1. Datasets and implementation || 4.1.1. Experimental datasets || 4.1.2. Experimental setting || 4.2. Evaluation metrics || 4.3. Ablation experiments || 4.3.1. Ablation study for modules || 4.3.2. Ablation study for loss weights || 4.4. Comparisons with other methods
+SENT_N: 88
+ANCHOR=9 REASON=0 HEDGE=2 CONCESSION=3
+  A> Fig. 5 shows composited smoke images of the three test datasets, corresponding ground truths, binarized density maps, and predicted images by our methods.
+  A> To find an optimized weight α for regulating the relative importance of the two losses, we experiment with a set of regulation weights ranging between 0 and 1, as shown in Table 4.
+  H> W-Net [46] achieves slightly higher mIoUs on DS02 and DS03 than our method.
+  H> Another reason may be that our method does not use learnable de-convolutions to restore the size of feature maps, leading to great decreasing of computational complexity and memory consumption.
+=========== 04
+H_TREE  : IV. Experimental Results || A. Datasets and Implementation Details || B. Evaluation Metrics || C. Ablation Studies || D. Comparison With SOTA || E. Inter-Class Similarity Analysis
+SENT_N: 129
+ANCHOR=3 REASON=1 HEDGE=0 CONCESSION=1
+  A> Firstly, as shown in Table I, we compare the effect of different backbone.
+  A> And Fig. 10 shows the attention maps formed by the output of PHSA of all the variants in Table IV.
+  R> Meanwhile, fixed lr performs the worst, which implies that a small lr is a better choice in later training stage, while maintaining a high lr will easily lead to the model missing the optimal solutions and falling into sub-optimal solutions. > Table X.
+=========== 05
+H_TREE  : 4.1. Datasets and implementation details || 4.2. Comparison experiments || 4.2.1. Test on synthetic datasets || 4.2.2. Test on real smoke images || 4.2.3. Test on a real smoke video || 4.2.4. Test on a general segmentation dataset || 4.3. Ablation experiments || 4.3.1. Validating the importance of weights and orders || 4.3.2. Exploring the importance of short connections and weighting manners || 4.4. Lightweight experiments
+SENT_N: 129
+ANCHOR=22 REASON=1 HEDGE=2 CONCESSION=3
+  A> Table 1 lists quantitative comparison results on the three synthetic datasets.
+  A> Fig. 6 shows results of some synthetic smoke images segmented by these comparison methods, respectively.
+  R> The reason may be that dense connections tend to extract more contextual information than spatial details.
+  H> The reason may be that dense connections tend to extract more contextual information than spatial details.
+  H> By carefully observing visual comparison experiments on virtual smoke datasets and real smoke ones, we find that Transformer based methods may probably encounter the overfitting problem.
+=========== 06
+H_TREE  : Datasets and implementation || Experimental datasets || Implementation details || Evaluation metrics || Ablation experiments || Ablation study of transformer blocks || Ablation study of the MACM module || Ablation study of decoder || Ablation study of different losses || Performance evaluation || Experiments on SYN70K dataset || Experiments on FSD dataset || Results of other scenarios
+SENT_N: 117
+ANCHOR=8 REASON=1 HEDGE=4 CONCESSION=2
+  A> As shown in Fig. 6, purple denotes predicted background regions, and highlight color marks smoke ones.
+  A> To validate the effectiveness of MACM, we design a series of variant experiments, as shown in Table 2.
+  R> The reason is that MACM can facilitate more extensive interactions between global and local information for capturing richer spatial details.
+  H> The specific reason may be that the BCE loss is susceptible to interference from background classes, while the IoU loss is inherently suitable for dealing with small targets.
+  H> These results are close to or even rival those of the larger parameter SAGINN (83.3 %, 82.7 %, and 82.9 %), demonstrating that MIFNet can achieve comparable performance levels even with fewer parameters. 3) Without classification module: MIFNet outperforms versions of the CGRNet and SAGINN that do not use classification auxiliary (results marked with * in the Table 6).
+=========== 07
+H_TREE  : A. Datasets and Implementation Details || B. Evaluation Metrics || C. Performance Comparisons || E. Segmentation of Images With Large Between-Class Similarity
+SENT_N: 78
+ANCHOR=8 REASON=1 HEDGE=0 CONCESSION=1
+  A> Table II lists quantitative comparison results on the three synthetic datasets.
+  A> For images with inconspicuous smoke and smoke-like objects, as shown in the fourth to seventh columns of Fig. 8, our CRGNet obtains more accuracy.
+  R> Second, the removal of stacked Att-ConvGRUs causes a performance degradation of approximately 3%, so it means that the multi-stage stacking of Att-ConvGRUs plays an important role in learning effective features.
+=========== 08
+H_TREE  : A. Image datasets || B. Implementation details || C. Performance comparisons || D. Ablation analysis || E. Test on videos || F. Limitations of our method
+SENT_N: 105
+ANCHOR=8 REASON=0 HEDGE=0 CONCESSION=1
+  A> Fig. 4 shows some synthetic smoke images and corresponding ground truths of alpha channels from the three synthetic data sets.
+  A> Fig. 6 shows experimental results of real smoke images collected from the internet.
+=========== 09
+H_TREE  : IV. Experiments and Results || A. Experimental Datasets || B. Experimental Settings || C. Evaluation Metrics || D. Ablation Experiments || E. Comparison With State-of-the-Art Methods || F. Real-Time Inference Performance
+SENT_N: 112
+ANCHOR=10 REASON=0 HEDGE=6 CONCESSION=7
+  A> Some examples of the SFS3K datasets as shown in Fig. 8. > Fig. 8.
+  A> TABLE I provides detailed descriptions of the various model variants, while TABLE II presents a comparative analysis of their segmentation performance on the SFS3K and SYN70K datasets. > TABLE I.
+  H> It is nearly an order of magnitude smaller than the original.
+  H> Although the computational complexity (FLOPs) remains comparable, GCBAM demonstrates superior performance in key metrics such as mIoU.
+=========== 10
+H_TREE  : IV. Experiments and Results || A. Experimental Datasets || B. Experimental Settings || C. Evaluation Metrics || D. Ablation Experiments || E. Comparisons With State-of-the-Art Methods || F. Experimental Results in Real-World Scenarios
+SENT_N: 139
+ANCHOR=7 REASON=0 HEDGE=6 CONCESSION=7
+  A> TABLE IV presents the quantitative analysis of results by different lightweight models. > TABLE IV.
+  A> We selected representative samples for visual demonstration, as shown in Fig. 8 and Fig. 9. > Fig. 8.
+  H> The segmentation performance of FSIHAN-B is comparable to that of PIDNet, but the former has significantly reduced parameters and FLOPs compared to the latter.
+  H> Compared to SAGINN (101.1M parameters), FSIHAN-L achieves comparable performance with approximately 57x fewer parameters.
+=========== 11
+H_TREE  : Comparisons on natual images || Comparisons on synthetic images
+SENT_N: 126
+ANCHOR=24 REASON=4 HEDGE=4 CONCESSION=11
+  A> Fig. 10 shows the outcomes of 'animal', 'architecture', 'human', 'landscape' and 'plant' images by different dehazing methods.
+  A> In addition, DCP [5] is invalid in bright regions, such as sky, leading to color distortion, as shown in the sky of the 'plant' image in Fig. 10(b).
+  R> This is because the dark channel prior takes outliers into account and causes an over-estimation of transmission.
+  R> This is because the transmission map is obtained by binary search rather than physically modeling of haze formulation.
+  R> The reason why our method can achieve more natural results is that our confidence prior can suppress outliers or noises.
+  H> Our results are similar to those produced by LPQC [36] and MSBDN [51], but slightly more natural in sky regions as exhibited in the 'animal' image.
+  H> As shown in Fig. 13(f), our results are a little similar to MSBDN [51]'s results, but our method removes more haze than MSBDN [51], such as distant regions in the fourth image.
+=========== 12
+H_TREE  : 4.1. Datasets || 4.1.1. Synapse || 4.1.2. ACDC || 4.2. Implementation details || 4.3. Experiments on Synapse || 4.4. Experiments on ACDC || 4.5. Ablation studies || 4.5.1. Evaluation of FCM || 4.5.2. Evaluation of encoders || 4.5.3. Evaluation of decoders
+SENT_N: 110
+ANCHOR=7 REASON=1 HEDGE=3 CONCESSION=4
+  A> As shown in Table 1, Depth_encoder and Depth_decoder denote the depth of each Swin Transformer layer in the Transformer encoder and decoder, Num_heads stands for the number of attention heads in the Transformer encoder and decoder, and Num_heads_FCM is the number of attention heads in FCM.
+  A> Table 2 lists the results of our method and twenty state-of-the-art CNN semantic segmentation models on the Synapse dataset.
+  R> The reason may be that human organs have inherent smooth surfaces.
+  H> The reason may be that human organs have inherent smooth surfaces.
+  H> Although our method only surpasses TransUNet by 1% in term of DSC, it improves nearly 10% in the HD metric and is well ahead of other models.
+=========== 13
+H_TREE  : IV. Experiments || A. Datasets || B. Implementation Details || C. Evaluation Metrics || D. Ablation Studies || E. Results on the ISIC 2016 Dataset || F. Results on the ISIC 2017 Dataset || G. Results on the ISIC 2018 Dataset || H. Results on the PH2 Dataset
+SENT_N: 122
+ANCHOR=12 REASON=0 HEDGE=3 CONCESSION=1
+  A> We conducted validation experiments on the ISIC 2018 dataset, as shown in TABLE II.
+  A> As shown in Fig. 4, we also conducted visual comparisons on some typical cases to perceive which regions are attended by our progressive decoders.
+  H> The major reason may be that the CNN encoder accepts the Transformer output of our Bi-AG by fusing both CNN and Transformer features.
+  H> The green lines by our method almost coincide with the red lines of ground truths.
+=========== 16
+H_TREE  : 4.1.2. Experimental protocols and results || 4.1.3. ROC curves and further analysis for comparisons || 4.2. Texture classification || 4.2.1. Classifiers || 4.2.2. Datasets for learning || 4.2.3. Classification protocols || 4.2.4. Evaluation protocols || 4.2.5. Comparisons between learning based methods || 4.2.6. Comparisons with some state-of-the-art methods
+SENT_N: 154
+ANCHOR=4 REASON=7 HEDGE=7 CONCESSION=5
+  A> As shown in Table 3, MDLBP including information across RGB channels achieves high DRs, but it is not suitable for grayscale images.
+  A> As shown in Table 1, Set2 has only 1505 images, among which the number of non-smoke images is about 1.2 times as that of smoke images.
+  R> The reason is that the dimension of DMD features is high enough to represent complicatedly distributed data in a linearly separable way.
+  R> The reason may be that it involves ternary patterns rather than binary ones.
+  R> The reason is that both Set3 and Set4 contain far more images than Set2, so the curves show stable results in a more macroscopic perspective.
+  H> The reason may be that it involves ternary patterns rather than binary ones.
+  H> This may be one of the reasons why DMD achieves the worst results on the two sets.
+=========== 17
+H_TREE  : Smoke and non-smoke databases || Implementation || Performance analysis || Smoke detection in videos
+SENT_N: 99
+ANCHOR=8 REASON=1 HEDGE=0 CONCESSION=2
+  A> Fig. 6 shows some training and testing images from the two sets.
+  A> Fig. 8 shows ROC curves for the partition features and the Haar-like features.
+  R> There are a very small number of false smoke windows detected by the proposed method because of low image quality of the noisy video.
+=========== 18
+H_TREE  : Implementation Details || Comparison with State-of-the-arts || Ablation Study
+SENT_N: 121
+ANCHOR=14 REASON=1 HEDGE=0 CONCESSION=4
+  A> PASCAL-5i: As shown in Table I, we build our model on two backbones, including VGG-16 and ResNet-50, respectively.
+  A> Moreover, Table I shows the FB-IoU results with two different backbones.
+  R> Evaluation Metrics: As in [7], [18], [45], we adopt the mean Intersection-over-Union (mIoU) as the major performance evaluation metric because of its comprehensiveness and objectivity.
+=========== 19
+H_TREE  : 4. Experiments || 4.1. Methods for comparisons || 4.2. Experiments for smoke detection || 4.2.1. Evaluation methods || 4.2.2. Our methods || 4.2.3. Original LBPs || 4.2.4. Completed LBPs || 4.2.5. Noise resistant LBPs || 4.2.6. Patterns of oriented edge magnitudes || 4.2.7. Local tetra patterns || 4.2.8. Pyramid LBPs || 4.2.9. Local derivative patterns || 4.2.10. Summary for smoke detection || 4.3. Comparisons for texture classification
+SENT_N: 117
+ANCHOR=10 REASON=2 HEDGE=6 CONCESSION=8
+  A> Table 2 lists the details of the data sets.
+  A> As shown in Fig. 6, both intra-class and inter-class variances of smoke and non-smoke are very large.
+  R> That is the reason why it is very challenging to detect smoke from visual scenes. > Fig. 6.
+  R> The reason is that LPP can provide compact features and produce less support vectors for SVM.
+  H> Although DRs of our methods are slightly smaller than the original LBPs on Set2, Set3, and Set4, our methods achieved distinctly lower false alarm rates and error rates on all the sets.
+  H> It achieved slightly higher DRs than our methods.
+=========== 20
+H_TREE  : A. Experiments on smoke detection || B. Experiments on texture classification
+SENT_N: 67
+ANCHOR=4 REASON=0 HEDGE=1 CONCESSION=2
+  A> There are four datasets containing 1383, 1505, 10712 and 10617 images, respectively, as shown in Table 1.
+  A> As shown in Table 2, the features were extracted from the smoke data sets in Table 1 using original LBP methods with different mapping modes, P = 8 and R = 1.
+  H> On the data set of kth-tips, SVM-RBF achieved an accuracy rate of 94.22%, which is slightly higher than an accuracy rate of 94.02% obtained by KPCA-GPR.
+=========== 21
+H_TREE  : 5. Experimental results
+SENT_N: 54
+ANCHOR=7 REASON=0 HEDGE=0 CONCESSION=0
+  A> Fig. 8 shows several samples of smoke and non-smoke images from the image database. > Fig. 8.
+  A> Fig. 9 shows curve of the training error of the classifier. > Fig. 9.
+=========== 30
+H_TREE  : 4.1 Data sets || 4.2 Implementation of compared methods || 4.3 Analysis of results
+SENT_N: 48
+ANCHOR=4 REASON=1 HEDGE=1 CONCESSION=3
+  A> Table 1 lists the details of the data sets.
+  A> From Table 2, we find that our method achieves lower FARs than other methods on three testing data sets.
+  R> Although the DRs of our method do not exceed the ones of other methods obviously, the ROCs illustrate that our method outperforms others, which means that the best classification planes are not always at t=0.
+  H> The reasons may be: 1) After Curvelet transform, an original image is decomposed into sub-bands.
+=========== 31
+H_TREE  : 3.1 Smoke Detection || 3.2 Texture Classification
+SENT_N: 69
+ANCHOR=4 REASON=0 HEDGE=6 CONCESSION=3
+  A> Table 1 shows four data sets named as Set1, Set2, Set3 and Set4.
+  A> In order to intuitively analyze the experimental results of the compared methods on the three testing sets, we visualize the results of each dataset by drawing charts of DRs and FARs, as shown in Fig. 8.
+  H> The main reason may be that smoke has no fixed shapes.
+  H> PLBP RIU2 has slightly higher DRs than our method, but FARs and ERRs of our method are obviously lower than PLBP [...].
+=========== 36
+H_TREE  : A. Implementation Details || B. Ablation Study and Analysis || C. Comparisons With State-of-the-Art Methods
+SENT_N: 68
+ANCHOR=3 REASON=0 HEDGE=4 CONCESSION=2
+  A> As illustrated in Fig. 5, our CFAN demonstrates a denser distribution of activated features within the same patch size during the reconstruction process.
+  A> As shown in TABLE I, removing AFF reduces the number of network parameters by only 8%, but the average PSNR decreases by 0.16dB.
+  H> To verify its effectiveness, we conducted four ablation studies while keeping the overall model parameters comparable across variants.
+  H> The experimental results in TABLE III demonstrate that adding the AFF module introduces approximately 10K extra parameters and achieves a PSNR improvement of nearly 0.04dB on the DIV2K validation set.

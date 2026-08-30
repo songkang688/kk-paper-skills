@@ -1,0 +1,32 @@
+Section,Rule_ID,Pattern,Supporting_Papers_With_Tier,Support_Count_TierA,Location_Hint,Temporal_Span,Topic_Span,Venue_Span,Confidence,Genericity_Risk
+Title,T1,"机制在前任务在后，用 for 铰接","07(A1);17(A1);20(A1);31(A1);36(A1);01(A2);02(A2);03(A2);05(A2);11(A2);12(A2);13(A2);16(A2);19(A2);30(A2);04(A3);06(A3);18(A3);09(B);10(B)",18,标题全句,2012-2026,smoke+dehaze+medical+SR,IEEE+Elsevier+KSII,high,low
+Title,T2,"标题写机制全称，缩写在摘要首次定义","07(A1);36(A1);01(A2);02(A2);03(A2);12(A2);13(A2);30(A2);04(A3);06(A3);18(A3);09(B);10(B)",11,标题 vs 摘要首次定义句,2019-2026,smoke+medical+SR,IEEE+Elsevier,high,low
+Title,T3,"机制槽位偏好成对/双路命名","17(A1);30(A2);12(A2);13(A2);16(A2);02(A2);18(A3);10(B);09(B)",7,标题机制短语,2012-2026,smoke+medical+fewshot,IEEE+Elsevier+KSII,medium-high,low
+Title,T4,"A/An + 评价形容词开头","36(A1);03(A2);12(A2);06(A3)",4,标题首词,2023-2025,smoke+medical+SR,Elsevier(3)+IEEE(1),medium,medium — 与 venue 强相关
+Title,T5,"任务名取当前最精确粒度并在正文论证升级","21(A1);20(A1);01(A2);08(A2);16(A2);30(A2);02(A2)",7,标题任务名 + Introduction 粒度论证句,2011-2022,smoke only,IEEE+Elsevier+KSII,high,low
+Title,T6,"标题槽位不超过两个，9-14 词","07(A1);20(A1);31(A1);36(A1);01(A2);02(A2);03(A2);12(A2);13(A2);19(A2);30(A2)",11,标题全句,2016-2025,all,all,medium,medium — 部分受审稿压缩影响
+Abstract,A1,"首句难点归因到对象物理/视觉属性","07(A1);17(A1);31(A1);02(A2);05(A2);13(A2);19(A2);30(A2);04(A3);06(A3)",10,Abstract 第 1 句,2012-2025,smoke+medical,IEEE+Elsevier+KSII,medium-high,low
+Abstract,A2,"钩连句 To solve/overcome these problems we propose X（缩写首次定义）","07(A1);36(A1);01(A2);02(A2);13(A2);16(A2);03(A2);05(A2);08(A2);30(A2);04(A3);06(A3);09(B);10(B)",12,Abstract 第 2-3 句,2016-2026,smoke+medical+SR,IEEE+Elsevier+KSII,high,medium — 句型常见但回指难点的强制性是个人特征
+Abstract,A3,"逐模块巡览：每模块前置目的从句 + 序数连接词","07(A1);20(A1);31(A1);36(A1);01(A2);02(A2);03(A2);05(A2);11(A2);12(A2);13(A2);16(A2);19(A2);30(A2);04(A3);06(A3);18(A3);09(B);10(B)",17,Abstract 主体全部句子,2016-2026,smoke+dehaze+medical+SR+fewshot,IEEE+Elsevier+KSII,high,low — 核心特征
+Abstract,A4,"结尾固定 Experiments/Experimental results show that ... 且不给数字","07(A1);17(A1);20(A1);21(A1);31(A1);36(A1);01(A2);02(A2);03(A2);05(A2);08(A2);11(A2);12(A2);13(A2);16(A2);19(A2);30(A2);04(A3);06(A3);18(A3);09(B);10(B)",20,Abstract 末 1-2 句,2011-2026,all,all,high,high(句式本身是通用学术英语)/low(不给数字这一点)
+Abstract,A5,"确定性强度分层，与年份/地位无关","07(A1);36(A1);03(A2);11(A2);12(A2);16(A2);30(A2);01(A2)",8,Abstract 结论句的比较级与副词,2019-2025,smoke+dehaze+medical+SR,IEEE+Elsevier+KSII,medium-high,medium
+Abstract,A6,"180-260 词，长度增长花在模块数不在背景","36(A1);07(A1);31(A1);01(A2);02(A2);03(A2);13(A2);16(A2)",8,Abstract 全段词数,2016-2025,all,all,medium-high,medium
+Introduction,I1,"首段落在真实世界代价上","21(A1);31(A1);01(A2);03(A2);07(A1);13(A2);19(A2);30(A2);02(A2)",9,Introduction 第 1 段,2011-2024,smoke+medical,IEEE+Elsevier+KSII,medium-high,low
+Introduction,I2,"传统方案物理前提失效式过渡","21(A1);17(A1);20(A1);31(A1);36(A1);19(A2);30(A2);02(A2);01(A2)",9,Introduction 第 1-2 段,2011-2025,smoke(8)+SR(1),IEEE+Elsevier+KSII,high(限烟雾)/medium(迁移形式),low — 但受主题强约束
+Introduction,I3,"显式任务分类或流程分解 can be classified/divided into N","21(A1);31(A1);20(A1);01(A2);08(A2);16(A2);13(A2)",7,Introduction 中段的枚举句,2011-2024,smoke+medical,IEEE+Elsevier+KSII,high,low
+Introduction,I4,"难点用 N folds 或 main reason(s) may be 枚举","01(A2);16(A2);07(A1);20(A1);03(A2);02(A2)",5,Introduction 难点段,2017-2023,smoke only,IEEE+Elsevier,medium-high,low — 需扣除 03/07 的文本复用
+Introduction,I5,"缺陷写成条件式失效 If/Once the scene lacks ...","17(A1);21(A1);31(A1);01(A2);11(A2);19(A2);30(A2);02(A2)",8,Introduction 文献评述句,2011-2022,smoke+dehaze,IEEE+Elsevier+KSII,high(手工特征期)/medium(深度学习期),low
+Introduction,I6,"缺陷收敛为信息被丢弃/未建模，模块以该信息命名","31(A1);07(A1);01(A2);02(A2);03(A2);11(A2);12(A2);13(A2);16(A2);19(A2)",10,Introduction 诊断句 + 模块名,2016-2024,smoke+dehaze+medical,IEEE+Elsevier+KSII,high,low — 最有区分度
+Introduction,I7,"用 The first way ... Another way ... 压缩解法为 RW 留展开空间","08(A2);02(A2);01(A2);12(A2)",4,Introduction 解法压缩句 vs RW 小节标题,2019-2023,smoke+medical,IEEE+Elsevier,medium-high,low
+Introduction,I8,"贡献列表 3 项为主，每项目的或动作开头，末项整合","07(A1);36(A1);01(A2);02(A2);03(A2);05(A2);12(A2);13(A2);30(A2);04(A3);06(A3);09(B);10(B)",11,Introduction 末段贡献列表,2019-2026,all,all,high(2019后),high(列表化是 venue 模板)/low(项内目的优先写法)
+Introduction,I9,"at least N contributions 谦抑限定（早期特征）","21(A1);17(A1);20(A1)",3,Introduction 贡献引导句,2011-2017,smoke only,Elsevier+IEEE Access+Fire Safety,high(作为年代标记),low
+Introduction,I10,"章节路线句展开到小节级","07(A1);08(A2);02(A2)",3,Introduction 末句,2019-2022,smoke only,IEEE+Elsevier,medium-high(小节级)/low(路线句本身),very high — 路线句本身是模板句
+RelatedWork,R1,"分类轴按技术谱系切不按时间切","36(A1);07(A1);02(A2);03(A2);05(A2);08(A2);12(A2);13(A2);04(A3);06(A3);18(A3);09(B);10(B)",11,RW 小节标题,2019-2026,all,IEEE+Elsevier,high,medium — 领域普遍做法
+RelatedWork,R2,"末小节留给本文贡献所属谱系","36(A1);07(A1);03(A2);05(A2);12(A2);13(A2);06(A3);18(A3);09(B);10(B)",8,RW 小节顺序,2021-2026,all,IEEE+Elsevier,medium-high,low
+RelatedWork,R3,"一句一方法 Author et al. [n] + 过去时动词","20(A1);36(A1);01(A2);03(A2);08(A2);11(A2);12(A2);13(A2);19(A2);30(A2)",10,RW 全部段落,2016-2025,all,all,high(节奏)/low(作为个人风格),very high — 计算机视觉综述通用写法
+RelatedWork,R4,"缺陷从句紧贴方法句并收敛到本文要补的信息","20(A1);02(A2);13(A2);16(A2);30(A2);11(A2);03(A2);12(A2)",8,RW 各小节内部与末句,2016-2024,all,all,high,low
+RelatedWork,R5,"RW 以定位段收尾（Inspired by 或 However above-mentioned）","07(A1);36(A1);02(A2);03(A2);08(A2);11(A2);12(A2);13(A2);16(A2);30(A2);04(A3);06(A3);18(A3);09(B);10(B)",13,RW 最后一段,2016-2026,all,all,high,medium
+RelatedWork,R6,"above-mentioned/aforementioned 作标准回指装置","07(A1);17(A1);21(A1);36(A1);01(A2);02(A2);03(A2);08(A2);12(A2);13(A2);16(A2);30(A2)",12,全文各处,2011-2025,all,all,medium(偏好)/low(独占性),very high — 通用学术英语
+RelatedWork,R7,"自引用第三人称化不标注","20(A1);07(A1);01(A2);02(A2);03(A2);12(A2);16(A2);30(A2)",8,RW 中含 Yuan et al. 的句子,2017-2023,smoke+medical,IEEE+Elsevier+KSII,medium-high,low
+RelatedWork,R8,"Introduction 给路线 RW 给方法，用抽象层级差控重叠","08(A2);02(A2);12(A2);01(A2)",4,Introduction 压缩句 vs RW 小节内容,2019-2023,smoke+medical,IEEE+Elsevier,medium-high,low
+RelatedWork,R9,"跨谱系借用时显式声明合并各自优点","19(A2);12(A2);13(A2)",3,RW 或 Introduction 的元论证句,2016-2024,smoke+medical,Elsevier+IEEE,medium,low — 但 12/13 疑为同一文本复用

@@ -1,0 +1,126 @@
+﻿ROWS: 88
+
+############ A. 鎸夌珷鑺傦紙鍏?22 绡囦腑浣嶆暟锛?###########
+Section                       n    sent_mean  sent_median  sent_over40    para_mean    passive_k         we_k        our_k we_propose_k    we_past_k      hedge_k      boost_k    connect_k    nominal_k    acronym_k    purpose_k causaltail_k    asshown_k
+Conclusion                   22         21.1           20            0          164          6.5         18.8          9.8           13            0            0            0          6.2         91.8         43.2          5.6            0            0
+Front                        22         20.8           19          2.9        126.5          9.2          8.3          2.5          5.6            0          2.7          2.4          5.1         85.8         29.4          3.5          1.2            0
+Methods                      22         21.9           20          6.4         81.6         11.4         15.1          4.5          6.5            0          2.5          1.1          4.1         61.4         32.2          3.1          1.2          2.7
+Results                      22         19.1           17          2.7         85.2          8.1         13.8         17.4          1.3          2.8          2.2          2.6            5         51.2         56.4            3            1          2.6
+
+############ Front 鈥?鍘绘贩鏉傚垎缁勪腑浣嶆暟 ############
+Era                           n    sent_mean  sent_median  sent_over40    para_mean    passive_k         we_k        our_k we_propose_k    we_past_k      hedge_k      boost_k    connect_k    nominal_k    acronym_k    purpose_k causaltail_k    asshown_k
+E1_2011-2019                  8         19.4           18          1.8        132.7         12.7          8.4          2.1          5.1            0          2.7          1.7          5.1         79.1         29.4          3.7          1.4            0
+E2_2020-2026                 14         21.2           20            3        123.4          7.9          8.3          2.5            6            0          2.7          3.5          5.5         92.6         31.7          3.5          0.9          0.6
+Paradigm                      n    sent_mean  sent_median  sent_over40    para_mean    passive_k         we_k        our_k we_propose_k    we_past_k      hedge_k      boost_k    connect_k    nominal_k    acronym_k    purpose_k causaltail_k    asshown_k
+P1_handcrafted                8         19.8           18          1.8        136.2         12.7          8.4          2.1          5.6            0          3.3          1.7          4.9         79.1         29.4          3.4          1.4            0
+P2_deep                      14         21.2           20            3        115.2          7.9          8.3          2.5          5.7            0          2.4          3.5          5.7         92.6         31.7          3.5          0.9          0.6
+Topic                         n    sent_mean  sent_median  sent_over40    para_mean    passive_k         we_k        our_k we_propose_k    we_past_k      hedge_k      boost_k    connect_k    nominal_k    acronym_k    purpose_k causaltail_k    asshown_k
+T1_smoke                     17         20.8           19            3        115.2          9.1          7.7          2.1          5.5            0          2.4          2.1          4.9         86.2         28.2          3.5          1.4            0
+T2_other                      5         20.7           19          1.8        132.6          9.2          8.8            3            7            0          3.3          3.7          5.7           68         33.7          3.5          0.4          0.7
+Venue                         n    sent_mean  sent_median  sent_over40    para_mean    passive_k         we_k        our_k we_propose_k    we_past_k      hedge_k      boost_k    connect_k    nominal_k    acronym_k    purpose_k causaltail_k    asshown_k
+V_Elsevier                   11         20.8           19            3        132.7          9.5          7.7          1.9          5.7            0          2.4          3.4          5.1         80.1         24.4          3.5          1.2            0
+V_IEEE                        9         20.7           19          2.9        126.5          7.7          8.3            3          5.5            0          2.7          2.2          5.5         92.6         36.5          3.5          0.5          0.6
+V_KSII                        2         20.8           19          1.4         93.6           11         12.8          4.5          6.8            0          2.7          2.3          3.8         74.6         42.3          3.4          1.4            0
+Tier                          n    sent_mean  sent_median  sent_over40    para_mean    passive_k         we_k        our_k we_propose_k    we_past_k      hedge_k      boost_k    connect_k    nominal_k    acronym_k    purpose_k causaltail_k    asshown_k
+A1                            6           19           18          1.8        129.4         12.7          8.8          2.2          6.4            0          4.4          2.3          4.9         86.2         42.3          4.1          1.4            0
+A2                           11         20.8           19          2.9        123.4          9.5          8.3          2.5          5.2            0          2.7          3.4          4.8         74.6         24.8          3.6          1.4            0
+A3                            3         21.2           21          1.9        127.8          6.1          7.1          1.8          4.9            0          1.9          2.4          9.1         92.6         36.5          2.8          0.5          0.5
+B                             2         21.2           20          3.4           97            5         10.9          3.9            6            0          3.3          2.2          6.5        100.2         31.8          3.5          0.6            1
+KangLi-involved               n    sent_mean  sent_median  sent_over40    para_mean    passive_k         we_k        our_k we_propose_k    we_past_k      hedge_k      boost_k    connect_k    nominal_k    acronym_k    purpose_k causaltail_k    asshown_k
+no                           18         20.7           19          2.8        127.8          9.5          8.3          2.5          5.2            0          2.7          2.4          4.9         79.1         31.7          3.5          1.2            0
+yes                           4         21.2           20          3.3        115.2          6.1          8.8          2.5            6            0          2.3          3.4          5.7        100.2         29.2          3.5          0.9          0.6
+
+############ Methods 鈥?鍘绘贩鏉傚垎缁勪腑浣嶆暟 ############
+Era                           n    sent_mean  sent_median  sent_over40    para_mean    passive_k         we_k        our_k we_propose_k    we_past_k      hedge_k      boost_k    connect_k    nominal_k    acronym_k    purpose_k causaltail_k    asshown_k
+E1_2011-2019                  8         20.9           18          7.8         70.1         19.4         15.1          2.9          4.8            0            2          0.6          3.6         46.9         37.2          2.4          1.2            3
+E2_2020-2026                 14         22.3           21          6.4           90          9.6         15.2          4.9            7            0            3          1.4          4.1         65.7         32.2          3.8          1.6          2.7
+Paradigm                      n    sent_mean  sent_median  sent_over40    para_mean    passive_k         we_k        our_k we_propose_k    we_past_k      hedge_k      boost_k    connect_k    nominal_k    acronym_k    purpose_k causaltail_k    asshown_k
+P1_handcrafted                8         20.8           18          6.3         70.1         19.4         15.1          2.9          4.8            0          2.4          0.6          3.6         46.9         37.2          2.4          1.2            3
+P2_deep                      14         22.6           21          6.7         88.7          9.6         15.2          4.9          7.6            0          2.9          1.9          4.1         65.7         32.2          3.8          1.6          2.6
+Topic                         n    sent_mean  sent_median  sent_over40    para_mean    passive_k         we_k        our_k we_propose_k    we_past_k      hedge_k      boost_k    connect_k    nominal_k    acronym_k    purpose_k causaltail_k    asshown_k
+T1_smoke                     17         21.8           19          6.4         72.4         11.5         15.2          4.1          6.5            0          2.5            1          3.8         63.8         28.8          3.1          1.2          2.8
+T2_other                      5         22.6           21            6         98.3         11.2         10.7          4.5            6            0          2.5          1.1          5.9         47.8         32.9            3          0.9          2.6
+Venue                         n    sent_mean  sent_median  sent_over40    para_mean    passive_k         we_k        our_k we_propose_k    we_past_k      hedge_k      boost_k    connect_k    nominal_k    acronym_k    purpose_k causaltail_k    asshown_k
+V_Elsevier                   11         21.6           18            6         83.2          9.4         15.4          4.9          6.5            0          2.2          1.1          3.7         46.2         24.2            3          1.2            3
+V_IEEE                        9         23.7           22          6.7           77         11.4           12          2.4            6            0          2.9          1.4          4.1         65.7         32.2          3.5            1          1.5
+V_KSII                        2         20.8           17          8.7         65.4         14.7         17.8          2.9          8.8            0          3.7            0          5.4         70.2         37.2          2.4          3.7          4.2
+Tier                          n    sent_mean  sent_median  sent_over40    para_mean    passive_k         we_k        our_k we_propose_k    we_past_k      hedge_k      boost_k    connect_k    nominal_k    acronym_k    purpose_k causaltail_k    asshown_k
+A1                            6         21.9           22          8.5           77         19.4           12            1          5.6            0          3.6          0.6          3.6         65.6         37.2          2.4          2.4            3
+A2                           11         22.2           19          6.3         81.6          9.4         15.4          4.7          7.6            0          2.5          1.2          4.1         46.2         22.9          3.1          1.8          2.7
+A3                            3         25.1           22         11.7         98.6          9.6         10.7          2.4          5.9            0          1.4          1.4          5.9         77.2         34.5          4.3          0.5          2.6
+B                             2         21.9           21          6.4         70.2           12         16.9          5.5         10.9            0          2.5            1          3.8         74.7         39.3          3.8            1            1
+KangLi-involved               n    sent_mean  sent_median  sent_over40    para_mean    passive_k         we_k        our_k we_propose_k    we_past_k      hedge_k      boost_k    connect_k    nominal_k    acronym_k    purpose_k causaltail_k    asshown_k
+no                           18         22.2           20          6.7         81.6         11.4         14.7          4.1            6            0          2.9          1.1          4.1         55.1         28.8            3          1.6          2.7
+yes                           4         21.9           20          6.4           90         11.5         17.5          5.5         10.9            0          2.5          2.1          4.1         74.7         39.3          3.8            1          2.8
+
+############ Results 鈥?鍘绘贩鏉傚垎缁勪腑浣嶆暟 ############
+Era                           n    sent_mean  sent_median  sent_over40    para_mean    passive_k         we_k        our_k we_propose_k    we_past_k      hedge_k      boost_k    connect_k    nominal_k    acronym_k    purpose_k causaltail_k    asshown_k
+E1_2011-2019                  8         18.4           17          1.5         85.2         15.7         14.4         17.4          0.7          2.4          1.3          2.6          6.4         42.4         79.5          1.3          1.6          2.6
+E2_2020-2026                 14         19.6           18          2.7         85.8          6.4         13.8         20.5          1.8          3.2          2.2          2.6          4.8         60.2         55.8          3.3          0.4          2.6
+Paradigm                      n    sent_mean  sent_median  sent_over40    para_mean    passive_k         we_k        our_k we_propose_k    we_past_k      hedge_k      boost_k    connect_k    nominal_k    acronym_k    purpose_k causaltail_k    asshown_k
+P1_handcrafted                8         18.2           16          1.3         86.4         15.7         10.3         17.4          0.7          2.4          3.3          3.3          6.7         42.4         79.5          2.4          1.6            3
+P2_deep                      14         19.6           18          2.9         85.2          6.8         14.1         20.5          1.8          3.2          2.2          2.6          4.8         60.2         54.9          3.3          0.4          2.2
+Topic                         n    sent_mean  sent_median  sent_over40    para_mean    passive_k         we_k        our_k we_propose_k    we_past_k      hedge_k      boost_k    connect_k    nominal_k    acronym_k    purpose_k causaltail_k    asshown_k
+T1_smoke                     17           19           17          2.7         82.2          6.8         13.6         17.4          1.3          2.4          2.1          2.6            5         51.2         56.4            3          1.2          2.2
+T2_other                      5         19.2           18          2.6         93.5          8.1         13.8         15.7          0.8          3.2          3.3          1.6          4.8         48.7         55.8          2.4            0          2.8
+Venue                         n    sent_mean  sent_median  sent_over40    para_mean    passive_k         we_k        our_k we_propose_k    we_past_k      hedge_k      boost_k    connect_k    nominal_k    acronym_k    purpose_k causaltail_k    asshown_k
+V_Elsevier                   11         18.4           17          2.6         85.2          6.6         13.8         17.4          0.7          3.1          2.2          1.9            5         48.7         54.8          3.3            1          2.2
+V_IEEE                        9         19.3           18          2.9         83.2          7.2         13.6         10.9            1          2.8          2.1          3.3          4.6         60.2         64.3            3          0.4          2.8
+V_KSII                        2         16.7           15            0         86.4         20.5         22.6         21.8          4.9          1.3          7.9          4.9          6.4         42.4         82.2          1.3          2.9          2.6
+Tier                          n    sent_mean  sent_median  sent_over40    para_mean    passive_k         we_k        our_k we_propose_k    we_past_k      hedge_k      boost_k    connect_k    nominal_k    acronym_k    purpose_k causaltail_k    asshown_k
+A1                            6         19.1           18          3.8         86.4         14.7         16.5         11.2          0.8          2.4          1.8          3.3          3.6         42.4         79.5            3          1.8            3
+A2                           11         18.2           17          1.6         82.2          6.6         13.8         20.5          1.3          2.8          2.2          2.2            5         48.7         55.8          3.3            1          2.2
+A3                            3         20.8           20          2.6        110.4          6.8           17         10.9          2.6            0          1.3          2.6          6.5         65.3         54.8          1.4          0.4          2.6
+B                             2         19.9           19          2.9         65.6          7.2         12.8         20.9            1            6          2.6          4.8          6.2           70         68.1          5.3          0.4          3.3
+KangLi-involved               n    sent_mean  sent_median  sent_over40    para_mean    passive_k         we_k        our_k we_propose_k    we_past_k      hedge_k      boost_k    connect_k    nominal_k    acronym_k    purpose_k causaltail_k    asshown_k
+no                           18           19           17          2.6         85.8          8.3         14.1         17.4          1.3          2.4          2.1          2.2          4.8         48.7         56.4          2.7          1.2          2.6
+yes                           4         19.9           19          2.9         81.4          5.7         12.8         20.9          2.2          3.9          2.4          3.9          6.2           70         64.3          5.3          0.4          2.6
+
+############ Conclusion 鈥?鍘绘贩鏉傚垎缁勪腑浣嶆暟 ############
+Era                           n    sent_mean  sent_median  sent_over40    para_mean    passive_k         we_k        our_k we_propose_k    we_past_k      hedge_k      boost_k    connect_k    nominal_k    acronym_k    purpose_k causaltail_k    asshown_k
+E1_2011-2019                  8         21.2           20            0          222         19.9         15.2          5.6         11.1            0            0          2.5          7.2         91.6         43.2          3.3            5            0
+E2_2020-2026                 14         21.1           21            0        161.5          3.7         19.5         10.4         14.2            0            0            0          6.2         93.9         43.5          6.4            0            0
+Paradigm                      n    sent_mean  sent_median  sent_over40    para_mean    passive_k         we_k        our_k we_propose_k    we_past_k      hedge_k      boost_k    connect_k    nominal_k    acronym_k    purpose_k causaltail_k    asshown_k
+P1_handcrafted                8         21.2           18            0          226         19.9         16.7            5         11.4            0          3.3          2.5          9.1         86.3         43.2            4            0            0
+P2_deep                      14         21.1           21            0        161.5            0         19.3         10.4         14.2            0            0            0          5.5         97.6         43.5          6.4            0            0
+Topic                         n    sent_mean  sent_median  sent_over40    para_mean    passive_k         we_k        our_k we_propose_k    we_past_k      hedge_k      boost_k    connect_k    nominal_k    acronym_k    purpose_k causaltail_k    asshown_k
+T1_smoke                     17         21.2           21            0          185          6.6         16.7          7.1         14.2            0            0            0          7.1         92.7         40.4            4            0            0
+T2_other                      5         19.3           19            0        161.5          3.8         18.8         14.9         11.4            0          3.2            0          3.7         60.6         48.1          6.4            0            0
+Venue                         n    sent_mean  sent_median  sent_over40    para_mean    passive_k         we_k        our_k we_propose_k    we_past_k      hedge_k      boost_k    connect_k    nominal_k    acronym_k    purpose_k causaltail_k    asshown_k
+V_Elsevier                   11         21.2           21            0          204          6.6         14.6          9.8         10.1            0            0          3.3          4.9         91.6         18.3            4            0            0
+V_IEEE                        9         20.8           20            0          148          3.7         19.5          7.1         14.2            0            0            0          7.1         99.3         43.5          6.4            0            0
+V_KSII                        2         21.3           20            0          149         21.6         16.7         14.4         14.4            0          5.6            0          7.2         86.3           50          5.6          5.6            0
+Tier                          n    sent_mean  sent_median  sent_over40    para_mean    passive_k         we_k        our_k we_propose_k    we_past_k      hedge_k      boost_k    connect_k    nominal_k    acronym_k    purpose_k causaltail_k    asshown_k
+A1                            6         20.8           20            0          222         14.4         16.7          4.8         12.7            0            0            0          9.1        103.6           50          5.6            0            0
+A2                           11         21.1           20            0          149          3.8         15.2         10.4         11.4            0          3.2          3.3          4.9         86.3         22.3          6.4            0            0
+A3                            3         26.4           24            0          185            0         22.1          5.6         16.8            0            0            0          6.2         93.9         44.2          6.2            0            0
+B                             2           24           22            0           84          9.7         19.5           26         14.5            0          4.8            0         14.5        110.4         58.4            0            0            0
+KangLi-involved               n    sent_mean  sent_median  sent_over40    para_mean    passive_k         we_k        our_k we_propose_k    we_past_k      hedge_k      boost_k    connect_k    nominal_k    acronym_k    purpose_k causaltail_k    asshown_k
+no                           18         20.8           20            0          164          6.2         18.6          9.9         12.5            0            0            0          7.1         89.4         40.4          6.2            0            0
+yes                           4         26.6           24            0          189          9.7         19.5          9.8         14.6            0            0          4.9          5.5         97.6         44.2          5.5            0            0
+
+############ B. 鍏抽敭璇嶇殑缁濆璁℃暟锛堝叏鏂囧洓鑺傚悎璁★級############
+Paper         sothat  reason_hedge   reason_flat   slightly   abovement    wefind   notonly
+01                 0             1             2          0           1         5         1
+02                 0             2             2          0           2         2         1
+03                 0             1             1          1           1         1         3
+04                 0             0             4          1           0         4         1
+05                 0             1             2          0           2         3         5
+06                 0             1             1          0           0         1         6
+07                 0             1             2          1           0         1         1
+08                 0             0             2          0           1         3         2
+09                 0             0             2          3           1         0         2
+10                 0             0             0          1           2         1         1
+11                 0             0             2          1           2         3         0
+12                 0             2             0          0           2         0         2
+13                 1             1             1          0           4         2         1
+16                 4             4             5          1           4         1         4
+17                 0             0             0          0           0         0         2
+18                 1             0             0          0           1         1         0
+19                 0             0             4          6           1         0         0
+20                 0             0             1          1           0         1         0
+21                 0             0             0          0           3         0         0
+30                 0             1             0          0           1         1         1
+31                 0             2             2          4           0         0         2
+36                 0             0             0          0           1         0         0
+TOTALS: sothat=6 reason_hedge=17 reason_flat=33 slightly=20 abovement=29 wefind=30 notonly=35

@@ -1,0 +1,56 @@
+﻿=========== 1. FACT PRESERVATION ===========
+numbers found in target text: 0, 0.3, 0.6, 1, 1.1, 11, 135, 18, 2, 2.1, 2.9, 3, 3.4, 4, 41, 45, 6, 73.9, 74.6, 74.8, 75.1, 8.7, 800, 90
+PASS no fabricated number (fixture values + orientations + indices + one derived ratio only)
+INFO derived value present (11x from 24/2.1) - allowed but must be flagged
+PASS all key fixture numbers present
+PASS did not invent F1 for SYN-N1 or RN-800
+
+=========== 2. RULE COMPLIANCE (target) ===========
+PASS  X1 purpose clause present in Methods
+PASS  X1 purpose clause present in Conclusion
+PASS  X2 information-loss diagnosis verbs
+PASS  X2 module named after missing info
+PASS  X3 no we-propose in Results
+PASS  X3 our-as-subject in Results
+PASS  X3 we-propose peaks in Conclusion
+PASS  X4 past tense only in Results
+PASS  X5 no table refs in Introduction
+PASS  X5 no table refs in Conclusion body
+PASS  X6 anchor + we find that
+PASS  I3 explicit classification
+PASS  I4 N-folds enumeration
+PASS  I7 contribution list 3 items + integration
+PASS  M5 loss is last Methods subsection
+PASS  M6 premise-then-consequence with , so
+PASS  M4 where-clause defines all symbols
+PASS  RS1 ablation before comparison
+PASS  RS3 flat reason for verifiable mechanism
+PASS  RS3 hedged reason for data property
+PASS  RS4 asymmetric concession slightly
+PASS  RS4 own advantage uses obviously
+PASS  RS4 multiplier for cost advantage
+PASS  RS5 so-it-means-that ablation closure
+PASS  RS7 no future work in Results
+PASS  C5 limitation with mechanism + hedge
+PASS  C5 future work names a concrete direction
+PASS  V2 our method is last panel
+PASS  V4 ablation figure is progressive
+PASS  V5 table caption single noun phrase
+PASS  no banned opener phrase
+PASS  no vague criticism performs poorly
+PASS  Abstract-style numbers absent in Conclusion opening
+
+=========== 3. BASELINE SHOULD FAIL THE SAME CHECKS ===========
+OK(differs)  baseline has purpose clauses
+OK(differs)  baseline has N-folds enumeration
+OK(differs)  baseline has info-loss diagnosis
+OK(differs)  baseline uses slightly/obviously
+OK(differs)  baseline has dual-tier reason
+OK(differs)  baseline ablation before comparison
+OK(differs)  baseline limitation with mechanism
+OK(differs)  baseline uses the banned opener (as designed for contrast)
+
+=========== 4. VERBATIM COPY CHECK ON GENERATED TEXT ===========
+PASS no >=12-word verbatim run shared with corpus
+
+(section 5 adversarial-coverage check runs separately via grep)

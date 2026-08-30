@@ -38,6 +38,8 @@ Codex 用户把目标换成 `~/.codex/skills/` 即可。
 | 论文多方案/多版本对比与主线抉择 | `paper-version-compare` |
 | 回复审稿意见 | `nature-response` |
 | 选期刊 | `journal-match`（会议由 `paper-skill` venue 流程兜底） |
+| 袁老师风格起草/润色/中翻英/审稿回复 | `yfnskills`（22 篇语料建模，自带四条工作流，md+PDF 成对交付） |
+| 一键故事线升级加逐句润色 | `kkstoryline`（七步状态机流水线，双份意见、ToDoList、六路润色、三格式成稿） |
 
 ## 接稿吃透模式
 
@@ -66,6 +68,10 @@ Codex 用户把目标换成 `~/.codex/skills/` 即可。
 ## 写作固定顺序
 
 `paper-skill` 定真假 → `research-paper-writing` 写故事 → `scipilot-writing-skill` 润表达。审稿与写作不混在同一轮。
+
+## 自治工作流
+
+`yfnskills`（袁老师写作风格）和 `kkstoryline`（一键改稿流水线）是完整的自治工作流，路由只负责转发，进入后按各自内部流程执行到底，不叠加路由的输出契约。提到袁老师、袁非牛、yfn 就走 `yfnskills`，说跑 kkstoryline、一键改论文、故事线升级就走 `kkstoryline`。两者都依赖 `md2pdf.py` 出 PDF，换机器先跑 `python md2pdf.py --check`。
 
 ## 说明
 
