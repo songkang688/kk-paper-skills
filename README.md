@@ -16,6 +16,8 @@ Codex 用户把目标换成 `~/.codex/skills/` 即可。
 
 ## 技能一览
 
+![KK Paper Skills 技能一览](docs/skill-overview.png)
+
 | 干什么 | 技能 |
 |---|---|
 | 总路由，判定意图并转发 | `kk-paper-router` |
