@@ -34,7 +34,8 @@
 - 选出前 3 个，用 `topic-framing` 把每个收敛成可研究的 framing 和候选题目。
 - 3 个方案需要对比裁决时转 `paper-version-compare` 出排名。
 - 产出 `ideation/<主题>_<venue>_<YYYYMMDD-HHMM>/top3.md`：每个方案给问题定义、机制、贡献点草稿、
-  所需实验清单。
+  所需实验清单。落盘验收后**立即转同名 PDF**；papers.md 与 candidates.md 作为
+  中间过程可不转，最终交付前把三份合并成一份总版 md 再转一份总 PDF。
 
 ## 第 5 步：交付实现（用户要代码时）
 

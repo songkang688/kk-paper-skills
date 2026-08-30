@@ -19,10 +19,12 @@
 
 ## 一、产物约定：一次任务一个文件夹
 
-**所有产物放进论文目录下的同一个任务文件夹**，不散落。从零起草叫 `draft-vN/`，中翻英叫 `c2e-vN/`，N 递增，旧任务文件夹绝不覆盖：
+**所有产物放进论文目录下的同一个任务文件夹**，不散落。外层带 venue 与时间戳
+`yfn_<venue>_<YYYYMMDD-HHMM>/`（venue 从 `paper_context` 的 anchor 复用），
+里层从零起草叫 `draft-vN/`，中翻英叫 `c2e-vN/`，N 递增，旧任务文件夹绝不覆盖：
 
 ```
-<论文目录>/draft-v1/
+<论文目录>/yfn_ICASSP_20260831-1430/draft-v1/
   00-初稿总览.md / .pdf        ← 父节点写：各节怎么融合的、统一了什么口径、页数词数账
   00-需作者确认.md / .pdf      ← 全部 [TODO:] [REF:]、术语抉择、翻译取舍，一处一条
   01-title-abstract-conclusion.md / .pdf

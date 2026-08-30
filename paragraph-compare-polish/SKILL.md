@@ -35,5 +35,14 @@ Version、中文翻译和最终检查清单，二十三节全部照做，不许�
 与润色系统互通：产出 Final Polished Version 时，句子改写调用
 `scipilot-writing-skill` 执行，并遵守 kk-paper-router polish-mode 的
 11 条 KK 语句风格要求（学术风格、不用长难句、正文少用冒号、用词直白、
-不堆并列、包装不超证据等）。稿件已有 `paper_context/<稿件名>/` 吃透档案时，
-先读档案再对比，术语和技术判断以档案与基准稿为准。
+不堆并列、包装不超证据等）。**Final Polished Version 的句子改写必须同时按
+polish-mode 的四列契约逐句给出：改前完整句 | 改后完整句 | 改了什么 | 为什么，
+无需修改的句子也进表并写明它为何成立，禁止「同上」「略」。**protocol 第三节
+允许对比表只挑关键差异，那是针对版本对比表；最终润色版一律逐句四列，两者不冲突。
+稿件已有 `paper_context/<稿件名>/` 吃透档案时，先读档案再对比，术语和技术判断
+以档案与基准稿为准。
+
+交付：结果超过两段就落盘到
+`compare_reports/<venue>_<YYYYMMDD-HHMM>-段落对比.md`，落盘验收后**立即转同名
+PDF**，不等用户开口要。venue 先从 `paper_context` 的 anchor 复用，查不到才在
+开跑前一次问清，问完一路做到交付，中间不停。
