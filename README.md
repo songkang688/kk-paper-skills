@@ -73,6 +73,10 @@ Codex 用户把目标换成 `~/.codex/skills/` 即可。
 
 `yfnskills`（袁老师写作风格）和 `kkstoryline`（一键改稿流水线）是完整的自治工作流，路由只负责转发，进入后按各自内部流程执行到底，不叠加路由的输出契约。提到袁老师、袁非牛、yfn 就走 `yfnskills`，说跑 kkstoryline、一键改论文、故事线升级就走 `kkstoryline`。两者都依赖 `md2pdf.py` 出 PDF，换机器先跑 `python md2pdf.py --check`。
 
+## 外部依赖技能
+
+路由还会调用少量不随本仓库分发的本机技能，新机器上没有时对应环节降级但不阻断：接稿吃透的 PDF 转文本用 `pdf-to-md` / `pdf-to-tex`（缺了改用 pymupdf 直转），找创新点的单篇精读用 `paper-analyze`（缺了由父进程直接精读），特定项目稿件的事实核对叠加对应项目技能（如 `zerosmoke`）。
+
 ## 说明
 
 - 各技能保留原作者的 LICENSE 与出处，见各目录。
