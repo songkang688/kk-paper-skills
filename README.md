@@ -40,6 +40,10 @@ Codex 用户把目标换成 `~/.codex/skills/` 即可。
 | 选期刊 | `journal-match`（会议由 `paper-skill` venue 流程兜底） |
 | 袁老师风格起草/润色/中翻英/审稿回复 | `yfnskills`（22 篇语料建模，自带四条工作流，md+PDF 成对交付） |
 | 一键故事线升级加逐句润色 | `kkstoryline`（七步状态机流水线，双份意见、ToDoList、六路润色、三格式成稿） |
+| 自动实验循环 | `auto-experiment`（THINK→EXECUTE→REFLECT，自己跑训练自己分析结果） |
+| 实验进度与 GPU 状态 | `experiment-status`、`gpu-monitor` |
+| 论文转组会 PPT | `nature-paper2ppt`（中文 PPTX 加讲稿备注） |
+| 研究进展汇报 | `progress-report`（读实验日志出结构化报告） |
 
 ## 接稿吃透模式
 
@@ -76,6 +80,10 @@ Codex 用户把目标换成 `~/.codex/skills/` 即可。
 要不要往里注入本系统的语言标准，看该流水线自己有多厚，两者不一视同仁。`yfnskills` 不注入，它自带 80 条规则白名单和按章节量化的语言画像，是自成体系的作者风格，塞别的规则会打架。`kkstoryline` 注入第 5 步，它的润色标准卡流程厚但句子层面只有「更紧凑更专业更地道」一句空话，所以派发 6 个润色子 agent 时把 polish-mode 的 11 条语句风格作为判据写进 prompt，执行调 `scipilot-writing-skill` 并跑 writing_lint 自检。这条以 e) 条写在 `kkstoryline/SKILL.md` 第五节派发模板里，属本地增补，升级上游包后要重新加回。
 
 两者都依赖 `md2pdf.py` 出 PDF，换机器先跑 `python md2pdf.py --check`。
+
+## 实验模式
+
+对路由说跑实验、训练怎么样了、GPU 空不空，分别走 `auto-experiment`、`experiment-status`、`gpu-monitor`。与论文系统的衔接是双向的：找创新点模式交付的可训练代码就是实验对象，启动前没有 `PROJECT_BRIEF.md` 就从选中的方案生成一份让你确认；实验跑完 `MEMORY_LOG.md` 里的结果回流当写作数值底本，稿里每个数字都要能回指到一条实验记录。禁改组件（如 LoRA 定义）在实验迭代里同样不许动。
 
 ## 外部依赖技能
 

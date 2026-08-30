@@ -15,7 +15,8 @@ description: >-
   流水线自治执行。Use when the user mentions 论文, paper, manuscript,
   审稿, 评审, 润色, 翻译论文, 写初稿, 终检, 最终审查, 一致性检查, 查引用, rebuttal,
   投稿, 选期刊, 找创新点, 选题, 研究缺口, 袁老师风格, kkstoryline, 一键改论文,
-  故事线, or any academic paper task without naming a specific skill.
+  故事线, 跑实验, 训练, GPU, 论文转PPT, 组会汇报, 研究进展, or any academic
+  paper task without naming a specific skill.
   用户明确点名某个 skill 时直接用该 skill，不经过本路由。
 ---
 
@@ -44,6 +45,9 @@ description: >-
 | 前后不对应 / 术语数值矛盾 / 一致性检查 | 读 [references/consistency-check.md](references/consistency-check.md) |
 | 同一段落多个英文版本对比、选哪个表达 | `paragraph-compare-polish` |
 | 论文多方案/多版本对比、选主线、版本合并 | `paper-version-compare` |
+| 跑实验 / 自动实验循环 / 训练跑得怎么样 / GPU 空不空 | 读 [references/experiment-mode.md](references/experiment-mode.md)：开跑用 `auto-experiment`，查进度用 `experiment-status`，查卡用 `gpu-monitor`。ideation 交付的代码是实验对象，`MEMORY_LOG.md` 的结果回流当写作数值底本 |
+| 论文转 PPT / 组会汇报 / 文献汇报幻灯片 | `nature-paper2ppt`，出中文 PPTX 加讲稿备注 |
+| 写研究进展 / 阶段汇报 / 本周做了什么 | `progress-report`，读 `MEMORY_LOG.md` 与实验日志出结构化进展报告 |
 | 画实验结果图 / 消融图 | `scientific-visualization` |
 | LaTeX 编译报错 / 公式排版 | `latex-writer` |
 | 查参考文献真假 | `cite-verify` |
