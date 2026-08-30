@@ -71,7 +71,11 @@ Codex 用户把目标换成 `~/.codex/skills/` 即可。
 
 ## 自治工作流
 
-`yfnskills`（袁老师写作风格）和 `kkstoryline`（一键改稿流水线）是完整的自治工作流，路由只负责转发，进入后按各自内部流程执行到底，不叠加路由的输出契约。提到袁老师、袁非牛、yfn 就走 `yfnskills`，说跑 kkstoryline、一键改论文、故事线升级就走 `kkstoryline`。两者都依赖 `md2pdf.py` 出 PDF，换机器先跑 `python md2pdf.py --check`。
+`yfnskills`（袁老师写作风格）和 `kkstoryline`（一键改稿流水线）是完整的自治工作流，路由只转发不拆解步骤。提到袁老师、袁非牛、yfn 就走 `yfnskills`，说跑 kkstoryline、一键改论文、故事线升级就走 `kkstoryline`。
+
+要不要往里注入本系统的语言标准，看该流水线自己有多厚，两者不一视同仁。`yfnskills` 不注入，它自带 80 条规则白名单和按章节量化的语言画像，是自成体系的作者风格，塞别的规则会打架。`kkstoryline` 注入第 5 步，它的润色标准卡流程厚但句子层面只有「更紧凑更专业更地道」一句空话，所以派发 6 个润色子 agent 时把 polish-mode 的 11 条语句风格作为判据写进 prompt，执行调 `scipilot-writing-skill` 并跑 writing_lint 自检。这条以 e) 条写在 `kkstoryline/SKILL.md` 第五节派发模板里，属本地增补，升级上游包后要重新加回。
+
+两者都依赖 `md2pdf.py` 出 PDF，换机器先跑 `python md2pdf.py --check`。
 
 ## 外部依赖技能
 
