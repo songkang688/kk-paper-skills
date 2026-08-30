@@ -8,12 +8,17 @@ description: 论文故事线升级与逐句润色一键全流程流水线。当�
 > **属于 kk-paper-skills 系统**：被直接点名进入时，先回看 `kk-paper-router`
 > 对本 skill 的附加约束再开跑。最关键是第 5 步逐句润色必须注入 polish-mode 的
 > 11 条语句风格（见第五节 e) 条），已有 `paper_context/` 吃透档案时先带上。
+> 工作目录必须是 `kkstoryline_work_<venue>_<YYYYMMDD-HHMM>/`，先定 venue 再建目录。
 > 单独部署、没装路由时按本文件自治执行即可。此段属本地增补，升级上游包后要加回。
 
 ## 一、执行模式
 
-- **一键模式**：用户给论文（+ 可选投稿目标）→ 父进程按第二节七步顺序执行到底。除第 2 步可能问一次投稿目标外，全程不停顿、不提问。
-- **断点续跑**：每步开始前读 `kkstoryline_work\pipeline_state.md`；如果存在，从第一个未 `done` 的步骤继续，不重做已完成步骤。用户说"从第 N 步继续/重跑第 N 步"则照办。
+- **一键模式**：用户给论文（+ 可选投稿目标）→ 父进程按第二节七步顺序执行到底。建工作目录之前必须先有 venue（用户已给就用，没给就问一次），除此之外全程不停顿、不提问。
+- **断点续跑**：每步开始前在论文旁边找本次对应的
+  `kkstoryline_work_<venue>_<YYYYMMDD-HHMM>\pipeline_state.md`（同一 venue
+  多份时用最新时间戳；用户指定了完整目录名就用指定的）。如果存在，从第一个
+  未 `done` 的步骤继续，不重做已完成步骤。用户说"从第 N 步继续/重跑第 N 步"
+  则照办。旧的光秃目录 `kkstoryline_work\` 只当历史读，新跑不许再用这个名字。
 - **职责划分（本 Skill 的核心设计）**：本 SKILL.md 是唯一执行主控，负责调度、验收、返工、汇总；`prompts/` 下六个提示词是子 agent 的**质量标准卡**，规定各自产物的内容规格。派发子 agent 时必须使用第五节的派发模板，其中的"流水线覆盖条款"优先于提示词原文。
 - 工具：md → PDF 用本目录根的 `md2pdf.py`（`python md2pdf.py <文件或目录>`；换机器先 `--check`）。**所有 PDF 由父进程统一批量转换，子 agent 一律只产 md，不转 PDF。**
 
@@ -22,7 +27,7 @@ description: 论文故事线升级与逐句润色一键全流程流水线。当�
 | 步 | 名称 | 执行者 | 输入 | 输出 | 验收门 |
 |---|---|---|---|---|---|
 | 1 | 预处理与切分 | 父进程 | 用户的论文（pdf/tex/md/docx）、代码 | `paper.md`、`images\`、`sections\`（6 个分节文件）、`paragraph_index.md`，**以及以上全部 md 的同名 PDF** | 章节齐全、公式表格无大面积丢失、段落索引完成、**对应 PDF 已生成且非空** |
-| 2 | 投稿目标确认 | 父进程（唯一可停顿点） | 用户消息、论文模板线索 | `meta.md`（venue、期刊/会议、占位符值）**及其同名 `meta.pdf`** | venue 与类型明确、**meta.pdf 已生成且非空** |
+| 2 | 投稿目标写入 meta | 父进程 | 已定的 venue | `meta.md`（venue、期刊/会议、占位符值、工作目录绝对路径）**及其同名 `meta.pdf`** | venue 与目录名一致、**meta.pdf 已生成且非空** |
 | 3 | 双份修改意见 | 2 个子 agent 并行 | paper.md、sections、meta、代码 | `01_advice\A\`、`B\` 各含 `revision_report_full.md` + `storyline_comparison.md` | 覆盖标准卡全部阶段、无省略 |
 | 4 | ToDoList 与对比图 | 1 个子 agent | paper.md + A/B 两份意见 | `02_todolist\`：todolist_report.md、todolist_checklist.md、3 张 PNG | 八部分全覆盖、任务六要素齐、图或 Mermaid 兜底存在 |
 | 5 | 逐句润色 ×6 | 6 个子 agent（并行或 3+3） | 各自 section 文件 + paper.md + todolist + A/B 意见 | `03_revision\part1~part6*.md` | 对照 `paragraph_index.md` 逐段核数、逐句三件套齐全 |
@@ -33,11 +38,21 @@ description: 论文故事线升级与逐句润色一键全流程流水线。当�
 
 ## 三、目录与状态文件
 
-工作目录建在论文旁边（论文在 `X:\dir\paper.pdf` → `X:\dir\kkstoryline_work\`）：
+**先定 venue 和开工时间戳，再建目录，不许先建后改名。** 用户消息或吃透档案里
+已有目标 venue 的直接用；没有就问一次（这是建目录前唯一允许的停顿，和第 2 步
+写 meta 可以合并成一次）。venue 用官方短名（TIP、ICASSP、PR），空格改下划线。
+
+工作目录建在论文旁边，名字必须带 venue 和时间戳：
 
 ```
-kkstoryline_work\
-  pipeline_state.md   状态机：每步 status(pending/running/done/failed) + 产物路径 + 备注
+论文在 X:\dir\paper.pdf
+→ X:\dir\kkstoryline_work_<venue>_<YYYYMMDD-HHMM>\
+例：X:\dir\kkstoryline_work_ICASSP_20260831-0021\
+```
+
+```
+kkstoryline_work_<venue>_<YYYYMMDD-HHMM>\
+  pipeline_state.md   状态机：每步 status(pending/running/done/failed) + 产物路径 + 备注；表头写明 venue 与时间戳
   00_source\          paper.md(+.pdf)、images\、原始文件副本、meta.md(+.pdf)
     sections\         s1_title_abstract_conclusion.md, s2_introduction.md, s3_related_work.md,
                       s4_method.md, s5_experiments.md, s6_figures_tables_misc.md（图表清单与杂项）
@@ -50,7 +65,10 @@ kkstoryline_work\
   04_final\           revision_master.md/.pdf, final_paper.tex, final_paper.docx, final_paper.pdf, final_paper.md
 ```
 
-`pipeline_state.md` 格式：一张表（步骤 / status / 开始与完成时间 / 产物 / 验收结果 / 返工次数），父进程是唯一写入者。
+`pipeline_state.md` 格式：一张表（步骤 / status / 开始与完成时间 / 产物 / 验收结果 / 返工次数），父进程是唯一写入者。向用户报进度时给出**目录的绝对路径**，不要只说 kkstoryline_work。
+
+> 目录命名是 kk-paper-skills 本地增补，升级上游包后要加回。禁止再使用光秃的
+> `kkstoryline_work\` 作为新跑目录。
 
 ## 四、各步细则
 
@@ -65,9 +83,13 @@ kkstoryline_work\
 4. 抽查转换质量：五大章节在、公式表格无大面积丢失；有问题换工具重转。
 5. **即刻转 PDF（必要动作，不可省略）**：抽查通过后立即 `python md2pdf.py 00_source`，把 `paper.md`、`sections\` 下 6 个分节文件、`paragraph_index.md` 全部转出同名 PDF；核对每个 PDF 存在且非空。转换失败按第七节红线降级并如实告知，但不得静默跳过。
 
-### 第 2 步：投稿目标确认（父进程，唯一可停顿点）
+### 第 2 步：投稿目标写入 meta（父进程）
 
-从用户消息、论文模板/cls/页眉推断主投 venue。能确定 → 直接写 `meta.md`；不能确定 → AskQuestion 问一次：主投 venue、备选 venue、期刊还是会议（只给一个 venue 时备选填同一个）。`meta.md` 记录：venue、期刊/会议、`{{期刊1}}/{{期刊2}}` 或 `{{会议1}}/{{会议2}}`、`{{目标venue}}`、代码路径。写完 `meta.md` 后**即刻 `python md2pdf.py <meta.md 绝对路径>` 转出 `meta.pdf`（必要动作），核对非空。**
+venue 在建目录前已经定过，这一步把它写进 `00_source\meta.md`：venue、期刊/会议、
+`{{期刊1}}/{{期刊2}}` 或 `{{会议1}}/{{会议2}}`、`{{目标venue}}`、代码路径、
+工作目录绝对路径。若建目录时只拿到主投、这里还缺备选，可以补问一次；venue
+本身不许改到和目录名不一致。写完后**即刻 `python md2pdf.py <meta.md 绝对路径>`
+转出 `meta.pdf`（必要动作），核对非空。**
 
 ### 第 3 步：双份修改意见（2 个子 agent 并行）
 
@@ -148,7 +170,7 @@ kkstoryline_work\
 1. 不编造：意见、todo、润色必须基于论文实际内容；引用必须给真实论文名。
 2. md 是唯一真实来源，PDF 只是阅读版。
 3. 工具缺失先尝试安装，装不上就降级并明确告知，不静默跳过。
-4. 除第 2 步 venue 问询与扫描版 PDF 无文本两种情况外，不向用户提问。
+4. 除建目录前的 venue 问询与扫描版 PDF 无文本两种情况外，不向用户提问。
 
 ## 八、收尾自检清单
 

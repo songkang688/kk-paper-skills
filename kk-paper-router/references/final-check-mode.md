@@ -97,7 +97,7 @@
 
 ## 第 10 步：汇总体检报告
 
-写入 `final_check/<YYYYMMDD-HHMM>-终检报告.md`，两部分：
+写入 `final_check/<venue>_<YYYYMMDD-HHMM>-终检报告.md`，两部分：
 
 1. 体检总表，一行一项：
 

@@ -15,8 +15,10 @@
    - 无需修改的句子也要进表，改后写「无需修改」，为什么写清它为何成立。
 5. 输出位置：
    - 输入不超过两段（或一句）：对照表直接放对话框。
-   - 输入超过两段：写成 md 文件，路径 `polish_reports/<YYYYMMDD-HHMM>-润色对照.md`
+   - 输入超过两段：写成 md 文件，路径
+     `polish_reports/<venue>_<YYYYMMDD-HHMM>-润色对照.md`
      （放当前工作区），对话里给路径、句子总数、修改句数和主要问题类型摘要。
+     venue 用官方短名，没给先问。例：`polish_reports/TIP_20260831-1430-润色对照.md`
 6. 交付前跑 scipilot 的 `scripts/writing_lint.py` 自检，命中 FAIL 必须修复或如实报告。
 
 ## KK 语句风格追加要求（11 条，与上面输出契约同时遵守）

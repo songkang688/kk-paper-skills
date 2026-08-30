@@ -8,7 +8,7 @@
 - `conf-search` 查顶会（CVPR/ICCV/ECCV/NeurIPS/ICLR/AAAI 等），
   `lit-search` 查顶刊（TPAMI/TIP/PR/TMI/MedIA 等），限定近两年。
 - 每篇记一张短卡：题目、venue、年份、核心思想一句话、用了什么机制、
-  留下什么缺口线索。逐批落盘到 `ideation/<主题>/papers.md`，默认 100 篇，
+  留下什么缺口线索。逐批落盘到 `ideation/<主题>_<venue>_<YYYYMMDD-HHMM>/papers.md`，默认 100 篇，
   用户可以调整数量。
 - 重点篇目用 `paper-analyze` 精读。学习阶段只归纳不评判，不许边学边锁定方向。
 
@@ -24,7 +24,7 @@
 
 - 基于缺口批量生成候选思路，目标几十到 100 个，允许跨方向组合、大胆假设。
 - 每个思路一张卡：要解决的问题、核心机制、为什么新（对着第 1 步的卡片说）、
-  故事怎么讲、主要风险。落盘 `ideation/<主题>/candidates.md`。
+  故事怎么讲、主要风险。落盘 `ideation/<主题>_<venue>_<YYYYMMDD-HHMM>/candidates.md`。
 - 这一步禁止过早否决，先记下来再说。
 
 ## 第 4 步：收敛（100 选 3）
@@ -33,7 +33,7 @@
   故事性（能不能一句话讲清贡献）、审稿风险（攻击面大小）。
 - 选出前 3 个，用 `topic-framing` 把每个收敛成可研究的 framing 和候选题目。
 - 3 个方案需要对比裁决时转 `paper-version-compare` 出排名。
-- 产出 `ideation/<主题>/top3.md`：每个方案给问题定义、机制、贡献点草稿、
+- 产出 `ideation/<主题>_<venue>_<YYYYMMDD-HHMM>/top3.md`：每个方案给问题定义、机制、贡献点草稿、
   所需实验清单。
 
 ## 第 5 步：交付实现（用户要代码时）

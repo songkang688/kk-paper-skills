@@ -39,7 +39,7 @@ description: >-
 | 开新稿 / 搭框架 / 模板 / 真假与 XX 占位 / 投稿打包 | `paper-skill` |
 | 写初稿 / 写或改章节 | 【写初稿模式】见下 |
 | 用袁老师风格写 / 改 / 中翻英 / 回复审稿（提到袁老师、袁非牛、yfn） | `yfnskills` 整条接管：接稿问诊后按其内部四条工作流走（整篇初稿、润色、中翻英、rebuttal），交付 md+PDF 成对。**不套 polish-mode 四列契约**，两套契约冲突时以 yfnskills 为准，事实性红线两边一致 |
-| 跑 kkstoryline / 一键改论文 / 故事线升级加逐句润色 | `kkstoryline` 七步流水线自治执行（切分、定 venue、双份意见、ToDoList、六路逐句润色、汇总、三格式成稿），路由不拆解其步骤。**但第 5 步逐句润色的句子标准要注入**：派发 6 个子 agent 时把 polish-mode 的 11 条语句风格写进 prompt，润色调 `scipilot-writing-skill` 并跑 writing_lint 自检（它的标准卡只写了「更紧凑更专业更地道」，没有可执行判据）。跑完后其 `kkstoryline_work/00_source/`（paper.md、sections、paragraph_index）可当吃透档案供后续模式复用 |
+| 跑 kkstoryline / 一键改论文 / 故事线升级加逐句润色 | `kkstoryline` 七步流水线自治执行。**先定 venue 再建目录** `kkstoryline_work_<venue>_<YYYYMMDD-HHMM>/`（例 `kkstoryline_work_ICASSP_20260831-0021`），然后切分、双份意见、ToDoList、六路逐句润色、汇总、三格式成稿。路由不拆解其步骤。**第 5 步逐句润色必须注入** polish-mode 的 11 条语句风格，润色调 `scipilot-writing-skill` 并跑 writing_lint。跑完后该次工作目录的 `00_source/` 可当吃透档案供后续模式复用 |
 | 润色 / 中译英 / 去 AI 味 / 缩写扩写 | 读 [references/polish-mode.md](references/polish-mode.md)，逐句润色，输出改前/改后/改了什么/为什么四列完整对照表。点名袁老师风格的转 `yfnskills` |
 | 审稿 / 评审 / 看能不能中 / 模拟审稿人 | 读 [references/review-mode.md](references/review-mode.md)，并行派 5 个审稿子 agent，五份报告落盘后父进程综合 |
 | 发表前最终审查 / 终检 / 投稿前过一遍 | 读 [references/final-check-mode.md](references/final-check-mode.md)，十步全面体检：一致性、逐句语法、标点微排版、公式符号、图表细节、引用文献、数值清零、格式合规（对齐官网实测）、投稿材料元数据、体检总表加 P0/P1/P2 报告 |
@@ -74,6 +74,10 @@ description: >-
   `paper_reviews/` 里的模拟审稿报告、所有模式启动都带 `paper_context` 吃透档案。
   路由先确认被点名 skill 的附加约束和联动，套上后再执行；点名只是缩短判定意图
   这一步，不等于豁免约束。
+- **产物命名**：每次干活的输出必须带投稿 venue 短名和时间戳，格式
+  `<前缀>_<venue>_<YYYYMMDD-HHMM>`。没给 venue 先问再动手。细则见
+  [references/output-naming.md](references/output-naming.md)。例：
+  `kkstoryline_work_TIP_20260831-0021/`。
 - 稿内 `XX` 与 `AUTHOR_INPUT_NEEDED` 按证据缺失处理，任何环节不得编造
   数据、引用或官方政策。
 - 审稿与写作不混在同一轮。

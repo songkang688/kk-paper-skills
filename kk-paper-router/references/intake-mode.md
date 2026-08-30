@@ -10,7 +10,9 @@
 - PDF 先转成可检索文本（pdf-to-md 或 pdf-to-tex），LaTeX 工程找到主 tex，
   代码包解压后找到入口。
 - 在 `paper_context/<稿件名>/00-anchor.md` 写下：基准文件绝对路径、版本标识、
-  接稿时间、用户交代的背景与目标 venue。
+  接稿时间、用户交代的背景与目标 venue（官方短名，如 TIP、ICASSP）。没给
+  venue 先问再建档。档案目录本身不加时间戳（跨轮次复用），venue 写在
+  anchor 里。
 
 ## 第 2 步：全文精读吃透
 
