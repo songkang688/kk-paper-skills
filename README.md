@@ -2,17 +2,32 @@
 
 写 AI/CV 论文的整套本地 Agent Skills，含一个总路由。装好之后不用记 skill 名，直接说要干什么，`kk-paper-router` 会转发到对应技能。
 
-## 安装
+## 使用方法
 
-克隆后把各技能目录复制（或软链）到任一被扫描的技能目录，例如：
+在论文项目里对 Agent 说这一句即可（把仓库地址带上）：
+
+去远程 github 帮我拉取 kk-paper-skills 到本地并安装局部 skills https://github.com/songkang688/kk-paper-skills
+
+Agent 会按 [docs/install.md](docs/install.md) 把仓库拉到当前项目、装成项目级 skills，并写好配置：以后每次工作都先执行 `kk-paper-router`。Git 命令对照见 [docs/git.md](docs/git.md)。
+
+不想经过 Agent 时，在论文项目根目录自己跑：
 
 ```bash
-git clone https://github.com/songkang688/kk-paper-skills.git
-cd kk-paper-skills
-for d in */; do ln -sfn "$(pwd)/${d%/}" ~/.cursor/skills/"${d%/}"; done
+curl -fsSL https://raw.githubusercontent.com/songkang688/kk-paper-skills/main/install.sh | bash
 ```
 
-Codex 用户把目标换成 `~/.codex/skills/` 即可。
+装完项目里会有：
+
+- `.agents/skills/`：Cursor 与 Codex 都扫这里
+- `.claude/skills/`：给 Claude Code 的同名软链
+- `.cursor/rules/kk-paper-router.mdc`：Cursor 每个会话都先走路由
+- `AGENTS.md` / `CLAUDE.md`：Codex 与 Claude Code 开跑前也会先走路由
+
+不要只链到 `~/.cursor/skills`。那是本机全局，Cloud Agent 和别人克隆你的论文项目时看不见。
+
+更新再说「帮我更新 kk-paper-skills」，或在论文项目里重跑上面那条 `install.sh`。
+
+本机还想留一份全局副本时，另外链到 `~/.agents/skills/`（Cursor / Codex 用户级）。项目局部和全局可以并存，干活以当前项目里的为准。
 
 ## 技能一览
 
