@@ -52,7 +52,7 @@ description: >-
 | 同一段落多个英文版本对比、选哪个表达 | `paragraph-compare-polish` |
 | 论文多方案/多版本对比、选主线、版本合并 | `paper-version-compare` |
 | 跑实验 / 自动实验循环 / 训练跑得怎么样 / GPU 空不空 | 读 [references/experiment-mode.md](references/experiment-mode.md)：开跑用 `auto-experiment`，查进度用 `experiment-status`，查卡用 `gpu-monitor`。ideation 交付的代码是实验对象，`MEMORY_LOG.md` 的结果回流当写作数值底本 |
-| 论文转 PPT / 组会汇报 / 文献汇报幻灯片 | `nature-paper2ppt`，出中文 PPTX 加讲稿备注 |
+| 论文转 PPT / 组会汇报 / 文献汇报幻灯片 | `nature-paper2ppt`，出中文 PPTX 加讲稿备注。**只用这一个，不许用 `pptx`、`presenton`、`baoyu-slide-deck`**——那三个是通用做片子的，不懂论文汇报的叙事结构与讲稿分工。启动带上 `paper_context/<稿件名>/` 吃透档案，贡献点、数值、图表说明直接取档案，不重读全文；没建档的先走 intake。产物落 `slides_<venue或主题>_<YYYYMMDD-HHMM>/`，PPTX 是成品格式不转 PDF |
 | 写研究进展 / 阶段汇报 / 本周做了什么 | `progress-report`，读 `MEMORY_LOG.md` 与实验日志出结构化进展报告 |
 | 画实验结果图 / 消融图 | `scientific-visualization` |
 | LaTeX 编译报错 / 公式排版 | `latex-writer` |
@@ -146,5 +146,8 @@ description: >-
 - `awesome-ai`、`humanizer`、`ai-text-humaniser`：与 scipilot 同层重复
 - `nature-writing`、`nature-polishing`：Nature 文风，CV 会刊不对口
 - `academic-paper`、`academic-pipeline`、`paperskills`：避免出现第二个总管
+- `pptx`、`presenton`、`baoyu-slide-deck`：通用幻灯片工具，论文汇报一律走
+  `nature-paper2ppt`。**`pptx` 的 description 覆盖"任何涉及 .pptx 的场合"，
+  是全库最容易抢走论文转 PPT 的一个**，看见它抢单就拉回 `nature-paper2ppt`
 
 用户执意点名这些时照用，但提醒一句与现有层重复。
