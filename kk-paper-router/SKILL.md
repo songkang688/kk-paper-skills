@@ -15,7 +15,8 @@ description: >-
   流水线自治执行。Use when the user mentions 论文, paper, manuscript,
   审稿, 评审, 润色, 翻译论文, 写初稿, 终检, 最终审查, 一致性检查, 查引用, rebuttal,
   投稿, 选期刊, 找创新点, 选题, 研究缺口, 袁老师风格, kkstoryline, 一键改论文,
-  故事线, 跑实验, 训练, GPU, 论文转PPT, 组会汇报, 研究进展, or any academic
+  故事线, 跑实验, 训练, GPU, 论文转PPT, 组会汇报, 研究进展, 画图, 图转PPT,
+  图片转可编辑, 复现这张图, 图转VBA, or any academic
   paper task, including when the user explicitly names a specific skill.
   用户即使点名某个具体 skill，也先经过本路由套上附加约束与联动再转发执行，
   不要跳过路由。点名只省去判定意图这一步，不豁免路由层写的约束。
@@ -54,7 +55,8 @@ description: >-
 | 跑实验 / 自动实验循环 / 训练跑得怎么样 / GPU 空不空 | 读 [references/experiment-mode.md](references/experiment-mode.md)：开跑用 `auto-experiment`，查进度用 `experiment-status`，查卡用 `gpu-monitor`。ideation 交付的代码是实验对象，`MEMORY_LOG.md` 的结果回流当写作数值底本 |
 | 论文转 PPT / 组会汇报 / 文献汇报幻灯片 | `nature-paper2ppt`，出中文 PPTX 加讲稿备注。**只用这一个，不许用 `pptx`、`presenton`、`baoyu-slide-deck`**——那三个是通用做片子的，不懂论文汇报的叙事结构与讲稿分工。启动带上 `paper_context/<稿件名>/` 吃透档案，贡献点、数值、图表说明直接取档案，不重读全文；没建档的先走 intake。产物落 `slides_<venue或主题>_<YYYYMMDD-HHMM>/`，PPTX 是成品格式不转 PDF |
 | 写研究进展 / 阶段汇报 / 本周做了什么 | `progress-report`，读 `MEMORY_LOG.md` 与实验日志出结构化进展报告 |
-| 画实验结果图 / 消融图 | `scientific-visualization` |
+| 画实验结果图 / 消融图 | `scientific-visualization`，从数据出图 |
+| 把这张图做成可编辑的 / 图转 PPT 形状 / 复现论文里的架构图 / 图转 VBA | `kkimage-visio-ppt`：图片重建成可编辑 Office Shapes，出 `.bas` 宏加 `.pptx`，照它的硬触发条件把复杂原图元素保留为裁图。**只做「已有图片 → 可编辑图形」**——从数据画图走 `scientific-visualization`，从零设计示意图走 `baoyu-diagram`。重建自己论文的图时先读 `paper_context` 里的图注与模块名，不靠看图猜；图与正文不一致要报出来。产物落 `figures_<venue或主题>_<YYYYMMDD-HHMM>/` |
 | LaTeX 编译报错 / 公式排版 | `latex-writer` |
 | 查参考文献真假 | `cite-verify` |
 | 回复审稿意见 / rebuttal / 修回信 | `nature-response`。启动时带上吃透档案，本地 `paper_reviews/` 里有模拟审稿报告的一并读入，把模拟审出的问题提前挡在回复里。点名袁老师风格的走 `yfnskills` 的 rebuttal_workflow |

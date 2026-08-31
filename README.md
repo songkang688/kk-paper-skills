@@ -28,7 +28,8 @@ Codex 用户把目标换成 `~/.codex/skills/` 即可。
 | 框架、模板、防造假占位 | `paper-skill` |
 | 章节初稿（CV 叙事） | `research-paper-writing` |
 | 润色、翻译、去 AI 味 | `scipilot-writing-skill` |
-| 实验结果图 | `scientific-visualization` |
+| 实验结果图（从数据出图） | `scientific-visualization` |
+| 图片转可编辑 PPT 图形、复现架构图 | `kkimage-visio-ppt`（出 `.bas` 宏加 `.pptx`，复杂原图元素按硬触发条件保留裁图） |
 | LaTeX 编译与排版 | `latex-writer` |
 | 参考文献真假核验 | `cite-verify` |
 | 审稿：OpenReview 五人审 + 总评 | `reviewforge-openreview` |
