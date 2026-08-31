@@ -45,7 +45,7 @@ description: >-
 | 写初稿 / 写或改章节 | 【写初稿模式】见下 |
 | 用袁老师风格写 / 改 / 中翻英 / 审阅把关挑毛病 / 回复审稿（提到袁老师、袁非牛、yfn） | `yfnskills` 整条接管：接稿问诊后按其内部四条工作流走（整篇初稿、润色、中翻英、rebuttal），交付 md+PDF 成对。**不套 polish-mode 四列契约**，**语句与写作规则**冲突时以 yfnskills 为准；**交付层规则一律以本路由为准**（目录 `yfn_<venue>_<时间戳>/`、落盘即转 PDF、复用 `paper_context`、rebuttal 先读 `paper_reviews/`），事实性红线两边一致 |
 | 跑 kkstoryline / 一键改论文 / 故事线升级加逐句润色 | `kkstoryline` 七步流水线自治执行。**先定 venue 再建目录** `kkstoryline_work_<venue>_<YYYYMMDD-HHMM>/`（例 `kkstoryline_work_ICASSP_20260831-0021`），然后切分、双份意见、ToDoList、六路逐句润色、汇总、三格式成稿。路由不拆解其步骤。**第 5 步逐句润色必须注入** polish-mode 的 11 条语句风格，润色调 `scipilot-writing-skill` 并跑 writing_lint。基础提取先查 `paper_context/<稿件名>/` 复用、缺才补建到那里（跨投稿跨 skill 共用），不重复转换 |
-| 润色 / 中译英 / 去 AI 味 / 缩写扩写 | 读 [references/polish-mode.md](references/polish-mode.md)，逐句润色，输出改前/改后/改了什么/为什么四列完整对照表。点名袁老师风格的转 `yfnskills` |
+| 润色 / 中译英 / 去 AI 味 / 缩写扩写 | 读 [references/polish-mode.md](references/polish-mode.md)。**给了整篇论文就默认全文润色，不问范围**。三级拆分：先把全文切成几个部分、每部分拆段落、每段拆句子，逐句执行，输出改前/改后/改了什么/为什么四列完整对照表；部分数 ≥5 时按部分并行派子 agent，父进程按原顺序拼成总表再转 PDF。点名袁老师风格的转 `yfnskills` |
 | 审稿 / 评审 / 看能不能中 / 模拟审稿人 | 读 [references/review-mode.md](references/review-mode.md)，并行派 5 个审稿子 agent，五份报告落盘后父进程综合。**点名让袁老师审阅把关的走 `yfnskills`，不派 5 路** |
 | 发表前最终审查 / 终检 / 投稿前过一遍 | 读 [references/final-check-mode.md](references/final-check-mode.md)，十步全面体检：一致性、逐句语法、标点微排版、公式符号、图表细节、引用文献、数值清零、格式合规（对齐官网实测）、投稿材料元数据、体检总表加 P0/P1/P2 报告 |
 | 前后不对应 / 术语数值矛盾 / 一致性检查 | 读 [references/consistency-check.md](references/consistency-check.md) |
@@ -79,6 +79,12 @@ description: >-
   `paper_reviews/` 里的模拟审稿报告、所有模式启动都带 `paper_context` 吃透档案。
   路由先确认被点名 skill 的附加约束和联动，套上后再执行；点名只是缩短判定意图
   这一步，不等于豁免约束。
+- **规则不因入口而变**：同一件事，单独点名调用和被路由联动调用，执行规则完全
+  一致——四列契约、逐句全覆盖、命名带 venue 加时间戳、落盘即转 PDF、复用
+  `paper_context`、开跑后不停，六条一视同仁。**唯一按入口变的是「用谁的语句
+  风格」**：点名袁老师风格用 yfnskills 那套自成体系的规则，其余一律用
+  polish-mode 的 11 条。这是选风格，不是松规矩。任何 skill 都不许拿「我是被
+  直接点名的」或「我自成体系」当理由豁免上面六条。
 - **产物命名**：每次干活的输出必须带投稿 venue 短名和时间戳，格式
   `<前缀>_<venue>_<YYYYMMDD-HHMM>`。venue 先从 `paper_context` 的 anchor 复用，
   查不到才在开跑前一次问清，问到就一路跑完不再停。细则见
