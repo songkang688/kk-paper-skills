@@ -36,8 +36,8 @@ description: 论文故事线升级与逐句润色一键全流程流水线。当�
 | 2 | 投稿目标写入 meta | 父进程 | 已定的 venue、paper_context 路径 | 工作目录根 `meta.md`（venue、占位符值、paper_context 与工作目录绝对路径）**及同名 `meta.pdf`** | venue 与目录名一致、meta.pdf 非空 |
 | 3 | 双份修改意见 | 2 个子 agent 并行 | paper_context 的 paper.md、sections、工作目录 meta、代码 | `01_advice\A\`、`B\` 各含 `revision_report_full.md` + `storyline_comparison.md` | 覆盖标准卡全部阶段、无省略 |
 | 4 | ToDoList 与对比图 | 1 个子 agent | paper_context 的 paper.md + A/B 两份意见 | `02_todolist\`：todolist_report.md、todolist_checklist.md、3 张 PNG | 八部分全覆盖、任务六要素齐、图或 Mermaid 兜底存在 |
-| 5 | 逐句润色 ×6 | 6 个子 agent（并行或 3+3） | paper_context 的各 section 文件 + paper.md + 工作目录 todolist + A/B 意见 | `03_revision\part1~part6*.md` | 对照 paper_context 的 `paragraph_index.md` 逐段核数、逐句四列表（改前完整/改后完整/改了什么/为什么）全覆盖 |
-| 6 | 1-6拼接汇总与转PDF | 父进程 | part1~part6 全量 md | `03_revision\revision_parts_1_to_6_merged.md/.pdf`、`04_final\revision_master.md/.pdf` | 完整按 1–6 顺序拼接总版、目录导读完备、同名 PDF 成功生成 |
+| 5 | 逐句润色 ×6 | 6 个子 agent（并行或 3+3） | paper_context 的各 section 文件 + paper.md + 工作目录 todolist + A/B 意见 | `03_revision\part1~part6*.md` | 对照 paper_context 的 `paragraph_index.md` 逐段核数、逐句五段卡片（改前/改后/改前翻译/改后翻译/为什么改）全覆盖 |
+| 6 | 1-6拼接汇总、合并复审与转PDF | 父进程 | part1~part6 全量 md | `03_revision\revision_parts_1_to_6_merged.md/.pdf`、`04_final\revision_master.md/.pdf` | 按 1–6 顺序拼接、封面 frontmatter 齐、末尾有「汇总复审」跨部分连贯性一节、同名 PDF 成功生成 |
 | 7 | 成稿与三格式交付 | 父进程 | 原文 + 所有"改后" | `final_paper.tex/.docx/.pdf`（三格式强制，docx 有便携版 pandoc 兜底链）、全套 md 批量转 PDF、交付清单 | 三格式全部生成且非空、改动全部应用、清单发给用户 |
 
 每步完成后：更新 `pipeline_state.md`，并向用户发一句进度（做了什么、产出在哪）。
@@ -124,19 +124,21 @@ venue 在建目录前已经定过，这一步把它写进本次工作目录根�
 
 - 标准卡：`prompts/提示词6_逐句润色执行.md`。分工：part1 标题+摘要+Conclusion；part2 Introduction；part3 Related Work；part4 Method；part5 实验；part6 存在的问题（图、表、命名、符号、单位、格式、交叉引用）。
 - 每个子 agent 输入：`paper_context/<稿件名>/sections/` 下自己的 section 文件（主要工作对象）、`paper_context/<稿件名>/paper.md`（通读保证上下文一致）、本次工作目录的 todolist、A/B 意见。**优先级必须写进 prompt：todolist 为主，意见为参考，冲突从 todolist。**
-- 产物：`03_revision\part{n}_{部分名}.md`，太长可拆 `_1/_2/...`（4、5 个也行），必须完整；逐段独立、逐句做成四列表「改前完整版｜改后完整版｜改了什么｜为什么」（不改的句子也进表并给理由，改前改后都是完整版不省略）；需要引用的联网搜索并给论文名。第 6 步把六个 part 拼成的 `revision_master` 就是全篇逐句总表，第 7 步的 `final_paper` 三格式是应用全部"改后"的完整改后终稿（final）。
-- **机械验收**：对照 `paper_context/<稿件名>/paragraph_index.md`——该 part 处理的段落数 = 索引段落数；抽查每段四列表齐全；part6 对照图表清单核全。缺 → resume 补全。
+- 产物：`03_revision\part{n}_{部分名}.md`，太长可拆 `_1/_2/...`（4、5 个也行），必须完整；逐段独立、逐句做成**五段卡片**（`::: card` 围栏）「改前｜改后｜改前翻译｜改后翻译｜为什么改」（不改的句子也出卡片并给理由，改前改后都是完整版不省略；改前/改后纯英文，三项中文说明用中文）；需要引用的联网搜索并给论文名。第 6 步把六个 part 拼成的 `revision_master` 就是全篇逐句总卡集，第 7 步的 `final_paper` 三格式是应用全部"改后"的完整改后终稿（final）。
+- **机械验收**：对照 `paper_context/<稿件名>/paragraph_index.md`——该 part 处理的段落数 = 索引段落数；抽查每句五段卡片齐全（改前/改后/改前翻译/改后翻译/为什么改五项都在）；part6 对照图表清单核全。缺 → resume 补全。
 
-### 第 6 步：1-6全量拼接汇总与转PDF（父进程）
+### 第 6 步：1-6全量拼接汇总、合并复审与转PDF（父进程）
 
 1. **全量拼接总版**：
-   - 严格按论文章节与逻辑顺序将 Part 1 至 Part 6 的所有润色成果拼接合并为全量总版：
+   - 严格按论文章节与逻辑顺序将 Part 1 至 Part 6 的所有润色成果（五段卡片）拼接合并为全量总版：
      * 保存于 `03_revision\revision_parts_1_to_6_merged.md`（方便在 revision 目录下快速查阅全集）；
      * 同时保存于 `04_final\revision_master.md` 作为全流程总交付报告；
    - 拼接格式规范：文件开头生成统一目录索引（TOC），每个部分之间加入导语与 ToDoList 对应映射条目。
-2. **即刻转出高清 PDF**：
+   - **文件顶部写封面 frontmatter**（md2pdf 会渲染成封面页，见第九节）：`title`（如「03 全文逐句修改：六部分合订本」）、`header`（如「{venue} · FNYPro · 全文润色」）、`stamp`（如「{venue} 全文润色」）、`subtitle`、以及 `meta_文件编号/meta_文档角色/meta_处理模式/meta_技能路由/meta_主要依据/meta_事实边界` 若干条。
+2. **合并复审连贯性（各部分单独做完后，合起来必须再通读一遍）**：六个 part 是分头派发、各自逐句改的，拼起来可能出现衔接不顺、术语/符号前后不一、同一处被两个 part 各改一版、指代断链、重复表述。父进程通读合订本一遍，专查这些跨部分问题，在合订本末尾追加一节「汇总复审」：列出发现的不连贯点与统一后的处理（用中文说明，涉及英文正文的给出统一后的纯英文写法）。这一遍是把「逐级派发的逐句结果」收口成一份读得通的整体。
+3. **即刻转出高清 PDF**：
    - 使用 `python md2pdf.py` 立即将 `revision_parts_1_to_6_merged.md` 渲染转换为同名 `revision_parts_1_to_6_merged.pdf`，以及 `revision_master.pdf`；
-   - 确保包含中英文对照、排版美观且无乱码，让作者既能看单 part 细节，也能通览全篇润色总版 PDF。
+   - 确保封面页、五段卡片、中英文对照都正常，排版美观无乱码，让作者既能看单 part 细节，也能通览全篇润色总版 PDF。
 
 ### 第 7 步：成稿与交付（父进程）
 
@@ -176,7 +178,7 @@ venue 在建目录前已经定过，这一步把它写进本次工作目录根�
       执行.md` 里存了一份 11 条原文，探不到文件时从那里取。
       标准卡第 6 条「更紧凑更专业更地道」以那 11 条为具体判据；
       润色执行调 `scipilot-writing-skill`，写完跑它的 `scripts/writing_lint.py`
-      自检，FAIL 项修掉或在改动汇总表里如实登记。四列表的「为什么」列里
+      自检，FAIL 项修掉或在改动汇总表里如实登记。五段卡片的「为什么改」段里
       注明本句触发了 11 条中的哪几条。
 ```
 
@@ -205,7 +207,42 @@ venue 在建目录前已经定过，这一步把它写进本次工作目录根�
 - [ ] todolist 套件 + 3 张结构图（或 Mermaid 兜底）齐全
 - [ ] part1~6 落盘且通过 paragraph_index 机械核数
 - [ ] 03_revision 下 1-6 拼接总版 `revision_parts_1_to_6_merged.md/.pdf` 已生成
-- [ ] `revision_master.md/.pdf` 汇总完成
+- [ ] `revision_master.md/.pdf` 汇总完成，含封面 frontmatter 与末尾「汇总复审」一节
 - [ ] final_paper 三格式（tex + docx + pdf）全部生成且非空、改动全部应用
 - [ ] 全部 md 批量转出 PDF
 - [ ] 交付清单 + 分步进度已发给用户
+
+## 九、封面与卡片排版标准（md2pdf）
+
+本目录根的 `md2pdf.py` 支持两样让成品像投稿包的排版，合订本/总册/意见书等重要交付一律用上：
+
+**A. 封面 frontmatter。** md 文件顶部写一段 `--- ... ---`，md2pdf 自动渲染成酒红封面页（顶栏 + kicker + 大标题 + 副标题 + 两列元信息 + 旋转印章），正文页右上角还带运行页眉。键（都可选，有 `title` 才出封面）：
+
+```
+---
+title: 03 全文逐句修改：六部分合订本
+header: ICASSP · FNYPro · 全文润色
+stamp: ICASSP 全文润色
+subtitle: 英文论文逐句"改前/改后/改前翻译/改后翻译/为什么改" + 完整改后终稿 + 汇总复审
+meta_文件编号: 03
+meta_文档角色: 全文逐句润色与重写总册
+meta_处理模式: 全文润色 / 技术一致性优先
+meta_技能路由: 润色模式 → 逐句五段 → 汇总复审
+meta_主要依据: 论文草稿 + 用户润色约束
+meta_事实边界: 缺失实验信息保留为作者补全项
+---
+```
+
+**B. 五段句卡（`::: card`）。** 逐句润色每一句用一张卡片，md2pdf 渲染成带米色标题条、五个彩色标签字段的圆角卡片，比横向表格清楚：
+
+```
+::: card 段落2 · 句3
+**改前** <英文原句，完整照抄>
+**改后** <改后完整英文句，可直接替换>
+**改前翻译** <原句中文意思>
+**改后翻译** <改后中文意思>
+**为什么改** <改了什么 + 触发 KK 11 条哪几条，中文>
+:::
+```
+
+`**改前** **改后**` 纯英文；`**改前翻译** **改后翻译** **为什么改**` 用中文。`::: card` 之间空一行。换机器先 `python md2pdf.py --check`。

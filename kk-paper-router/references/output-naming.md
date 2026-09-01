@@ -46,12 +46,16 @@ paper_context，缺才补建到那里，绝不各自把 PDF 重新转一遍。
 重要交付产物产出后必须同步转同名 PDF，别拖到最后、别不转。谁产出谁负责转；
 子 agent 只产 md 时，由父进程/主流程在验收通过后立即转。
 
-- **必须转 PDF 的重要产物**：审稿的 5 份分报告与综合意见、润色四列对照表、
+- **必须转 PDF 的重要产物**：审稿的 5 份分报告与综合意见、润色五段句卡对照、
   终检报告、一致性清单、段落/版本对比报告、ideation 的 top3、kkstoryline 每步
   的意见/todolist/润色/成稿、yfnskills 的定稿。纯过程草稿（papers.md、
   candidates.md 等）可不转。
 - **同步转**：每份重要 md 落盘并验收通过后**立即** `python md2pdf.py <md 或目录>`，
   不等整条流程结束；中途中断也已有 PDF。
+- **PDF 要美观**：重要交付 md 顶部写封面 frontmatter（`title/header/stamp/subtitle`
+  加若干 `meta_键: 值`），md2pdf 渲染成酒红封面页 + 右上运行页眉；逐句润色用
+  `::: card` 五段句卡（改前/改后/改前翻译/改后翻译/为什么改）渲染成彩标圆角卡片。
+  换机器先 `python md2pdf.py --check`。
 - **零散产物先合并再转**：一个任务产出多个分片 md（如 yfnskills 分节润色、
   kkstoryline 的 part1~6）时，最后按逻辑顺序合并成一个总版 md 再转 PDF，分片保留。
   合并总版命名 `<venue>_<YYYYMMDD-HHMM>_<类型>_merged.md`（+同名 pdf），

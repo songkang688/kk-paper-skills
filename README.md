@@ -69,7 +69,7 @@ curl -fsSL https://raw.githubusercontent.com/songkang688/kk-paper-skills/main/in
 
 ## 技能互通
 
-各技能不是孤岛。`paragraph-compare-polish` 出最终润色版时按 polish-mode 的四列契约和 11 条风格规则执行，`paper-version-compare` 选完主线要改稿时接润色模式，找创新点出的方案要写成章节时走写初稿流程。互通时各技能的铁律同时生效，冲突以更严格的一方为准。
+各技能不是孤岛。`paragraph-compare-polish` 出最终润色版时按 polish-mode 的五段句卡契约和 11 条风格规则执行，`paper-version-compare` 选完主线要改稿时接润色模式，找创新点出的方案要写成章节时走写初稿流程。互通时各技能的铁律同时生效，冲突以更严格的一方为准。
 
 ## 找创新点模式
 
@@ -81,7 +81,7 @@ curl -fsSL https://raw.githubusercontent.com/songkang688/kk-paper-skills/main/in
 
 ## 润色模式
 
-对路由说润色，它会先按段落再按句子拆分，每句独立跑一遍 `scipilot-writing-skill`，最后汇总成四列完整对照表：改前、改后、改了什么、为什么。不超过两段直接在对话里给表，超过两段落盘为 `polish_reports/<venue>_<时间>-润色对照.md`。
+对路由说润色，它会先按段落再按句子拆分，每句独立跑一遍 `scipilot-writing-skill`，最后逐句汇总成五段句卡对照：改前、改后、改前翻译、改后翻译、为什么改（改前/改后纯英文，三项中文说明用中文），拼完再通读做合并复审，并出一份完整改后终稿。不超过两段直接在对话里给，超过两段落盘为 `polish_reports/<venue>_<时间>-润色对照.md` 并转带封面的美观 PDF。
 
 ## 终检模式
 

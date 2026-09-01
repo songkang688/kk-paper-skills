@@ -34,7 +34,7 @@ description: >-
 
 与其他 skill 互通：各版本已有 `paper_context/` 吃透档案时先读档案再评。
 排名和合并策略定下后，用户要落地改稿的，转 kk-paper-router 润色模式
-（四列对照表加 11 条风格规则）执行；主线需要补新章节的走写初稿模式。
+（逐句五段句卡加 11 条风格规则）执行；主线需要补新章节的走写初稿模式。
 
 交付：报告落盘到 `compare_reports/<venue>_<YYYYMMDD-HHMM>-版本对比.md`，验收后
 立即转同名 PDF。venue 先从 `paper_context` 的 anchor 复用，查不到才在开跑前一次
