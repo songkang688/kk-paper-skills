@@ -120,13 +120,17 @@ description: >-
   都属于开工前的同一次交互，问完直接开跑。它们必须一次问完，不许分几轮问；
   凡是 `paper_context` 里查得到的（venue、稿件路径、任务类型）一律不问。
   开跑之后，任何模式都不许再停下等确认。
-- **产物即 PDF，且要美观**：凡是交付给用户的报告、对照、回复信、清单、成稿（审稿五份加
+- **产物即 PDF，且要专业**：凡是交付给用户的报告、对照、回复信、清单、成稿（审稿五份加
   综合意见、润色五段句卡对照、终检报告、一致性清单、段落与版本对比、kkstoryline 每步
   产物、yfnskills 定稿等），落盘验收后立即转同名 PDF；零散分片最后合并成一个
   总版 md 再转，产物归拢到同一个带 venue+时间戳的目录。子 agent 只产 md 时由
-  父进程转。**重要交付 md 顶部写封面 frontmatter**（`title/header/stamp/subtitle/meta_*`），
-  md2pdf 会渲染成酒红封面页 + 运行页眉；逐句用 `::: card` 五段句卡渲染成彩标圆角卡片。
-  PPTX、最终 docx 这类本身就是成品格式的保留原格式。
+  父进程转。**PDF 要像精制投稿包，不是 md 直接怼过去**：重要交付 md 顶部写封面
+  frontmatter（`title/header/stamp/subtitle/meta_*`，可加 `primary`/`accent` 换配色），
+  权威规则/核心判断用 `::: note` callout，阶段路线用 `::: flow` 流程图，对照清单用
+  表格（自动深色表头斑马行），逐句用 `::: card` 五段句卡；配色不锁死、中英统一走
+  md2pdf 防乱码，组件不够用时可自写带样式 HTML 再转，只要观感达标。排版组件详见
+  [kkstoryline/SKILL.md 第九节](../kkstoryline/SKILL.md)。PPTX、最终 docx 这类本身
+  就是成品格式的保留原格式。
 - **接稿先吃透**：用户第一次给论文或代码，必须先走
   [references/intake-mode.md](references/intake-mode.md) 建档落盘。之后所有
   模式启动都带上基准稿路径和 `paper_context` 档案路径，一切改动以该稿为核心，

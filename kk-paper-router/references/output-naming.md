@@ -52,10 +52,12 @@ paper_context，缺才补建到那里，绝不各自把 PDF 重新转一遍。
   candidates.md 等）可不转。
 - **同步转**：每份重要 md 落盘并验收通过后**立即** `python md2pdf.py <md 或目录>`，
   不等整条流程结束；中途中断也已有 PDF。
-- **PDF 要美观**：重要交付 md 顶部写封面 frontmatter（`title/header/stamp/subtitle`
-  加若干 `meta_键: 值`），md2pdf 渲染成酒红封面页 + 右上运行页眉；逐句润色用
-  `::: card` 五段句卡（改前/改后/改前翻译/改后翻译/为什么改）渲染成彩标圆角卡片。
-  换机器先 `python md2pdf.py --check`。
+- **PDF 要专业，不是裸转**：重要交付 md 顶部写封面 frontmatter（`title/header/stamp/subtitle`
+  加若干 `meta_键: 值`，可加 `primary`/`accent` 换配色，配色不锁死），渲染成斜切双色
+  封面 + 右上运行页眉；权威规则用 `::: note` callout，阶段路线用 `::: flow` 流程图，
+  清单用表格（自动深色表头斑马行），逐句润色用 `::: card` 五段句卡渲染成彩标圆角卡片。
+  中英统一走 md2pdf 防乱码，组件不够可自写带样式 HTML 再转。排版组件详见
+  [kkstoryline/SKILL.md 第九节](../../kkstoryline/SKILL.md)。换机器先 `python md2pdf.py --check`。
 - **零散产物先合并再转**：一个任务产出多个分片 md（如 yfnskills 分节润色、
   kkstoryline 的 part1~6）时，最后按逻辑顺序合并成一个总版 md 再转 PDF，分片保留。
   合并总版命名 `<venue>_<YYYYMMDD-HHMM>_<类型>_merged.md`（+同名 pdf），
