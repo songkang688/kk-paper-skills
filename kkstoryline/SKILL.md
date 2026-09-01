@@ -36,7 +36,7 @@ description: 论文故事线升级与逐句润色一键全流程流水线。当�
 | 2 | 投稿目标写入 meta | 父进程 | 已定的 venue、paper_context 路径 | 工作目录根 `meta.md`（venue、占位符值、paper_context 与工作目录绝对路径）**及同名 `meta.pdf`** | venue 与目录名一致、meta.pdf 非空 |
 | 3 | 双份修改意见 | 2 个子 agent 并行 | paper_context 的 paper.md、sections、工作目录 meta、代码 | `01_advice\A\`、`B\` 各含 `revision_report_full.md` + `storyline_comparison.md` | 覆盖标准卡全部阶段、无省略 |
 | 4 | ToDoList 与对比图 | 1 个子 agent | paper_context 的 paper.md + A/B 两份意见 | `02_todolist\`：todolist_report.md、todolist_checklist.md、3 张 PNG | 八部分全覆盖、任务六要素齐、图或 Mermaid 兜底存在 |
-| 5 | 逐句润色 ×6 | 6 个子 agent（并行或 3+3） | paper_context 的各 section 文件 + paper.md + 工作目录 todolist + A/B 意见 | `03_revision\part1~part6*.md` | 对照 paper_context 的 `paragraph_index.md` 逐段核数、逐句三件套齐全 |
+| 5 | 逐句润色 ×6 | 6 个子 agent（并行或 3+3） | paper_context 的各 section 文件 + paper.md + 工作目录 todolist + A/B 意见 | `03_revision\part1~part6*.md` | 对照 paper_context 的 `paragraph_index.md` 逐段核数、逐句四列表（改前完整/改后完整/改了什么/为什么）全覆盖 |
 | 6 | 1-6拼接汇总与转PDF | 父进程 | part1~part6 全量 md | `03_revision\revision_parts_1_to_6_merged.md/.pdf`、`04_final\revision_master.md/.pdf` | 完整按 1–6 顺序拼接总版、目录导读完备、同名 PDF 成功生成 |
 | 7 | 成稿与三格式交付 | 父进程 | 原文 + 所有"改后" | `final_paper.tex/.docx/.pdf`（三格式强制，docx 有便携版 pandoc 兜底链）、全套 md 批量转 PDF、交付清单 | 三格式全部生成且非空、改动全部应用、清单发给用户 |
 
@@ -124,8 +124,8 @@ venue 在建目录前已经定过，这一步把它写进本次工作目录根�
 
 - 标准卡：`prompts/提示词6_逐句润色执行.md`。分工：part1 标题+摘要+Conclusion；part2 Introduction；part3 Related Work；part4 Method；part5 实验；part6 存在的问题（图、表、命名、符号、单位、格式、交叉引用）。
 - 每个子 agent 输入：`paper_context/<稿件名>/sections/` 下自己的 section 文件（主要工作对象）、`paper_context/<稿件名>/paper.md`（通读保证上下文一致）、本次工作目录的 todolist、A/B 意见。**优先级必须写进 prompt：todolist 为主，意见为参考，冲突从 todolist。**
-- 产物：`03_revision\part{n}_{部分名}.md`，太长可拆 `_1/_2/...`（4、5 个也行），必须完整；逐段独立、逐句"改前/改后/中文解释"三件套（不改的句子也列出并给理由）；需要引用的联网搜索并给论文名。
-- **机械验收**：对照 `paper_context/<稿件名>/paragraph_index.md`——该 part 处理的段落数 = 索引段落数；抽查每段三件套；part6 对照图表清单核全。缺 → resume 补全。
+- 产物：`03_revision\part{n}_{部分名}.md`，太长可拆 `_1/_2/...`（4、5 个也行），必须完整；逐段独立、逐句做成四列表「改前完整版｜改后完整版｜改了什么｜为什么」（不改的句子也进表并给理由，改前改后都是完整版不省略）；需要引用的联网搜索并给论文名。第 6 步把六个 part 拼成的 `revision_master` 就是全篇逐句总表，第 7 步的 `final_paper` 三格式是应用全部"改后"的完整改后终稿（final）。
+- **机械验收**：对照 `paper_context/<稿件名>/paragraph_index.md`——该 part 处理的段落数 = 索引段落数；抽查每段四列表齐全；part6 对照图表清单核全。缺 → resume 补全。
 
 ### 第 6 步：1-6全量拼接汇总与转PDF（父进程）
 
@@ -176,7 +176,7 @@ venue 在建目录前已经定过，这一步把它写进本次工作目录根�
       执行.md` 里存了一份 11 条原文，探不到文件时从那里取。
       标准卡第 6 条「更紧凑更专业更地道」以那 11 条为具体判据；
       润色执行调 `scipilot-writing-skill`，写完跑它的 `scripts/writing_lint.py`
-      自检，FAIL 项修掉或在改动汇总表里如实登记。三件套的「中文解释」里
+      自检，FAIL 项修掉或在改动汇总表里如实登记。四列表的「为什么」列里
       注明本句触发了 11 条中的哪几条。
 ```
 

@@ -35,7 +35,13 @@
      落盘后立即转同名 PDF，多份分片先合并成总版再转。venue 用官方短名，先从
      `paper_context` 的 anchor 复用，查不到才在开跑前一次问清，之后一路润到交付。
      例：`polish_reports/TIP_20260831-1430-润色对照.md`
-6. 交付前跑 scipilot 的 `scripts/writing_lint.py` 自检，命中 FAIL 必须修复或如实报告。
+6. **出完整改后终稿（final）**：四列表是中间产物，光有它不算交付完。把每句「改后」
+   按原文顺序拼回整篇，出一份可直接用的完整改后稿——载体是 `.tex` 就落
+   `polish_reports/<venue>_<YYYYMMDD-HHMM>-改后终稿.tex`，是 Word/纯文本就落同名
+   `.docx`/`.md`，验收后连同对照表一起转 PDF。这份 final 的每一句必须和四列表的
+   「改后」逐句一致。整篇范围必出 final；只润一段或一句时，对照表里的改后即成稿，
+   不必另拼。这与 kkstoryline 的 `final_paper`、yfnskills 的 `revised/` 是同一层交付。
+7. 交付前跑 scipilot 的 `scripts/writing_lint.py` 自检，命中 FAIL 必须修复或如实报告。
 
 ## KK 语句风格追加要求（11 条，与上面输出契约同时遵守）
 

@@ -43,8 +43,8 @@ description: >-
 | 读这篇论文 / 翻译论文 / 中英对照精读 | `nature-reader`。**这里指读懂别人的论文。若用户是要把自己的中文稿翻成英文投稿，走润色模式的中译英；点名袁老师风格的走 `yfnskills`** |
 | 找文献 / 检索相关工作 | `lit-search`，顶会论文优先 `conf-search` |
 | 开新稿 / 搭框架 / 模板 / 真假与 XX 占位 / 投稿打包 | `paper-skill` |
-| 写初稿 / 写或改章节 | 【写初稿模式】见下 |
-| 用袁老师风格写 / 改 / 中翻英 / 审阅把关挑毛病 / 回复审稿（提到袁老师、袁非牛、yfn） | `yfnskills` 整条接管：接稿问诊后按其内部四条工作流走（整篇初稿、润色、中翻英、rebuttal），交付 md+PDF 成对。**不套 polish-mode 四列契约**，**语句与写作规则**冲突时以 yfnskills 为准；**交付层规则一律以本路由为准**（目录 `yfn_<venue>_<时间戳>/`、落盘即转 PDF、复用 `paper_context`、rebuttal 先读 `paper_reviews/`），事实性红线两边一致 |
+| 写初稿 / 写或改章节 | 【写初稿模式】见下。**根据已有论文来写的，先复用 `paper_context`，写句子时就要守 11 条风格，不是写完再另说要不要润色** |
+| 用袁老师风格写 / 改 / 中翻英 / 审阅把关挑毛病 / 回复审稿（提到袁老师、袁非牛、yfn） | `yfnskills` 整条接管：接稿问诊后按其内部四条工作流走（整篇初稿、润色、中翻英、rebuttal），交付 md+PDF 成对。**语句与写作规则用 yfnskills 自己那套**（不注入 11 条，冲突时以 yfnskills 为准），**但润色交付形制与 story 一致、缺一不可**：导师口吻意见书 + 逐句四列完整对照表（改前完整/改后完整/改了什么/为什么，全覆盖不合并）+ 完整改后终稿 final（`revised/` tex+pdf）。**交付层规则一律以本路由为准**（目录 `yfn_<venue>_<时间戳>/`、落盘即转 PDF、复用 `paper_context`、rebuttal 先读 `paper_reviews/`），事实性红线两边一致 |
 | 跑 kkstoryline / 一键改论文 / 故事线升级加逐句润色 | `kkstoryline` 七步流水线自治执行。**先定 venue 再建目录** `kkstoryline_work_<venue>_<YYYYMMDD-HHMM>/`（例 `kkstoryline_work_ICASSP_20260831-0021`），然后切分、双份意见、ToDoList、六路逐句润色、汇总、三格式成稿。路由不拆解其步骤。**第 5 步逐句润色必须注入** polish-mode 的 11 条语句风格，润色调 `scipilot-writing-skill` 并跑 writing_lint。基础提取先查 `paper_context/<稿件名>/` 复用、缺才补建到那里（跨投稿跨 skill 共用），不重复转换 |
 | 润色 / 中译英 / 去 AI 味 / 缩写扩写 | 读 [references/polish-mode.md](references/polish-mode.md)。**给了整篇论文就默认全文润色，不问范围**。三级拆分：先把全文切成几个部分、每部分拆段落、每段拆句子，逐句执行，输出改前/改后/改了什么/为什么四列完整对照表；部分数 ≥5 时按部分并行派子 agent，父进程按原顺序拼成总表再转 PDF。点名袁老师风格的转 `yfnskills` |
 | 审稿 / 评审 / 看能不能中 / 模拟审稿人 | 读 [references/review-mode.md](references/review-mode.md)，并行派 5 个审稿子 agent，五份报告落盘后父进程综合。**点名让袁老师审阅把关的走 `yfnskills`，不派 5 路** |
@@ -68,7 +68,13 @@ description: >-
 
 1. `paper-skill`：先定能写什么。真假、证据状态、`XX` 占位、目标 venue 格式。
 2. `research-paper-writing`：逐章节写故事，一段一个意思，claim 对齐实验。
-3. 初稿阶段不做句级润色，避免故事没定就抠字。三层跑完再提示可接润色模式，中途不停。
+   写的时候就要守 polish-mode 的 11 条语句风格（不写长难句、正文少用冒号、
+   不堆并列、包装不超证据），当写作约束用，不出四列对照表。
+3. **故事定了就自动接润色模式**，不是写完停下来问要不要润。初稿阶段仍不做
+   句级四列，避免故事没定就抠字；三层一完，立刻按 polish-mode 对这篇初稿
+   全文逐句出四列对照表并转 PDF，中间不停。根据已有论文写初稿也走这条，
+   因为交出来的同样是要投稿的英文稿。同一篇稿要大改故事线加逐句润色的，
+   不走这三层，走 `kkstoryline`（第 5 步同样注入 11 条）。
 
 用户点名袁老师风格的初稿不走这三层，整条转 `yfnskills` 的 draft_workflow
 （五路分节子 agent 并行加父节点融合，出 tex/pdf/docx）。
@@ -132,6 +138,12 @@ description: >-
     改坏它。**但「以 yfnskills 为准」只管语句与写作规则**：交付层的目录命名、
     落盘即转 PDF、复用 `paper_context`、rebuttal 先读 `paper_reviews/` 这四条
     以本路由为准，已抄进它 SKILL.md 文首，别再拿「自成体系」豁免掉。
+    **润色交付形制也一律照 story 那套**：不管 story 还是 yfnskills，润色都要出
+    逐句四列完整对照表（改前完整/改后完整/改了什么/为什么，全覆盖不合并、不省略）
+    加一份应用了全部「改后」的完整改后终稿（final）。story 的 final 是
+    `final_paper` 三格式，yfnskills 的 final 是 `revised/` 的 tex+pdf。逐句表用
+    哪套语句判据按各自的写作规则（story 用 11 条，yfnskills 用它自己那套），
+    但「逐句四列表 + final」这个形制两边都不许省。
   - `kkstoryline` **注入第 5 步**：它的润色标准卡流程厚但语言标准薄，
     句子层面只有「更紧凑更专业更地道」一句空话。派发 6 个润色子 agent 时
     把 polish-mode 的 11 条语句风格作为具体判据写进 prompt，执行调
